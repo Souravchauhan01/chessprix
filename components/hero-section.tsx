@@ -4,6 +4,8 @@ import { motion } from 'framer-motion';
 import Image from 'next/image';
 import img from "@/public/about1.jpg";
 import { Typewriter } from 'react-simple-typewriter';
+import { Easings } from "framer-motion";
+
 
 // Floating chess piece config (gold tones)
 const chessElements = Array.from({ length: 12 }).map((_, i) => ({
@@ -24,7 +26,7 @@ const fadeUp = {
     transition: {
       delay: 0.3,
       duration: 0.6,
-      ease: "easeInOut", // ✅ this works with the current type system
+      ease: Easings.easeInOut, // ✅ this works with the current type system
     },
   },
 };
