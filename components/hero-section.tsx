@@ -6,16 +6,51 @@ import Image from 'next/image';
 import img from "@/public/about1.jpg";
 import { Typewriter } from 'react-simple-typewriter';
 
-const chessTypes = ['pawn', 'knight', 'queen', 'rook', 'bishop', 'king'];
+// === Types ===
+type ChessType = 'pawn' | 'knight' | 'queen' | 'rook' | 'bishop' | 'king';
+
+interface ChessElement {
+  size: string;
+  top: string;
+  left: string;
+  delay: number;
+  duration: number;
+  type: ChessType;
+}
+
+// === Constants ===
+const chessTypes: ChessType[] = ['pawn', 'knight', 'queen', 'rook', 'bishop', 'king'];
+
+const symbolMap: Record<ChessType, string> = {
+  king: '♔',
+  queen: '♕',
+  rook: '♖',
+  bishop: '♗',
+  knight: '♘',
+  pawn: '♙',
+};
+
+const fadeUp = {
+  hidden: { opacity: 0, y: 20 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: {
+      delay: 0.3,
+      duration: 0.6,
+       ease: [0.42, 0, 0.58, 1] as const,
+    },
+  },
+};
 
 export default function Hero() {
-  const [chessElements, setChessElements] = useState<any[]>([]);
+  const [chessElements, setChessElements] = useState<ChessElement[]>([]);
 
   useEffect(() => {
-    const isMobile = window.innerWidth < 640; // Tailwind's sm breakpoint
+    const isMobile = window.innerWidth < 640;
     const count = isMobile ? 6 : 16;
 
-    const elements = Array.from({ length: count }).map((_, i) => ({
+    const elements: ChessElement[] = Array.from({ length: count }).map((_, i) => ({
       size: `${Math.floor(Math.random() * 60) + 40}px`,
       top: `${Math.random() * 100}%`,
       left: `${Math.random() * 100}%`,
@@ -27,22 +62,8 @@ export default function Hero() {
     setChessElements(elements);
   }, []);
 
-  const fadeUp = {
-    hidden: { opacity: 0, y: 20 },
-    visible: {
-      opacity: 1,
-      y: 0,
-      transition: {
-        delay: 0.3,
-        duration: 0.6,
-        ease: [0.42, 0, 0.58, 1] as const,
-      },
-    },
-  };
-
   return (
     <section className="relative w-full min-h-screen overflow-hidden bg-[#080d14] flex items-center justify-center px-4 sm:px-6 md:px-10 py-16 sm:py-24">
-
       {/* Glowing Light */}
       <div className="absolute top-1/4 left-1/2 -translate-x-1/2 w-[500px] h-[500px] bg-yellow-300/10 blur-3xl rounded-full z-0" />
 
@@ -67,16 +88,7 @@ export default function Hero() {
           }}
           className="absolute flex flex-col items-center justify-center text-yellow-300 z-0 opacity-50 drop-shadow-[0_0_8px_rgba(212,175,55,0.8)]"
         >
-          <div className="text-4xl">
-            {{
-              king: '♔',
-              queen: '♕',
-              rook: '♖',
-              bishop: '♗',
-              knight: '♘',
-              pawn: '♙',
-            }[element.type]}
-          </div>
+          <div className="text-4xl">{symbolMap[element.type]}</div>
           <div className="text-xs font-semibold text-yellow-200">
             {element.type.charAt(0).toUpperCase() + element.type.slice(1)}
           </div>
@@ -85,7 +97,6 @@ export default function Hero() {
 
       {/* Main Content */}
       <div className="relative z-10 flex flex-col lg:flex-row items-center justify-between w-full max-w-7xl gap-12">
-
         {/* Left Content */}
         <motion.div className="text-center lg:text-left w-full max-w-2xl" initial="hidden" animate="visible">
           <motion.h1
@@ -129,7 +140,6 @@ export default function Hero() {
             className="mt-8 flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4"
             variants={fadeUp}
           >
-            {/* Join Now Button */}
             <button className="w-full sm:w-auto bg-[#472b12] text-white font-bold px-8 py-4 rounded-lg border-2 border-[#D4AF37] shadow-[0_4px_12px_rgba(212,175,55,0.4)] hover:scale-105 transition-all duration-300 ease-in-out hover:shadow-[0_6px_16px_rgba(212,175,55,0.5)] focus:outline-none focus:ring-4 focus:ring-[#D4AF37]/50 group relative overflow-hidden">
               <span className="absolute inset-0 bg-gradient-to-r from-[#D4AF37] to-[#472b12] opacity-0 group-hover:opacity-100 transition-opacity duration-300"></span>
               <span className="relative flex items-center justify-center gap-2">
@@ -140,7 +150,6 @@ export default function Hero() {
               </span>
             </button>
 
-            {/* Learn More Button */}
             <button className="w-full sm:w-auto relative px-8 py-4 rounded-lg text-base font-bold text-[#D4AF37] border-2 border-[#D4AF37] overflow-hidden z-10 group hover:text-white transition-all duration-300 ease-in-out">
               <span className="absolute inset-0 bg-[#D4AF37] opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-0"></span>
               <span className="relative z-10 flex items-center justify-center gap-2">
