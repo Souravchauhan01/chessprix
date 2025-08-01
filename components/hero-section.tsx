@@ -26,7 +26,7 @@ const fadeUp = {
     transition: {
       delay: 0.3,
       duration: 0.6,
-      ease: "easeInOut", // ✅ this works with the current type system
+      ease: [0.42, 0, 0.58, 1],  // ✅ this works with the current type system
     },
   },
 };
