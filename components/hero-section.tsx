@@ -94,7 +94,7 @@ export default function Hero() {
           animate="visible"
         >
           <motion.h1
-            className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-yellow-400 via-yellow-300 to-yellow-200 drop-shadow-[0_5px_3px_rgba(0,0,0,0.4)]"
+            className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-extrabold mt-2 text-transparent bg-clip-text bg-gradient-to-r from-yellow-400 via-yellow-300 to-yellow-200 drop-shadow-[0_5px_3px_rgba(0,0,0,0.4)]"
             variants={fadeUp}
             custom={1}
           >
