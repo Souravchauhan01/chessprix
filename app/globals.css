@@ -51,3 +51,24 @@ body {
 .animate-float {
   animation: float 2s ease-in-out infinite;
 }
+
+.text-stroke-gold {
+  -webkit-text-stroke: 1.2px #bd853c;
+  color: transparent;
+  -webkit-background-clip: text;
+  background-clip: text;
+  text-shadow: 0 0 8px rgba(243, 196, 122, 0.4);
+}
+/* Add this in your global.css or inside a <style jsx global> block */
+@keyframes glowPulse {
+  0%, 100% {
+    box-shadow: 0 0 12px #D4AF37, 0 0 24px #D4AF37;
+  }
+  50% {
+    box-shadow: 0 0 24px #f5e08d, 0 0 36px #f5e08d;
+  }
+}
+
+.glow-animation {
+  animation: glowPulse 1.5s ease-in-out infinite;
+}
