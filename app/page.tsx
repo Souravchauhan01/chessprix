@@ -3,8 +3,10 @@
 // pages/index.js
 import CourseHighlights from '@/components/CourseHighlights';
 import Features from '@/components/Features';
+import Footer from '@/components/Footer';
 import HeroSection from '@/components/hero-section';
 import Navbar from '@/components/Navbar';
+import TestimonialsSection from '@/components/TestmonialsSection';
 
 export default function Home() {
   return (
@@ -13,6 +15,8 @@ export default function Home() {
       <HeroSection />
       <Features />
       <CourseHighlights />
+      <TestimonialsSection />
+      <Footer />
       {/* other sections */}
     </>
   );

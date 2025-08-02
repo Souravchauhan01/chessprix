@@ -53,7 +53,7 @@ const fadeUp = {
 
 export default function CourseHighlights() {
   return (
-    <section className="relative py-24 px-6 sm:px-10 bg-[#080d14] text-yellow-100 overflow-hidden min-h-screen">
+    <section className="relative py-14 px-6 sm:px-10 bg-[#080d14] text-yellow-100 overflow-hidden min-h-auto">
 
       {/* Glowing Light */}
       <div className="absolute top-1/3 left-1/2 -translate-x-1/2 w-[500px] h-[500px] bg-yellow-300/10 blur-3xl rounded-full z-0" />
@@ -102,7 +102,7 @@ export default function CourseHighlights() {
 
       {/* Section Title */}
       <motion.h2
-        className="text-center text-4xl sm:text-5xl font-extrabold mb-16 text-transparent bg-clip-text bg-gradient-to-r from-[#bd853c] to-[#e0b86d] drop-shadow-[0_5px_3px_rgba(0,0,0,0.4)] z-10 relative"
+        className="text-center text-4xl sm:text-5xl font-extrabold p-1 mb-10 text-transparent bg-clip-text bg-gradient-to-r from-[#bd853c] to-[#e0b86d] drop-shadow-[0_5px_3px_rgba(0,0,0,0.4)] z-10 relative"
         initial="hidden"
         animate="visible"
         variants={fadeUp}
