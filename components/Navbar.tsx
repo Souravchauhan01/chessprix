@@ -20,7 +20,7 @@ export default function Navbar() {
     { name: 'Programs', href: '/courses' },
     
     { name: 'Hall Of Fame', href: '/coaches' },
-    { name: 'Blogs', href: '/coaches' },
+    { name: 'Blogs', href: '/blogs' },
     { name: 'Coaches', href: '/coaches' },
   ];
 
@@ -82,8 +82,8 @@ export default function Navbar() {
           <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
             <Link
               href="/contact"
-              className="bg-[#D4AF37] text-[#080d14] font-semibold
-                         px-4 py-2 rounded-lg shadow-md hover:shadow-[#D4AF37]/50 transition-all
+              className="bg-[#D4AF37] text-[#080d14] font-bold
+                         px-6 py-3 text-lg rounded-lg shadow-md hover:shadow-[#D4AF37]/50 transition-all
                          relative overflow-hidden group"
             >
               <span className="relative z-10">Contact Us</span>
@@ -137,10 +137,10 @@ export default function Navbar() {
             <Link
               href="/contact"
               onClick={closeMenu}
-              className="block w-full sm:w-auto bg-[#472b12] text-white font-bold px-8 py-4 rounded-lg border-2 border-[#D4AF37] shadow-[0_4px_12px_rgba(212,175,55,0.4)] hover:scale-105 transition-all duration-300 ease-in-out hover:shadow-[0_6px_16px_rgba(212,175,55,0.5)] focus:outline-none focus:ring-4 focus:ring-[#D4AF37]/50 group relative overflow-hidden"
+              className="block w-full sm:w-auto bg-[#472b12] text-white font-bold px-8 py-6 rounded-lg border-2 border-[#D4AF37] shadow-[0_4px_12px_rgba(212,175,55,0.4)] hover:scale-105 transition-all duration-300 ease-in-out hover:shadow-[0_6px_16px_rgba(212,175,55,0.5)] focus:outline-none focus:ring-4 focus:ring-[#D4AF37]/50 group relative overflow-hidden"
             >
               <span className="absolute inset-0 bg-gradient-to-r from-[#D4AF37] to-[#472b12] opacity-0 group-hover:opacity-100 transition-opacity duration-300"></span>
-              <span className="relative flex items-center justify-center gap-2">
+              <span className="relative flex items-center justify-center gap-2 text-lg-bold">
                 <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path
                     strokeLinecap="round"

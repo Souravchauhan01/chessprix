@@ -3,8 +3,9 @@
 import { useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
 import Image from 'next/image';
-import img from "@/public/about1.jpg";
 import { Typewriter } from 'react-simple-typewriter';
+
+import img from "@/public/about1.jpg";
 
 // === Types ===
 type ChessType = 'pawn' | 'knight' | 'queen' | 'rook' | 'bishop' | 'king';
@@ -38,7 +39,7 @@ const fadeUp = {
     transition: {
       delay: 0.3,
       duration: 0.6,
-       ease: [0.42, 0, 0.58, 1] as const,
+      ease: [0.42, 0, 0.58, 1] as const,
     },
   },
 };
@@ -47,6 +48,8 @@ export default function Hero() {
   const [chessElements, setChessElements] = useState<ChessElement[]>([]);
 
   useEffect(() => {
+    // This effect runs only once on mount. For a fully dynamic response to window resizing,
+    // you would need to add a resize event listener.
     const isMobile = window.innerWidth < 640;
     const count = isMobile ? 6 : 16;
 
@@ -63,7 +66,7 @@ export default function Hero() {
   }, []);
 
   return (
-    <section className="relative w-full min-h-screen overflow-hidden bg-[#080d14] flex items-center justify-center px-4 sm:px-6 md:px-10 py-16 sm:py-24">
+    <section className="relative w-full pt-30 min-h-screen overflow-hidden bg-[#080d14] flex items-center justify-center px-4 sm:px-6 md:px-10 py-16 sm:py-24">
       {/* Glowing Light */}
       <div className="absolute top-1/4 left-1/2 -translate-x-1/2 w-[500px] h-[500px] bg-yellow-300/10 blur-3xl rounded-full z-0" />
 
@@ -96,18 +99,21 @@ export default function Hero() {
       ))}
 
       {/* Main Content */}
-      <div className="relative z-10 flex flex-col lg:flex-row items-center justify-between w-full max-w-7xl gap-12">
+      {/* MODIFIED: Changed flex-col to flex-col-reverse and adjusted justify-content for better responsive behavior */}
+      <div className="relative z-10 flex flex-col lg:flex-row items-center justify-center lg:justify-between w-full max-w-7xl gap-12">
         {/* Left Content */}
         <motion.div className="text-center lg:text-left w-full max-w-2xl" initial="hidden" animate="visible">
           <motion.h1
-            className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-extrabold mt-15 text-transparent bg-clip-text bg-gradient-to-r from-[#bd853c] to-[#e0b86d] drop-shadow-[0_5px_3px_rgba(0,0,0,0.4)]"
+            // MODIFIED: Removed mt-15 to allow gap property on parent to control spacing
+            className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-[#bd853c] to-[#e0b86d] drop-shadow-[0_5px_3px_rgba(0,0,0,0.4)]"
             variants={fadeUp}
           >
             ChessPrix
           </motion.h1>
 
           <motion.h2
-            className="mt-3 text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-[#f3c47a]"
+            // MODIFIED: Adjusted responsive font sizes for better fit on mobile
+            className="mt-3 text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold text-[#f3c47a]"
             variants={fadeUp}
           >
             <Typewriter

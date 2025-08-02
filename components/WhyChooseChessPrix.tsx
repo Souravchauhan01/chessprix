@@ -37,28 +37,35 @@ const cards = [
   {
     title: 'Proven Track Record',
     desc: 'Our students consistently win medals and improve their ratings, reflecting our effective teaching methods.',
+    icon: <FaTrophy className="text-[#f3c47a] text-3xl mb-3 drop-shadow-[0_0_6px_rgba(243,196,122,0.7)]" />,
   },
   {
     title: 'Innovative Online Platform',
     desc: 'We use state-of-the-art tools like chess.com, lichess, and chessbase to ensure the best interactive learning.',
+    icon: <FaLaptopCode className="text-[#f3c47a] text-3xl mb-3 drop-shadow-[0_0_6px_rgba(243,196,122,0.7)]" />,
   },
   {
     title: 'Flexible Learning',
     desc: 'Choose from one-on-one coaching or small group classes, tailored to your family’s needs.',
+    icon: <FaUserFriends className="text-[#f3c47a] text-3xl mb-3 drop-shadow-[0_0_6px_rgba(243,196,122,0.7)]" />,
   },
   {
     title: 'Child-Centric Philosophy',
     desc: 'We celebrate every success, boosting confidence and helping kids grow through every milestone.',
+    icon: <FaLightbulb className="text-[#f3c47a] text-3xl mb-3 drop-shadow-[0_0_6px_rgba(243,196,122,0.7)]" />,
   },
   {
     title: 'Passion & Excellence',
     desc: 'From our motto “Passion Refined Into eXellence,” we inspire mastery and deep dedication in each child.',
+    icon: <FaChessBoard className="text-[#f3c47a] text-3xl mb-3 drop-shadow-[0_0_6px_rgba(243,196,122,0.7)]" />,
   },
   {
     title: 'Global Community',
     desc: 'Join a vibrant network of young chess enthusiasts, sharing strategies and celebrating victories together.',
+    icon: <FaGlobe className="text-[#f3c47a] text-3xl mb-3 drop-shadow-[0_0_6px_rgba(243,196,122,0.7)]" />,
   },
 ];
+import { FaTrophy, FaLaptopCode, FaUserFriends, FaLightbulb, FaChessBoard, FaGlobe } from 'react-icons/fa';
 
 const WhyChooseChessPrix = () => {
   const [pieces, setPieces] = useState(() => generatePieces(12));
@@ -136,6 +143,7 @@ const WhyChooseChessPrix = () => {
             animate="visible"
             custom={index + 1}
           >
+            {card.icon}
             <h3 className="text-2xl font-bold text-[#f2e79b] mb-2">{card.title}</h3>
             <p className="text-[#ebcc88] text-md leading-relaxed">{card.desc}</p>
           </motion.div>

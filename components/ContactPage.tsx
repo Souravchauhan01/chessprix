@@ -170,20 +170,21 @@ export default function ContactPage() {
             alt="Contact Vector"
             className="w-full h-auto rounded-xl shadow-lg mb-4"
           />
-          <div className="text-lg text-[#f5d084] space-y-1 flex space-x-5 mt-5">
-            <p>
-              📧 Email:{' '}
-              <a href="mailto:chessprixacademy@gmail.com" className="text-white ml-2">
-                chessprixacademy@gmail.com
-              </a>
-            </p>
-            <p>
-              📞 Phone:{' '}
-              <a href="tel:+91+91 9631218251" className="text-white ml-2">
-                 +91 9631218251
-              </a>
-            </p>
-          </div>
+         <div className="text-lg text-[#f5d084] mt-5 space-y-2 sm:space-y-0 sm:flex sm:space-x-5 sm:items-center">
+  <p className="flex items-center">
+    📧 Email:{' '}
+    <a href="mailto:chessprixacademy@gmail.com" className="text-white ml-2 break-all">
+      chessprixacademy@gmail.com
+    </a>
+  </p>
+  <p className="flex items-center">
+    📞 Phone:{' '}
+    <a href="tel:+919631218251" className="text-white ml-2">
+      +91 9631218251
+    </a>
+  </p>
+</div>
+
         </motion.div>
 
         {/* Right Form */}
