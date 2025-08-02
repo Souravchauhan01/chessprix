@@ -102,7 +102,7 @@ export default function CourseHighlights() {
 
       {/* Section Title */}
       <motion.h2
-        className="text-center text-4xl sm:text-5xl font-extrabold p-1 mb-10 text-transparent bg-clip-text bg-gradient-to-r from-[#bd853c] to-[#e0b86d] drop-shadow-[0_5px_3px_rgba(0,0,0,0.4)] z-10 relative"
+        className="text-center text-4xl sm:text-5xl font-extrabold p-2 mb-10 text-transparent bg-clip-text bg-gradient-to-r from-[#bd853c] to-[#e0b86d] drop-shadow-[0_5px_3px_rgba(0,0,0,0.4)] z-10 relative"
         initial="hidden"
         animate="visible"
         variants={fadeUp}
@@ -126,7 +126,7 @@ export default function CourseHighlights() {
               <div className="p-3 bg-[#d4af37]/10 rounded-full">{course.icon}</div>
               <h3 className="text-xl font-bold text-[#f2e79b]">{course.title}</h3>
             </div>
-            <p className="text-[#ebcc88] text-sm leading-relaxed">{course.desc}</p>
+            <p className="text-[#ebcc88] text-md leading-relaxed">{course.desc}</p>
           </motion.div>
         ))}
       </div>

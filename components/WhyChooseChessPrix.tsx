@@ -54,6 +54,10 @@ const cards = [
     title: 'Passion & Excellence',
     desc: 'From our motto “Passion Refined Into eXellence,” we inspire mastery and deep dedication in each child.',
   },
+  {
+    title: 'Global Community',
+    desc: 'Join a vibrant network of young chess enthusiasts, sharing strategies and celebrating victories together.',
+  },
 ];
 
 const WhyChooseChessPrix = () => {
@@ -64,7 +68,7 @@ const WhyChooseChessPrix = () => {
   }, []);
 
   return (
-    <section className="relative py-16 px-6 sm:px-10 bg-[#080d14] text-yellow-100 overflow-hidden">
+    <section className="relative py-6 px-6 sm:px-10 bg-[#080d14] text-yellow-100 overflow-hidden">
       {/* Glowing Background */}
       <div className="absolute top-1/3 left-1/2 -translate-x-1/2 w-[500px] h-[500px] bg-yellow-300/10 blur-3xl rounded-full z-0" />
 
@@ -112,7 +116,7 @@ const WhyChooseChessPrix = () => {
 
       {/* Title */}
       <motion.h2
-        className="text-center text-4xl sm:text-5xl font-extrabold mb-16 p-2 text-transparent bg-clip-text bg-gradient-to-r from-[#bd853c] to-[#e0b86d] drop-shadow-[0_5px_3px_rgba(0,0,0,0.4)] z-10 relative"
+        className="text-center text-4xl sm:text-5xl font-extrabold mb-10 p-2 text-transparent bg-clip-text bg-gradient-to-r from-[#bd853c] to-[#e0b86d] drop-shadow-[0_5px_3px_rgba(0,0,0,0.4)] z-10 relative mt-1"
         initial="hidden"
         animate="visible"
         variants={fadeUp}
@@ -132,8 +136,8 @@ const WhyChooseChessPrix = () => {
             animate="visible"
             custom={index + 1}
           >
-            <h3 className="text-xl font-bold text-[#f2e79b] mb-2">{card.title}</h3>
-            <p className="text-[#ebcc88] text-sm leading-relaxed">{card.desc}</p>
+            <h3 className="text-2xl font-bold text-[#f2e79b] mb-2">{card.title}</h3>
+            <p className="text-[#ebcc88] text-md leading-relaxed">{card.desc}</p>
           </motion.div>
         ))}
       </div>

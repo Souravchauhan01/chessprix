@@ -110,7 +110,7 @@ export default function About() {
 
         {/* Intro */}
         <motion.p
-          className="text-[#ebcc88] text-sm sm:text-base leading-relaxed mb-10 text-center max-w-3xl mx-auto"
+          className="text-[#ebcc88] text-md sm:text-base leading-relaxed mb-10 text-center max-w-3xl mx-auto"
           variants={fadeUp}
           initial="hidden"
           animate="visible"
@@ -129,7 +129,7 @@ export default function About() {
             custom={2}
           >
             <h3 className="text-xl font-bold text-[#f2e79b] mb-3">Our Mission</h3>
-            <p className="text-[#ebcc88] text-sm leading-relaxed">
+            <p className="text-[#ebcc88] text-md leading-relaxed">
               Our mission is to channel each child’s passion into the pursuit of excellence. We believe every student can achieve mastery with the right guidance—whether they dream of winning tournaments or simply honing their problem-solving skills. At ChessPrix, learning is empowering: we celebrate progress, encourage curiosity, and create champions one move at a time.
             </p>
           </motion.div>
@@ -142,7 +142,7 @@ export default function About() {
             custom={3}
           >
             <h3 className="text-xl font-bold text-[#f2e79b] mb-3">Our Vision</h3>
-            <p className="text-[#ebcc88] text-sm leading-relaxed">
+            <p className="text-[#ebcc88] text-md leading-relaxed">
               Our vision is to create a generation of thinkers and leaders who carry critical thinking, focus, and confidence beyond the board. Through chess, we empower young minds for lifelong success and global citizenship.
             </p>
           </motion.div>
@@ -157,7 +157,7 @@ export default function About() {
           custom={4}
         >
           <h3 className="text-xl font-bold text-[#f2e79b] mb-3">Our Approach</h3>
-          <ul className="list-disc list-inside text-[#ebcc88] text-sm leading-relaxed space-y-2">
+          <ul className="list-disc list-inside text-[#ebcc88] text-md leading-relaxed space-y-2">
             <li><strong>Structured Progression:</strong> Each course builds on the last, so students steadily advance from basic rules to advanced strategies.</li>
             <li><strong>Global Community:</strong> Students from around the world connect and learn together, making each class a diverse and enriching experience.</li>
             <li><strong>Engaging Curriculum:</strong> Lessons use puzzles, games, and live board analysis, turning complex ideas into fun challenges.</li>
@@ -186,8 +186,8 @@ export default function About() {
 
           {/* Owner Info */}
           <div>
-            <h3 className="text-xl font-bold text-[#f3c47a] mb-2">Sourav Singh Chauhan</h3>
-            <p className="text-[#ebcc88] text-xs leading-relaxed max-w-2xl">
+            <h3 className="text-3xl font-bold text-[#f3c47a] mb-2">Sourav Singh Chauhan</h3>
+            <p className="text-[#ebcc88] text-md leading-relaxed max-w-2xl">
               As the founder of ChessPrix, I envisioned a space where chess becomes a tool to inspire strategic minds, self-discipline, and global camaraderie. Every student has the potential to become a leader—and we build that, one move at a time.
             </p>
           </div>

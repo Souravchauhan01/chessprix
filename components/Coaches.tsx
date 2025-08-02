@@ -91,7 +91,7 @@ export default function Coaches() {
   }, []);
 
   return (
-    <section className="relative w-full bg-[#080d14] text-yellow-100 px-6 sm:px-10 py-20 overflow-hidden mt-15">
+    <section className="relative w-full bg-[#080d14] text-yellow-100 px-6 sm:px-10 py-10 overflow-hidden mt-20">
 
       {/* Glowing Light */}
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 w-[600px] h-[600px] bg-yellow-300/10 blur-3xl rounded-full z-0" />
@@ -139,7 +139,7 @@ export default function Coaches() {
       </motion.h2>
 
       <motion.p
-        className="text-[#ebcc88] text-sm sm:text-base leading-relaxed mb-10 text-center max-w-3xl mx-auto z-10 relative"
+        className="text-[#ebcc88] text-md sm:text-base leading-relaxed mb-10 text-center max-w-3xl mx-auto z-10 relative"
         variants={fadeUp}
         initial="hidden"
         animate="visible"
@@ -153,19 +153,20 @@ export default function Coaches() {
         {coaches.map((coach, index) => (
           <motion.div
             key={index}
-            className="bg-[#121820] border border-[#d4af37]/30 rounded-xl p-6 shadow-md hover:shadow-[0_0_20px_rgba(212,175,55,0.4)] transition-all duration-300 hover:scale-105 flex gap-5"
+           className="bg-[#121820] border border-[#d4af37]/30 rounded-xl p-6 shadow-md hover:shadow-[0_0_20px_rgba(212,175,55,0.4)] transition-all duration-300 hover:scale-105 flex flex-col sm:flex-row gap-5 sm:items-start items-center"
+
             variants={fadeUp}
             initial="hidden"
             animate="visible"
             custom={index + 2}
           >
             <div className="flex-shrink-0 w-20 h-20 rounded-full overflow-hidden border-2 border-yellow-400">
-              <Image src={coach.image} alt={coach.name} width={80} height={80} className="object-cover w-full h-full" />
+              <Image src={coach.image} alt={coach.name} width={100} height={100} className="object-cover w-full h-full" />
             </div>
-            <div>
-              <h4 className="text-xl font-bold text-[#f2e79b]">{coach.name}</h4>
-              <p className="text-sm italic text-yellow-300 mb-2">{coach.title}</p>
-              <p className="text-[#ebcc88] text-sm leading-relaxed">{coach.bio}</p>
+            <div className="">
+              <h4 className="text-2xl font-bold text-[#f2e79b] text-center sm:text-left ">{coach.name}</h4>
+              <p className="text-md italic text-yellow-300 mb-2 text-center sm:text-left">{coach.title}</p>
+              <p className="text-[#ebcc88] text-md leading-relaxed">{coach.bio}</p>
             </div>
           </motion.div>
         ))}

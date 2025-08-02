@@ -43,6 +43,11 @@ const features = [
     icon: <FaRegLightbulb className="text-[#f3c47a] text-3xl drop-shadow-[0_0_4px_rgba(243,196,122,0.8)]" />,
     desc: 'Beyond chess, we cultivate concentration, creativity, and confidence—skills that benefit all areas of life.',
   },
+  {
+    title: 'Global Community',
+    icon: <MdPeople className="text-[#f3c47a] text-3xl drop-shadow-[0_0_4px_rgba(243,196,122,0.8)]" />,
+    desc: 'Join a vibrant network of young chess enthusiasts from around the world, sharing strategies and celebrating victories together.',
+  },
 ];
 
 const fadeUp = {
@@ -107,7 +112,7 @@ export default function Features() {
 
       {/* Title */}
      <motion.h2
-  className="text-center text-4xl sm:text-5xl font-extrabold mb-16 text-transparent bg-clip-text bg-gradient-to-r from-[#bd853c] to-[#e0b86d] drop-shadow-[0_5px_3px_rgba(0,0,0,0.4)] z-10 relative"
+  className="text-center text-4xl sm:text-5xl font-extrabold mb-16 p-2 text-transparent bg-clip-text bg-gradient-to-r from-[#bd853c] to-[#e0b86d] drop-shadow-[0_5px_3px_rgba(0,0,0,0.4)] z-10 relative"
   initial="hidden"
   animate="visible"
   variants={fadeUp}
@@ -132,7 +137,7 @@ export default function Features() {
               <div className="p-3 bg-[#d4af37]/10 rounded-full">{feature.icon}</div>
               <h3 className="text-xl font-bold text-[#f2e79b]">{feature.title}</h3>
             </div>
-            <p className="text-[#ebcc88] text-sm leading-relaxed">{feature.desc}</p>
+            <p className="text-[#ebcc88] text-md leading-relaxed">{feature.desc}</p>
           </motion.div>
         ))}
       </div>
