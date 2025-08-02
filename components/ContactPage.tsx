@@ -173,14 +173,14 @@ export default function ContactPage() {
           <div className="text-lg text-[#f5d084] space-y-1 flex space-x-5 mt-5">
             <p>
               📧 Email:{' '}
-              <a href="mailto:info@chessprix.com" className="text-white">
+              <a href="mailto:info@chessprix.com" className="text-white ml-2">
                 info@chessprix.com
               </a>
             </p>
             <p>
               📞 Phone:{' '}
-              <a href="tel:+919876543210" className="text-white">
-                +91 98765 43210
+              <a href="tel:+919876543210" className="text-white ml-2">
+                 9876543210
               </a>
             </p>
           </div>
@@ -218,6 +218,7 @@ export default function ContactPage() {
               <div className="flex-1 mb-4 md:mb-0">
                 <label className="block text-lg font-semibold text-[#f5d084] mb-2">Select Age</label>
                 <select name="ageGroup" className="w-full px-4 py-2 rounded-lg bg-[#2c2f36] text-white border border-gray-700 focus:outline-none">
+                  <option value="" disabled selected hidden>Select your age</option>
                   <option>4 - 8 Years</option>
                   <option>8 - 12 Years</option>
                   <option>12 - 16 Years</option>
@@ -227,15 +228,27 @@ export default function ContactPage() {
               <div className="flex-1">
                 <label className="block text-lg font-semibold text-[#f5d084] mb-2">Select Country</label>
                 <select name="country" className="w-full px-4 py-2 rounded-lg bg-[#2c2f36] text-white border border-gray-700 focus:outline-none">
+                  <option value="" disabled selected hidden>Select your country</option>
                   <option>India</option>
                   <option>United States</option>
-                  <option>Canada</option>
                   <option>United Kingdom</option>
+                  <option>Australia</option>
+                  <option>Japan</option>
                   <option>Germany</option>
                   <option>France</option>
                   <option>Italy</option>
                   <option>Spain</option>
-                  <option>Australia</option>
+                  <option>Russia</option>
+                  <option>China</option>
+                  <option>UAE</option>
+                  <option>Saudi Arabia</option>
+                  <option>Bangladesh</option>
+                  <option>Pakistan</option>
+                  <option>Philippines</option>
+                  <option>Turkey</option>
+                  <option>South Korea</option>
+                  <option>Brazil</option>
+                  <option>Egypt</option>
                 </select>
               </div>
             </div>
@@ -243,14 +256,45 @@ export default function ContactPage() {
             {/* Phone */}
             <div>
               <label className="block text-lg font-semibold text-[#f5d084] mb-2">Phone Number</label>
-              <div className="flex space-x-2">
-                <select name="countryCode" className="px-3 py-2 rounded-lg bg-[#2c2f36] text-white border border-gray-700 focus:outline-none">
-                  <option value="+91">India (+91)</option>
-                  <option value="+1">United States (+1)</option>
-                  <option value="+44">United Kingdom (+44)</option>
-                </select>
-                <input type="tel" name="phone" required placeholder="Enter phone number" className="flex-1 px-4 py-2 rounded-lg bg-[#2c2f36] text-white border border-gray-700 focus:outline-none" />
+              <div>
+                
+                <div className="flex space-x-2">
+                  <select
+                    name="countryCode"
+                    className="w-2/5 sm:w-1/4 px-3 py-2 rounded-lg bg-[#2c2f36] text-white border border-gray-700 focus:outline-none"
+                  >
+                    <option value="" disabled selected hidden>Select code</option>
+                    <option value="+91">India (+91)</option>
+                    <option value="+1">USA (+1)</option>
+                    <option value="+44">UK (+44)</option>
+                    <option value="+61">Australia (+61)</option>
+                    <option value="+81">Japan (+81)</option>
+                    <option value="+49">Germany (+49)</option>
+                    <option value="+33">France (+33)</option>
+                    <option value="+39">Italy (+39)</option>
+                    <option value="+34">Spain (+34)</option>
+                    <option value="+7">Russia (+7)</option>
+                    <option value="+86">China (+86)</option>
+                    <option value="+971">UAE (+971)</option>
+                    <option value="+966">Saudi Arabia (+966)</option>
+                    <option value="+880">Bangladesh (+880)</option>
+                    <option value="+92">Pakistan (+92)</option>
+                    <option value="+63">Philippines (+63)</option>
+                    <option value="+90">Turkey (+90)</option>
+                    <option value="+82">South Korea (+82)</option>
+                    <option value="+55">Brazil (+55)</option>
+                    <option value="+20">Egypt (+20)</option>
+                  </select>
+                  <input
+                    type="tel"
+                    name="phone"
+                    required
+                    placeholder="Enter phone number"
+                    className="w-3/5 sm:w-3/4 px-4 py-2 rounded-lg bg-[#2c2f36] text-white border border-gray-700 focus:outline-none"
+                  />
+                </div>
               </div>
+
             </div>
 
             {/* Message */}
