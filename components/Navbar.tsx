@@ -21,7 +21,7 @@ export default function Navbar() {
     
     { name: 'Hall Of Fame', href: '/coaches' },
     { name: 'Blogs', href: '/blogs' },
-    { name: 'Coaches', href: '/coaches' },
+    // { name: 'Coaches', href: '/coaches' },
   ];
 
   return (
