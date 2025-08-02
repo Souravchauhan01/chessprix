@@ -27,7 +27,7 @@ export default function Navbar() {
       className="fixed top-0 left-0 right-0 z-50 backdrop-blur-xl
                  bg-[#080d14]/95 border-b border-[#D4AF37]/20 shadow-lg"
     >
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 md:px-10 py-3 flex items-center justify-between">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 md:px-10 py-2 flex items-center justify-between">
         {/* Logo */}
       <Link href="/" onClick={closeMenu} className="flex items-center group">
   <motion.div
