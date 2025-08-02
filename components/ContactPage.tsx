@@ -173,14 +173,14 @@ export default function ContactPage() {
           <div className="text-lg text-[#f5d084] space-y-1 flex space-x-5 mt-5">
             <p>
               📧 Email:{' '}
-              <a href="mailto:info@chessprix.com" className="text-white ml-2">
-                info@chessprix.com
+              <a href="mailto:chessprixacademy@gmail.com" className="text-white ml-2">
+                chessprixacademy@gmail.com
               </a>
             </p>
             <p>
               📞 Phone:{' '}
-              <a href="tel:+919876543210" className="text-white ml-2">
-                 9876543210
+              <a href="tel:+91+91 9631218251" className="text-white ml-2">
+                 +91 9631218251
               </a>
             </p>
           </div>

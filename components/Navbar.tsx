@@ -14,9 +14,11 @@ export default function Navbar() {
   const navLinks = [
     { name: 'Home', href: '/' },
     { name: 'About', href: '/about' },
-    { name: 'Courses', href: '/courses' },
-    { name: 'Coaches', href: '/coaches' },
-    { name: 'Contact', href: '/contact' },
+    { name: 'Programs', href: '/courses' },
+    { name: 'Services', href: '/coaches' },
+    { name: 'Hall Of Fame', href: '/coaches' },
+    { name: 'Blogs', href: '/coaches' },
+    
   ];
 
   return (

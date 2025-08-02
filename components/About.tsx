@@ -99,7 +99,7 @@ export default function About() {
       <div className="relative z-10 max-w-7xl mx-auto">
         {/* Heading */}
         <motion.h2
-          className="text-4xl sm:text-5xl font-extrabold text-center mb-16 text-transparent bg-clip-text bg-gradient-to-r from-[#bd853c] to-[#e0b86d] drop-shadow-[0_5px_3px_rgba(0,0,0,0.4)]"
+          className="text-4xl sm:text-5xl font-extrabold text-center mb-8 text-transparent bg-clip-text bg-gradient-to-r from-[#bd853c] to-[#e0b86d] drop-shadow-[0_5px_3px_rgba(0,0,0,0.4)]"
           variants={fadeUp}
           initial="hidden"
           animate="visible"

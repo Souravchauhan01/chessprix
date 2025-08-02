@@ -46,11 +46,11 @@ export default function Footer() {
           <ul className="space-y-3 text-sm">
             <li className="flex items-start gap-2">
               <FaPhoneAlt className="mt-1 text-[#D4AF37]" />
-              <span>+91 98765 43210</span>
+              <span>+91 9631218251</span>
             </li>
             <li className="flex items-start gap-2">
               <FaEnvelope className="mt-1 text-[#D4AF37]" />
-              <span>support@chessprix.com</span>
+              <span>chessprixacademy@gmail.com</span>
             </li>
             <li className="flex items-start gap-2">
               <FaMapMarkerAlt className="mt-1 text-[#D4AF37]" />
