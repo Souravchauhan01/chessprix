@@ -4,8 +4,32 @@ import { useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
 import Image from 'next/image';
 
-const chessTypes = ['pawn', 'knight', 'queen', 'rook', 'bishop', 'king'];
+// === Types ===
+type ChessType = 'pawn' | 'knight' | 'queen' | 'rook' | 'bishop' | 'king';
 
+interface ChessElement {
+  size: string;
+  top: string;
+  left: string;
+  delay: number;
+  duration: number;
+  type: ChessType;
+  color: string;
+}
+
+// === Data ===
+const chessTypes: ChessType[] = ['pawn', 'knight', 'queen', 'rook', 'bishop', 'king'];
+
+const symbolMap: Record<ChessType, string> = {
+  king: '♔',
+  queen: '♕',
+  rook: '♖',
+  bishop: '♗',
+  knight: '♘',
+  pawn: '♙',
+};
+
+// === Animation Variants ===
 const fadeUp = {
   hidden: { opacity: 0, y: 30 },
   visible: (i: number) => ({
@@ -20,7 +44,7 @@ const fadeUp = {
 };
 
 export default function HallOfFame() {
-  const [chessElements, setChessElements] = useState<any[]>([]);
+  const [chessElements, setChessElements] = useState<ChessElement[]>([]);
 
   const students = Array.from({ length: 12 }).map((_, i) => ({
     name: `Student ${i + 1}`,
@@ -29,7 +53,7 @@ export default function HallOfFame() {
 
   useEffect(() => {
     const count = 16;
-    const generated = Array.from({ length: count }).map((_, i) => ({
+    const generated: ChessElement[] = Array.from({ length: count }).map((_, i) => ({
       size: `${Math.floor(Math.random() * 60) + 40}px`,
       top: `${Math.random() * 100}%`,
       left: `${Math.random() * 100}%`,
@@ -44,7 +68,7 @@ export default function HallOfFame() {
   return (
     <section className="relative py-16 mt-15 px-6 sm:px-10 bg-gradient-to-br from-[#0a0f1a] via-[#0e131f] to-[#0a0f1a] text-yellow-100 overflow-hidden min-h-screen">
 
-      {/* Glowing Background Center Light */}
+      {/* Glowing Center Light */}
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-yellow-300/10 blur-[200px] rounded-full z-0" />
 
       {/* Floating Chess Pieces */}
@@ -68,28 +92,17 @@ export default function HallOfFame() {
           }}
           className={`absolute flex flex-col items-center justify-center z-0 opacity-50 ${el.color}`}
         >
-          <div className="text-4xl">
-            {{
-              king: '♔',
-              queen: '♕',
-              rook: '♖',
-              bishop: '♗',
-              knight: '♘',
-              pawn: '♙',
-            }[el.type]}
-          </div>
-          <div className="text-xs font-semibold text-yellow-200">
-            {el.type.charAt(0).toUpperCase() + el.type.slice(1)}
-          </div>
+          <div className="text-4xl">{symbolMap[el.type]}</div>
+          <div className="text-xs font-semibold text-yellow-200 capitalize">{el.type}</div>
         </motion.div>
       ))}
 
-      {/* Grid Pattern */}
+      {/* Grid Lines */}
       <div className="absolute inset-0 opacity-10 pointer-events-none z-0">
         <div className="absolute inset-0 bg-[length:80px_80px] bg-[linear-gradient(to_right,#1f1f35_1px,transparent_1px),linear-gradient(to_bottom,#1f1f35_1px,transparent_1px)]" />
       </div>
 
-      {/* Section Title */}
+      {/* Section Heading */}
       <motion.h2
         className="text-center text-4xl sm:text-5xl font-extrabold mb-16 p-2 text-transparent bg-clip-text bg-gradient-to-r from-[#bd853c] to-[#e0b86d] drop-shadow-[0_5px_3px_rgba(0,0,0,0.4)] z-10 relative"
         initial="hidden"
