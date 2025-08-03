@@ -13,7 +13,7 @@ export default function Navbar() {
   const toggleMenu = () => setIsOpen(!isOpen);
   const closeMenu = () => setIsOpen(false);
   const pathname = usePathname();
-
+// hello
   const navLinks = [
     { name: 'Home', href: '/' },
     { name: 'About', href: '/about' },
