@@ -66,7 +66,7 @@ export default function Hero() {
 
   return (
     // MODIFIED LINE: Replaced complex min-h and py classes with a simpler responsive padding system
-    <section className="relative w-full overflow-hidden bg-[#080d14] flex items-center justify-center px-4 sm:px-6 md:px-8 lg:px-10 py-20 md:py-24 lg:py-28">
+    <section className="relative w-full overflow-hidden bg-[#080d14] flex items-center justify-center px-4 sm:px-6 md:px-8 lg:px-10 py-20 md:py-24 lg:py-28 mt-10">
       {/* Glowing Light - Adjusted for tablet */}
       <div className="absolute top-1/4 left-1/2 -translate-x-1/2 w-[300px] md:w-[400px] lg:w-[500px] h-[300px] md:h-[400px] lg:h-[500px] bg-yellow-300/10 blur-3xl rounded-full z-0" />
 
