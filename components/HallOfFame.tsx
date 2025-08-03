@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
-import Image from 'next/image';
+import { generateChessElements } from './utils/chessElements';
 
 // === Types ===
 type ChessType = 'pawn' | 'knight' | 'queen' | 'rook' | 'bishop' | 'king';
@@ -17,7 +17,7 @@ interface ChessElement {
   color: string;
 }
 
-// === Data ===
+// === Constants ===
 const chessTypes: ChessType[] = ['pawn', 'knight', 'queen', 'rook', 'bishop', 'king'];
 
 const symbolMap: Record<ChessType, string> = {
@@ -29,7 +29,6 @@ const symbolMap: Record<ChessType, string> = {
   pawn: '♙',
 };
 
-// === Animation Variants ===
 const fadeUp = {
   hidden: { opacity: 0, y: 30 },
   visible: (i: number) => ({
@@ -43,26 +42,69 @@ const fadeUp = {
   }),
 };
 
+const students = [
+  {
+    name: 'Aarav Patel',
+    age: 12,
+    rating: '1200',
+    achievement: 'School Champion',
+    image: '/student1.jpg',
+    story: 'Started with us at age 8, now leads his school chess club.',
+  },
+  {
+    name: 'Zara Khan',
+    age: 10,
+    rating: '1100',
+    achievement: 'District Runner-up',
+    image: '/student2.jpg',
+    story: 'Her tactical skills have improved dramatically in just 2 years.',
+  },
+  {
+    name: 'Rohan Singh',
+    age: 14,
+    rating: '1400',
+    achievement: 'State Champion',
+    image: '/student3.jpg',
+    story: 'From beginner to state champion in 3 years of dedicated training.',
+  },
+  {
+    name: 'Ananya Sharma',
+    age: 11,
+    rating: '1250',
+    achievement: 'Online Tournament Winner',
+    image: '/student4.jpg',
+    story: 'Excels in online competitions and loves teaching younger students.',
+  },
+  {
+    name: 'Dev Kumar',
+    age: 13,
+    rating: '1350',
+    achievement: 'National Qualifier',
+    image: '/student5.jpg',
+    story: 'Qualified for national championships after just 2 years of training.',
+  },
+  {
+    name: 'Ishaan Reddy',
+    age: 9,
+    rating: '1000',
+    achievement: 'Rapid Improvement Award',
+    image: '/student6.jpg',
+    story: 'Gained 300 rating points in his first year with ChessPrix.',
+  },
+];
+
 export default function HallOfFame() {
   const [chessElements, setChessElements] = useState<ChessElement[]>([]);
-
-  const students = Array.from({ length: 12 }).map((_, i) => ({
-    name: `Student ${i + 1}`,
-    img: `/students/student${(i % 10) + 1}.jpg`,
-  }));
+  const [isClient, setIsClient] = useState(false);
 
   useEffect(() => {
-    const count = 16;
-    const generated: ChessElement[] = Array.from({ length: count }).map((_, i) => ({
-      size: `${Math.floor(Math.random() * 60) + 40}px`,
-      top: `${Math.random() * 100}%`,
-      left: `${Math.random() * 100}%`,
-      delay: Math.random() * 3,
-      duration: Math.random() * 5 + 5,
-      type: chessTypes[i % chessTypes.length],
+    setIsClient(true);
+    const elements = generateChessElements(14).map((el, i) => ({
+      ...el,
+      type: chessTypes[i % chessTypes.length] as ChessType,
       color: 'text-yellow-300 drop-shadow-[0_0_8px_rgba(212,175,55,0.5)]',
     }));
-    setChessElements(generated);
+    setChessElements(elements);
   }, []);
 
   return (
@@ -72,7 +114,7 @@ export default function HallOfFame() {
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-yellow-300/10 blur-[200px] rounded-full z-0" />
 
       {/* Floating Chess Pieces */}
-      {chessElements.map((el, index) => (
+      {isClient && chessElements.map((el, index) => (
         <motion.div
           key={index}
           initial={{ y: 0, rotate: 0 }}

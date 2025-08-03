@@ -26,34 +26,94 @@ const students = [
 ];
 const duplicateList = [...students, ...students];
 
+// Deterministic random number generator
+function seededRandom(seed: number): number {
+  const x = Math.sin(seed) * 10000;
+  return x - Math.floor(x);
+}
+
+function generateStudentElements(): Array<{
+  size: string;
+  top: string;
+  left: string;
+  delay: number;
+  duration: number;
+}> {
+  const rows = 3;
+  const cols = 4;
+  const totalElements = rows * cols;
+  
+  return Array.from({ length: totalElements }).map((_, i) => {
+    const seed = i * 12345; // Deterministic seed based on index
+    const row = Math.floor(i / cols);
+    const col = i % cols;
+    
+    const size = Math.floor(seededRandom(seed) * 40) + 30;
+    const top = (row / rows) * 90 + seededRandom(seed + 1) * 5;
+    const left = (col / cols) * 90 + seededRandom(seed + 2) * 5;
+    const delay = seededRandom(seed + 3) * 3;
+    const duration = seededRandom(seed + 4) * 5 + 5;
+    
+    return {
+      size: `${size}px`,
+      top: `${top}%`,
+      left: `${left}%`,
+      delay,
+      duration,
+    };
+  });
+}
+
+const fadeUp = {
+  hidden: { opacity: 0, y: 30 },
+  visible: (i: number) => ({
+    opacity: 1,
+    y: 0,
+    transition: {
+      delay: i * 0.1,
+      duration: 0.6,
+      ease: [0.42, 0, 0.58, 1] as const,
+    },
+  }),
+};
+
 export default function StudentCarousel() {
-  const [width, setWidth] = useState(0);
-  const [chessElements, setChessElements] = useState<any[]>([]);
+  const [studentElements, setStudentElements] = useState<Array<{
+    size: string;
+    top: string;
+    left: string;
+    delay: number;
+    duration: number;
+  }>>([]);
+  const [isClient, setIsClient] = useState(false);
+  const [carouselWidth, setCarouselWidth] = useState(0);
 
   useEffect(() => {
-    const container = document.getElementById('carousel-track');
-    if (container) setWidth(container.scrollWidth / 2);
-
-    // === Spread evenly instead of randomly clumping ===
-    const count = window.innerWidth < 640 ? 6 : 14;
-    const cols = Math.ceil(Math.sqrt(count));
-    const rows = Math.ceil(count / cols);
-
-    const elements = Array.from({ length: count }).map((_, i) => {
-      const row = Math.floor(i / cols);
-      const col = i % cols;
-
-      return {
-        size: `${Math.floor(Math.random() * 40) + 30}px`,
-        top: `${(row / rows) * 90 + Math.random() * 5}%`,
-        
-        left: `${(col / cols) * 90 + Math.random() * 5}%`,
-        delay: Math.random() * 3,
-        duration: Math.random() * 5 + 5,
-        type: chessTypes[i % chessTypes.length],
-      };
-    });
-    setChessElements(elements);
+    setIsClient(true);
+    const elements = generateStudentElements();
+    setStudentElements(elements);
+    
+    // Calculate carousel width after component mounts
+    const calculateWidth = () => {
+      const track = document.getElementById('carousel-track');
+      if (track) {
+        setCarouselWidth(track.scrollWidth / 2);
+      }
+    };
+    
+    // Calculate after a short delay to ensure DOM is ready
+    setTimeout(calculateWidth, 100);
+    
+    // Also recalculate on window resize
+    const handleResize = () => {
+      setTimeout(calculateWidth, 100);
+    };
+    
+    window.addEventListener('resize', handleResize);
+    
+    return () => {
+      window.removeEventListener('resize', handleResize);
+    };
   }, []);
 
   return (
@@ -62,30 +122,28 @@ export default function StudentCarousel() {
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 w-[400px] h-[400px] bg-yellow-300/10 blur-3xl rounded-full z-0" />
 
       {/* Floating Chess Pieces */}
-      {chessElements.map((element, index) => (
+      {isClient && studentElements.map((el, index) => (
         <motion.div
           key={index}
           initial={{ y: 0, rotate: 0 }}
-          animate={{ y: [-100, -200, -100], rotate: [0, 15, 0] }}
+          animate={{ y: [-50, -100, -50], rotate: [0, 10, 0] }}
           transition={{
-            duration: element.duration,
-            delay: element.delay,
+            duration: el.duration,
+            delay: el.delay,
             repeat: Infinity,
             repeatType: 'mirror',
             ease: 'easeInOut',
           }}
           style={{
-            width: element.size,
-            height: element.size,
-            top: element.top,
-            left: element.left,
+            width: el.size,
+            height: el.size,
+            top: el.top,
+            left: el.left,
           }}
           className="absolute flex flex-col items-center justify-center text-yellow-300 z-0 opacity-40 drop-shadow-[0_0_8px_rgba(212,175,55,0.8)] pointer-events-none"
         >
-          <div className="text-3xl">{symbolMap[element.type]}</div>
-          <div className="text-xs font-semibold text-yellow-200">
-            {element.type.charAt(0).toUpperCase() + element.type.slice(1)}
-          </div>
+          <div className="text-3xl">👑</div>
+          <div className="text-xs font-semibold text-yellow-200">Student</div>
         </motion.div>
       ))}
 
@@ -99,7 +157,7 @@ export default function StudentCarousel() {
         <motion.div
           id="carousel-track"
           className="flex gap-8 w-max"
-          animate={{ x: [-0, -width] }}
+          animate={isClient && carouselWidth > 0 ? { x: [-0, -carouselWidth] } : { x: [-0, -50] }}
           transition={{
             repeat: Infinity,
             duration: 30,

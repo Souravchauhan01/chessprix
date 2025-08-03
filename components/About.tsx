@@ -4,10 +4,21 @@ import { useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
 import Image from 'next/image';
 import ownerImg from '@/public/about1.jpg'; // Replace with your actual image path
+import { generateChessElements } from './utils/chessElements';
 
-// Chess piece animation setup
+// === Types ===
 type ChessType = 'pawn' | 'knight' | 'queen' | 'rook' | 'bishop' | 'king';
 
+interface ChessElement {
+  size: string;
+  top: string;
+  left: string;
+  delay: number;
+  duration: number;
+  type: ChessType;
+}
+
+// === Constants ===
 const chessTypes: ChessType[] = ['pawn', 'knight', 'queen', 'rook', 'bishop', 'king'];
 
 const symbolMap: Record<ChessType, string> = {
@@ -18,15 +29,6 @@ const symbolMap: Record<ChessType, string> = {
   knight: '♘',
   pawn: '♙',
 };
-
-interface ChessElement {
-  size: string;
-  top: string;
-  left: string;
-  delay: number;
-  duration: number;
-  type: ChessType;
-}
 
 const fadeUp = {
   hidden: { opacity: 0, y: 30 },
@@ -43,20 +45,14 @@ const fadeUp = {
 
 export default function About() {
   const [chessElements, setChessElements] = useState<ChessElement[]>([]);
+  const [isClient, setIsClient] = useState(false);
 
   useEffect(() => {
-    const isMobile = window.innerWidth < 640;
-    const count = isMobile ? 6 : 14;
-
-    const elements: ChessElement[] = Array.from({ length: count }).map((_, i) => ({
-      size: `${Math.floor(Math.random() * 60) + 40}px`,
-      top: `${Math.random() * 100}%`,
-      left: `${Math.random() * 100}%`,
-      delay: Math.random() * 3,
-      duration: Math.random() * 5 + 5,
-      type: chessTypes[i % chessTypes.length],
+    setIsClient(true);
+    const elements = generateChessElements(14).map((el, i) => ({
+      ...el,
+      type: chessTypes[i % chessTypes.length] as ChessType,
     }));
-
     setChessElements(elements);
   }, []);
 
@@ -71,7 +67,7 @@ export default function About() {
       </div>
 
       {/* Floating Chess Elements */}
-      {chessElements.map((el, index) => (
+      {isClient && chessElements.map((el, index) => (
         <motion.div
           key={index}
           initial={{ y: 0, rotate: 0 }}

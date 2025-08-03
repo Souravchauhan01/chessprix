@@ -4,11 +4,12 @@ import { useState } from 'react';
 import { motion } from 'framer-motion';
 import Link from 'next/link';
 import Image from 'next/image';
-import { Menu, X } from 'lucide-react';
+import { Menu, X, ChevronDown } from 'lucide-react';
 import { usePathname } from 'next/navigation';
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
+  const [isProgramsDropdownOpen, setIsProgramsDropdownOpen] = useState(false);
   const toggleMenu = () => setIsOpen(!isOpen);
   const closeMenu = () => setIsOpen(false);
   const pathname = usePathname();
@@ -17,11 +18,17 @@ export default function Navbar() {
     { name: 'Home', href: '/' },
     { name: 'About', href: '/about' },
     { name: 'Services', href: '/coaches' },
-    { name: 'Programs', href: '/courses' },
-    
     { name: 'Hall Of Fame', href: '/halloffame' },
     { name: 'Blogs', href: '/blogs' },
     // { name: 'Coaches', href: '/coaches' },
+  ];
+
+  const programs = [
+    { name: 'Beginner', href: '/beginner' },
+    { name: 'Intermediate', href: '/intermediate' },
+    { name: 'Advanced', href: '/advanced' },
+    { name: 'FIDE Rating & Tournament Preparation', href: '/fide-rating' },
+    { name: "The Master's Path: Elite Training & Rating Booster", href: '/masters-path' },
   ];
 
   return (
@@ -78,6 +85,76 @@ export default function Navbar() {
             );
           })}
 
+          {/* Programs Dropdown */}
+          <div className="relative">
+            <motion.button
+              onClick={() => setIsProgramsDropdownOpen(!isProgramsDropdownOpen)}
+              onMouseEnter={() => setIsProgramsDropdownOpen(true)}
+              onMouseLeave={() => setIsProgramsDropdownOpen(false)}
+              className="flex items-center space-x-1 font-bold text-lg text-[#e8dcc0] hover:text-[#D4AF37] transition-colors duration-200"
+              whileHover={{ scale: 1.05 }}
+            >
+              <span>Programs</span>
+              <ChevronDown 
+                className={`w-4 h-4 transition-transform duration-200 ${isProgramsDropdownOpen ? 'rotate-180' : ''}`} 
+              />
+            </motion.button>
+
+            {/* Dropdown Menu */}
+            {isProgramsDropdownOpen && (
+              <motion.div
+                initial={{ opacity: 0, y: -10 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -10 }}
+                transition={{ duration: 0.2 }}
+                onMouseEnter={() => setIsProgramsDropdownOpen(true)}
+                onMouseLeave={() => setIsProgramsDropdownOpen(false)}
+                className="absolute top-full left-0 mt-2 w-80 bg-[#080d14]/95 border border-[#D4AF37]/20 rounded-lg shadow-lg backdrop-blur-xl z-50"
+              >
+                <div className="py-2">
+                  {programs.map((program, index) => {
+                    const isBasicLevel = index < 3; // First 3 items (Beginner, Intermediate, Advanced)
+                    const isSpecializedLevel = index >= 3; // Last 2 items (FIDE Rating, Master's Path)
+                    
+                    return (
+                      <motion.div
+                        key={program.name}
+                        initial={{ opacity: 0, x: -10 }}
+                        animate={{ opacity: 1, x: 0 }}
+                        transition={{ delay: index * 0.05 }}
+                        whileHover={{ scale: 1.02 }}
+                      >
+                        <Link
+                          href={program.href}
+                          onClick={() => setIsProgramsDropdownOpen(false)}
+                          className={`block px-4 py-3 text-[#e8dcc0] hover:text-[#D4AF37] hover:bg-white/5 transition-all duration-200 text-sm ${
+                            isBasicLevel 
+                              ? 'border-l-2 border-transparent hover:border-[#D4AF37]' 
+                              : 'border-l-4 border-[#D4AF37]/30 hover:border-[#D4AF37]'
+                          }`}
+                        >
+                          <div className="flex items-center justify-between">
+                            <span className="font-semibold">
+                              {program.name}
+                            </span>
+                          </div>
+                          {isSpecializedLevel && (
+                            <div className="text-xs text-[#D4AF37]/60 mt-1">
+                              Specialized Program
+                            </div>
+                          )}
+                        </Link>
+                        {index === 2 && (
+                          <div className="border-t border-[#D4AF37]/20 mx-4 my-2"></div>
+                        )}
+                      </motion.div>
+                    );
+                  })}
+                </div>
+              </motion.div>
+            )}
+          </div>
+
           {/* Contact Button */}
           <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
             <Link
@@ -131,6 +208,70 @@ export default function Navbar() {
               </motion.div>
             );
           })}
+
+          {/* Programs Dropdown (Mobile) */}
+          <div className="space-y-2">
+            <motion.button
+              onClick={() => setIsProgramsDropdownOpen(!isProgramsDropdownOpen)}
+              className="flex items-center justify-between w-full text-lg font-medium py-2 px-2 rounded-lg transition-colors duration-200 text-[#f3e5b2] hover:text-[#D4AF37] hover:bg-white/5"
+              whileHover={{ scale: 1.02 }}
+              whileTap={{ scale: 0.98 }}
+            >
+              <span>Programs</span>
+              <ChevronDown 
+                className={`w-4 h-4 transition-transform duration-200 ${isProgramsDropdownOpen ? 'rotate-180' : ''}`} 
+              />
+            </motion.button>
+            
+            {isProgramsDropdownOpen && (
+              <motion.div
+                initial={{ opacity: 0, height: 0 }}
+                animate={{ opacity: 1, height: 'auto' }}
+                transition={{ duration: 0.3 }}
+                className="pl-4 space-y-2"
+              >
+                {programs.map((program, index) => {
+                  const isBasicLevel = index < 3; // First 3 items (Beginner, Intermediate, Advanced)
+                  const isSpecializedLevel = index >= 3; // Last 2 items (FIDE Rating, Master's Path)
+                  
+                  return (
+                    <motion.div
+                      key={program.name}
+                      initial={{ opacity: 0, x: -10 }}
+                      animate={{ opacity: 1, x: 0 }}
+                      transition={{ delay: index * 0.05 }}
+                      whileHover={{ scale: 1.02 }}
+                      whileTap={{ scale: 0.98 }}
+                    >
+                      <Link
+                        href={program.href}
+                        onClick={closeMenu}
+                        className={`block text-base font-medium py-2 px-2 rounded-lg transition-colors duration-200 text-[#f3e5b2] hover:text-[#D4AF37] hover:bg-white/5 ${
+                          isBasicLevel 
+                            ? 'border-l-2 border-transparent hover:border-[#D4AF37]' 
+                            : 'border-l-4 border-[#D4AF37]/30 hover:border-[#D4AF37]'
+                        }`}
+                      >
+                        <div className="flex items-center justify-between">
+                          <span className="font-semibold">
+                            {program.name}
+                          </span>
+                        </div>
+                        {isSpecializedLevel && (
+                          <div className="text-xs text-[#D4AF37]/60 mt-1">
+                            Specialized Program
+                          </div>
+                        )}
+                      </Link>
+                      {index === 2 && (
+                        <div className="border-t border-[#D4AF37]/20 mx-2 my-2"></div>
+                      )}
+                    </motion.div>
+                  );
+                })}
+              </motion.div>
+            )}
+          </div>
 
           {/* Contact Button (Mobile) */}
           <motion.div whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }}>

@@ -2,12 +2,23 @@
 
 import { useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
-import { FaPenNib, FaCalendarAlt } from 'react-icons/fa';
+import { generateChessElements } from './utils/chessElements';
 
-// Floating Chess Pieces
+// === Types ===
 type ChessType = 'pawn' | 'knight' | 'queen' | 'rook' | 'bishop' | 'king';
 
+interface ChessElement {
+  size: string;
+  top: string;
+  left: string;
+  delay: number;
+  duration: number;
+  type: ChessType;
+}
+
+// === Constants ===
 const chessTypes: ChessType[] = ['pawn', 'knight', 'queen', 'rook', 'bishop', 'king'];
+
 const symbolMap: Record<ChessType, string> = {
   king: '♔',
   queen: '♕',
@@ -17,15 +28,51 @@ const symbolMap: Record<ChessType, string> = {
   pawn: '♙',
 };
 
-const generateFloatingPieces = (count: number) =>
-  Array.from({ length: count }).map((_, i) => ({
-    size: `${Math.floor(Math.random() * 60) + 40}px`,
-    top: `${Math.random() * 100}%`,
-    left: `${Math.random() * 100}%`,
-    delay: Math.random() * 3,
-    duration: Math.random() * 5 + 5,
-    type: chessTypes[i % chessTypes.length],
-  }));
+// Extended Blog List
+const blogs = [
+  {
+    title: 'The Power of Chess in Child Development',
+    excerpt: 'Discover how chess enhances cognitive skills, improves concentration, and builds confidence in young learners.',
+    date: 'March 15, 2024',
+    readTime: '5 min read',
+    category: 'Education',
+  },
+  {
+    title: 'Preparing for Your First Tournament',
+    excerpt: 'Essential tips and strategies for young players entering their first competitive chess tournament.',
+    date: 'March 10, 2024',
+    readTime: '7 min read',
+    category: 'Tournament',
+  },
+  {
+    title: 'Opening Principles for Beginners',
+    excerpt: 'Master the fundamental opening principles that every chess player should know to start games strong.',
+    date: 'March 5, 2024',
+    readTime: '6 min read',
+    category: 'Strategy',
+  },
+  {
+    title: 'Building a Strong Chess Foundation',
+    excerpt: 'Learn the essential building blocks that create a solid foundation for chess improvement.',
+    date: 'February 28, 2024',
+    readTime: '8 min read',
+    category: 'Learning',
+  },
+  {
+    title: 'The Psychology of Chess',
+    excerpt: 'Understanding the mental aspects of chess and how to develop a strong competitive mindset.',
+    date: 'February 20, 2024',
+    readTime: '9 min read',
+    category: 'Psychology',
+  },
+  {
+    title: 'Advanced Tactics for Intermediate Players',
+    excerpt: 'Elevate your game with advanced tactical patterns and combinations for intermediate players.',
+    date: 'February 15, 2024',
+    readTime: '10 min read',
+    category: 'Advanced',
+  },
+];
 
 const fadeUp = {
   hidden: { opacity: 0, y: 30 },
@@ -40,85 +87,27 @@ const fadeUp = {
   }),
 };
 
-// Extended Blog List
-const blogs = [
-  {
-    title: 'How Chess Builds Cognitive Strength in Children',
-    date: 'August 2, 2025',
-    summary:
-      'Discover how structured chess training enhances focus, memory, and problem-solving skills in young minds.',
-  },
-  {
-    title: 'Mastering Openings: The Beginner’s Guide',
-    date: 'July 25, 2025',
-    summary:
-      'Learn the most effective chess openings for early control and positioning. Perfect for beginners stepping into strategy.',
-  },
-  {
-    title: 'Parent’s Role in Chess Learning Journey',
-    date: 'July 15, 2025',
-    summary:
-      'Explore how parental involvement encourages motivation, progress, and tournament readiness in children.',
-  },
-  {
-    title: 'Why Tactics Trump Strategy for Young Players',
-    date: 'July 2, 2025',
-    summary:
-      'Understand the difference between tactics and strategy and why the former is a faster path to improvement for beginners.',
-  },
-  {
-    title: 'How to Cultivate Focus Through Chess',
-    date: 'June 24, 2025',
-    summary:
-      'Chess trains children to focus deeply for long periods — a skill often missing in the digital age.',
-  },
-  {
-    title: 'Using Chess to Improve Academic Performance',
-    date: 'June 10, 2025',
-    summary:
-      'Studies link chess to better math and reading scores. Learn how strategic thinking carries over to school success.',
-  },
-  {
-    title: 'The Role of Puzzles in Accelerated Learning',
-    date: 'May 28, 2025',
-    summary:
-      'Discover why chess puzzles are a shortcut to building fast, tactical calculation skills in young learners.',
-  },
-  {
-    title: 'Top 5 Mistakes Young Chess Players Make',
-    date: 'May 10, 2025',
-    summary:
-      'Avoid common pitfalls that slow down progress and shake a young player’s confidence on the board.',
-  },
-  {
-    title: 'Chess for Special Needs: A Calming, Empowering Tool',
-    date: 'April 26, 2025',
-    summary:
-      'How chess is being used in therapy and classrooms to improve focus, behavior, and self-esteem in neurodiverse children.',
-  },
- 
-];
-
 export default function Blogs() {
-  const [floating, setFloating] = useState(generateFloatingPieces(14));
+  const [chessElements, setChessElements] = useState<ChessElement[]>([]);
+  const [isClient, setIsClient] = useState(false);
 
   useEffect(() => {
-    const count = window.innerWidth < 640 ? 6 : 14;
-    setFloating(generateFloatingPieces(count));
+    setIsClient(true);
+    const elements = generateChessElements(14).map((el, i) => ({
+      ...el,
+      type: chessTypes[i % chessTypes.length] as ChessType,
+    }));
+    setChessElements(elements);
   }, []);
 
   return (
-    <section className="relative w-full bg-[#080d14] text-yellow-100 px-6 sm:px-10 py-20 mt-15  overflow-hidden">
+    <section className="relative py-16 px-6 sm:px-10 bg-[#080d14] text-yellow-100 overflow-hidden min-h-screen">
+
       {/* Glowing Light */}
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 w-[600px] h-[600px] bg-yellow-300/10 blur-3xl rounded-full z-0" />
 
-      {/* Grid Lines */}
-      <div className="absolute inset-0 opacity-10 pointer-events-none z-0">
-        <div className="absolute inset-0 bg-[length:80px_80px] bg-[linear-gradient(to_right,#1f1f35_1px,transparent_1px),linear-gradient(to_bottom,#1f1f35_1px,transparent_1px)]" />
-      </div>
-
       {/* Floating Chess Pieces */}
-      {floating.map((el, i) => (
+      {isClient && chessElements.map((el, i) => (
         <motion.div
           key={i}
           initial={{ y: 0, rotate: 0 }}
@@ -167,14 +156,12 @@ export default function Blogs() {
               className="bg-[#121820] border border-[#d4af37]/30 rounded-xl p-6 hover:shadow-[0_0_20px_rgba(212,175,55,0.4)] transition-all duration-300 hover:scale-105"
             >
               <div className="flex items-center gap-3 mb-3">
-                <FaPenNib className="text-[#f3c47a] text-xl" />
                 <h3 className="text-xl font-bold text-[#f2e79b]">{blog.title}</h3>
               </div>
               <div className="flex items-center text-sm text-[#ebcc88] mb-2 gap-2">
-                <FaCalendarAlt className="text-[#f3c47a]" />
                 {blog.date}
               </div>
-              <p className="text-[#ebcc88] text-md leading-relaxed">{blog.summary}</p>
+              <p className="text-[#ebcc88] text-md leading-relaxed">{blog.excerpt}</p>
             </motion.div>
           ))}
         </div>

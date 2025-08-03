@@ -2,22 +2,30 @@
 
 import { useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
-import { FaChessPawn, FaChessKnight, FaChessQueen, FaChessRook, FaChessBishop, FaChessKing } from 'react-icons/fa';
+import { generateChessElements } from './utils/chessElements';
 
+// === Types ===
 type ChessType = 'pawn' | 'knight' | 'queen' | 'rook' | 'bishop' | 'king';
 
+interface ChessElement {
+  size: string;
+  top: string;
+  left: string;
+  delay: number;
+  duration: number;
+  type: ChessType;
+}
+
+// === Constants ===
 const chessTypes: ChessType[] = ['pawn', 'knight', 'queen', 'rook', 'bishop', 'king'];
 
-const generatePieces = (count: number) => {
-  return Array.from({ length: count }).map((_, i) => ({
-    id: i,
-    type: chessTypes[i % chessTypes.length],
-    top: `${Math.random() * 100}%`,
-    left: `${Math.random() * 100}%`,
-    delay: Math.random() * 3,
-    duration: Math.random() * 5 + 5,
-    size: `${Math.floor(Math.random() * 60) + 40}px`,
-  }));
+const symbolMap: Record<ChessType, string> = {
+  king: '♔',
+  queen: '♕',
+  rook: '♖',
+  bishop: '♗',
+  knight: '♘',
+  pawn: '♙',
 };
 
 const fadeUp = {
@@ -33,86 +41,81 @@ const fadeUp = {
   }),
 };
 
-const cards = [
+const reasons = [
   {
     title: 'Proven Track Record',
-    desc: 'Our students consistently win medals and improve their ratings, reflecting our effective teaching methods.',
-    icon: <FaTrophy className="text-[#f3c47a] text-3xl mb-3 drop-shadow-[0_0_6px_rgba(243,196,122,0.7)]" />,
+    description: 'Our students consistently achieve tournament success and rapid rating improvements.',
+    icon: '🏆',
   },
   {
-    title: 'Innovative Online Platform',
-    desc: 'We use state-of-the-art tools like chess.com, lichess, and chessbase to ensure the best interactive learning.',
-    icon: <FaLaptopCode className="text-[#f3c47a] text-3xl mb-3 drop-shadow-[0_0_6px_rgba(243,196,122,0.7)]" />,
+    title: 'Expert Coaches',
+    description: 'All instructors are FIDE-rated with extensive experience teaching children.',
+    icon: '👨‍🏫',
   },
   {
-    title: 'Flexible Learning',
-    desc: 'Choose from one-on-one coaching or small group classes, tailored to your family’s needs.',
-    icon: <FaUserFriends className="text-[#f3c47a] text-3xl mb-3 drop-shadow-[0_0_6px_rgba(243,196,122,0.7)]" />,
+    title: 'Personalized Learning',
+    description: 'Customized programs that adapt to each child\'s learning pace and style.',
+    icon: '🎯',
   },
   {
-    title: 'Child-Centric Philosophy',
-    desc: 'We celebrate every success, boosting confidence and helping kids grow through every milestone.',
-    icon: <FaLightbulb className="text-[#f3c47a] text-3xl mb-3 drop-shadow-[0_0_6px_rgba(243,196,122,0.7)]" />,
+    title: 'Interactive Technology',
+    description: 'Modern online platform with digital boards, puzzles, and real-time feedback.',
+    icon: '💻',
   },
   {
-    title: 'Passion & Excellence',
-    desc: 'From our motto “Passion Refined Into eXellence,” we inspire mastery and deep dedication in each child.',
-    icon: <FaChessBoard className="text-[#f3c47a] text-3xl mb-3 drop-shadow-[0_0_6px_rgba(243,196,122,0.7)]" />,
+    title: 'Safe Environment',
+    description: 'Secure, monitored online sessions ensuring your child\'s safety and privacy.',
+    icon: '🛡️',
   },
   {
-    title: 'Global Community',
-    desc: 'Join a vibrant network of young chess enthusiasts, sharing strategies and celebrating victories together.',
-    icon: <FaGlobe className="text-[#f3c47a] text-3xl mb-3 drop-shadow-[0_0_6px_rgba(243,196,122,0.7)]" />,
+    title: 'Holistic Development',
+    description: 'Beyond chess skills, we build confidence, focus, and strategic thinking.',
+    icon: '🧠',
   },
 ];
-import { FaTrophy, FaLaptopCode, FaUserFriends, FaLightbulb, FaChessBoard, FaGlobe } from 'react-icons/fa';
 
-const WhyChooseChessPrix = () => {
-  const [pieces, setPieces] = useState(() => generatePieces(12));
+export default function WhyChooseChessPrix() {
+  const [chessElements, setChessElements] = useState<ChessElement[]>([]);
+  const [isClient, setIsClient] = useState(false);
 
   useEffect(() => {
-    setPieces(generatePieces(12));
+    setIsClient(true);
+    const elements = generateChessElements(14).map((el, i) => ({
+      ...el,
+      type: chessTypes[i % chessTypes.length] as ChessType,
+    }));
+    setChessElements(elements);
   }, []);
 
   return (
-    <section className="relative py-6 px-6 sm:px-10 bg-[#080d14] text-yellow-100 overflow-hidden">
-      {/* Glowing Background */}
-      <div className="absolute top-1/3 left-1/2 -translate-x-1/2 w-[500px] h-[500px] bg-yellow-300/10 blur-3xl rounded-full z-0" />
+    <section className="relative py-16 px-6 sm:px-10 bg-[#080d14] text-yellow-100 overflow-hidden min-h-screen">
+
+      {/* Glowing Light */}
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 w-[600px] h-[600px] bg-yellow-300/10 blur-3xl rounded-full z-0" />
 
       {/* Floating Chess Elements */}
-      {pieces.map((piece, i) => (
+      {isClient && chessElements.map((el, index) => (
         <motion.div
-          key={i}
+          key={index}
           initial={{ y: 0, rotate: 0 }}
           animate={{ y: [-100, -200, -100], rotate: [0, 15, 0] }}
           transition={{
-            duration: piece.duration,
-            delay: piece.delay,
+            duration: el.duration,
+            delay: el.delay,
             repeat: Infinity,
             repeatType: 'mirror',
             ease: 'easeInOut',
           }}
           style={{
-            width: piece.size,
-            height: piece.size,
-            top: piece.top,
-            left: piece.left,
+            width: el.size,
+            height: el.size,
+            top: el.top,
+            left: el.left,
           }}
-          className="absolute flex flex-col items-center justify-center text-yellow-300 z-0 opacity-50 drop-shadow-[0_0_8px_rgba(212,175,55,0.5)]"
+          className="absolute flex flex-col items-center justify-center text-yellow-300 z-0 opacity-50 drop-shadow-[0_0_8px_rgba(212,175,55,0.8)]"
         >
-          <div className="text-4xl">
-            {{
-              king: '♔',
-              queen: '♕',
-              rook: '♖',
-              bishop: '♗',
-              knight: '♘',
-              pawn: '♙',
-            }[piece.type]}
-          </div>
-          <div className="text-xs font-semibold text-yellow-200">
-            {piece.type.charAt(0).toUpperCase() + piece.type.slice(1)}
-          </div>
+          <div className="text-4xl">{symbolMap[el.type]}</div>
+          <div className="text-xs font-semibold text-yellow-200 capitalize">{el.type}</div>
         </motion.div>
       ))}
 
@@ -134,7 +137,7 @@ const WhyChooseChessPrix = () => {
 
       {/* Cards */}
       <div className="grid gap-10 sm:grid-cols-2 lg:grid-cols-3 max-w-7xl mx-auto z-10 relative">
-        {cards.map((card, index) => (
+        {reasons.map((reason, index) => (
           <motion.div
             key={index}
             className="bg-[#121820] border border-[#d4af37]/30 rounded-xl p-6 hover:shadow-[0_0_20px_rgba(212,175,55,0.4)] transition-all duration-300 hover:scale-105"
@@ -143,14 +146,12 @@ const WhyChooseChessPrix = () => {
             animate="visible"
             custom={index + 1}
           >
-            {card.icon}
-            <h3 className="text-2xl font-bold text-[#f2e79b] mb-2">{card.title}</h3>
-            <p className="text-[#ebcc88] text-md leading-relaxed">{card.desc}</p>
+            <div className="text-4xl mb-3">{reason.icon}</div>
+            <h3 className="text-2xl font-bold text-[#f2e79b] mb-2">{reason.title}</h3>
+            <p className="text-[#ebcc88] text-md leading-relaxed">{reason.description}</p>
           </motion.div>
         ))}
       </div>
     </section>
   );
 };
-
-export default WhyChooseChessPrix;

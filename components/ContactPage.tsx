@@ -1,10 +1,10 @@
 'use client';
 
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
-import Image from 'next/image';
-import vector from '@/public/contact.png';
+import { generateChessElements } from './utils/chessElements';
 
+// === Types ===
 type ChessType = 'pawn' | 'knight' | 'queen' | 'rook' | 'bishop' | 'king';
 
 interface ChessElement {
@@ -16,6 +16,7 @@ interface ChessElement {
   type: ChessType;
 }
 
+// === Constants ===
 const chessTypes: ChessType[] = ['pawn', 'knight', 'queen', 'rook', 'bishop', 'king'];
 
 const symbolMap: Record<ChessType, string> = {
@@ -27,36 +28,29 @@ const symbolMap: Record<ChessType, string> = {
   pawn: '♙',
 };
 
-const fadeIn = {
-  hidden: { opacity: 0, y: 40 },
-  visible: (i = 1) => ({
+const fadeUp = {
+  hidden: { opacity: 0, y: 30 },
+  visible: (i: number) => ({
     opacity: 1,
     y: 0,
     transition: {
-      delay: i * 0.3,
+      delay: i * 0.2,
       duration: 0.6,
+      ease: [0.42, 0, 0.58, 1] as const,
     },
   }),
 };
 
 export default function ContactPage() {
   const [chessElements, setChessElements] = useState<ChessElement[]>([]);
-  const [formSubmitted, setFormSubmitted] = useState(false);
-  const modalRef = useRef<HTMLDivElement | null>(null);
+  const [isClient, setIsClient] = useState(false);
 
   useEffect(() => {
-    const isMobile = window.innerWidth < 640;
-    const count = isMobile ? 6 : 16;
-
-    const elements: ChessElement[] = Array.from({ length: count }).map((_, i) => ({
-      size: `${Math.floor(Math.random() * 60) + 40}px`,
-      top: `${Math.random() * 100}%`,
-      left: `${Math.random() * 100}%`,
-      delay: Math.random() * 3,
-      duration: Math.random() * 5 + 5,
-      type: chessTypes[i % chessTypes.length],
+    setIsClient(true);
+    const elements = generateChessElements(14).map((el, i) => ({
+      ...el,
+      type: chessTypes[i % chessTypes.length] as ChessType,
     }));
-
     setChessElements(elements);
   }, []);
 
@@ -107,35 +101,34 @@ export default function ContactPage() {
   }, [formSubmitted]);
 
   return (
-    <div className="relative min-h-screen bg-[#1a1a1a] px-6 py-12 md:px-16 text-white sm:mt-25 mt-20 overflow-hidden">
-      {/* Glowing Light */}
-      <div className="absolute top-1/3 left-1/2 -translate-x-1/2 w-[400px] h-[400px] bg-yellow-300/10 blur-3xl rounded-full z-0" />
+    <section className="relative py-16 px-6 sm:px-10 bg-[#080d14] text-yellow-100 overflow-hidden min-h-screen">
 
-      {/* Floating Chess Pieces */}
-      {chessElements.map((element, index) => (
+      {/* Glowing Light */}
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 w-[600px] h-[600px] bg-yellow-300/10 blur-3xl rounded-full z-0" />
+
+      {/* Floating Chess Elements */}
+      {isClient && chessElements.map((el, index) => (
         <motion.div
           key={index}
           initial={{ y: 0, rotate: 0 }}
           animate={{ y: [-100, -200, -100], rotate: [0, 15, 0] }}
           transition={{
-            duration: element.duration,
-            delay: element.delay,
+            duration: el.duration,
+            delay: el.delay,
             repeat: Infinity,
             repeatType: 'mirror',
             ease: 'easeInOut',
           }}
           style={{
-            width: element.size,
-            height: element.size,
-            top: element.top,
-            left: element.left,
+            width: el.size,
+            height: el.size,
+            top: el.top,
+            left: el.left,
           }}
-          className="absolute flex flex-col items-center justify-center text-yellow-300 z-0 opacity-40 drop-shadow-[0_0_8px_rgba(212,175,55,0.8)]"
+          className="absolute flex flex-col items-center justify-center text-yellow-300 z-0 opacity-50 drop-shadow-[0_0_8px_rgba(212,175,55,0.8)]"
         >
-          <div className="text-4xl">{symbolMap[element.type]}</div>
-          <div className="text-xs font-semibold text-yellow-200">
-            {element.type.charAt(0).toUpperCase() + element.type.slice(1)}
-          </div>
+          <div className="text-4xl">{symbolMap[el.type]}</div>
+          <div className="text-xs font-semibold text-yellow-200 capitalize">{el.type}</div>
         </motion.div>
       ))}
 
@@ -313,6 +306,6 @@ export default function ContactPage() {
           </form>
         </motion.div>
       </div>
-    </div>
+    </section>
   );
 }

@@ -1,19 +1,46 @@
 'use client';
 
+import { useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
 import { FaChessPawn, FaChessKnight, FaChessQueen, FaChess } from 'react-icons/fa';
 
 // === Floating chess pieces with labels ===
 const chessTypes = ['pawn', 'knight', 'queen', 'rook', 'bishop', 'king'];
-const chessElements = Array.from({ length: 14 }).map((_, i) => ({
-  size: `${Math.floor(Math.random() * 60) + 40}px`,
-  top: `${Math.random() * 100}%`,
-  left: `${Math.random() * 100}%`,
-  delay: Math.random() * 3,
-  duration: Math.random() * 5 + 5,
-  type: chessTypes[i % chessTypes.length],
-  color: 'text-yellow-300 drop-shadow-[0_0_8px_rgba(212,175,55,0.5)]',
-}));
+
+// Deterministic random number generator
+function seededRandom(seed: number): number {
+  const x = Math.sin(seed) * 10000;
+  return x - Math.floor(x);
+}
+
+function generateChessElements(): Array<{
+  size: string;
+  top: string;
+  left: string;
+  delay: number;
+  duration: number;
+  type: string;
+  color: string;
+}> {
+  return Array.from({ length: 14 }).map((_, i) => {
+    const seed = i * 12345; // Deterministic seed based on index
+    const size = Math.floor(seededRandom(seed) * 60) + 40;
+    const top = seededRandom(seed + 1) * 100;
+    const left = seededRandom(seed + 2) * 100;
+    const delay = seededRandom(seed + 3) * 3;
+    const duration = seededRandom(seed + 4) * 5 + 5;
+    
+    return {
+      size: `${size}px`,
+      top: `${top}%`,
+      left: `${left}%`,
+      delay,
+      duration,
+      type: chessTypes[i % chessTypes.length],
+      color: 'text-yellow-300 drop-shadow-[0_0_8px_rgba(212,175,55,0.5)]',
+    };
+  });
+}
 
 const courses = [
   {
@@ -52,6 +79,23 @@ const fadeUp = {
 };
 
 export default function CourseHighlights() {
+  const [chessElements, setChessElements] = useState<Array<{
+    size: string;
+    top: string;
+    left: string;
+    delay: number;
+    duration: number;
+    type: string;
+    color: string;
+  }>>([]);
+  const [isClient, setIsClient] = useState(false);
+
+  useEffect(() => {
+    setIsClient(true);
+    const elements = generateChessElements();
+    setChessElements(elements);
+  }, []);
+
   return (
     <section className="relative py-14 px-6 sm:px-10 bg-[#080d14] text-yellow-100 overflow-hidden min-h-auto">
 
@@ -59,7 +103,7 @@ export default function CourseHighlights() {
       <div className="absolute top-1/3 left-1/2 -translate-x-1/2 w-[500px] h-[500px] bg-yellow-300/10 blur-3xl rounded-full z-0" />
 
       {/* Floating Chess Elements with Labels */}
-      {chessElements.map((element, index) => (
+      {isClient && chessElements.map((element, index) => (
         <motion.div
           key={index}
           initial={{ y: 0, rotate: 0 }}

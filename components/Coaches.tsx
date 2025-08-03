@@ -2,15 +2,21 @@
 
 import { useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
-import Image from 'next/image';
+import { generateChessElements } from './utils/chessElements';
 
-import anandImg from '@/public/about1.jpg';
-import sofiaImg from '@/public/about1.jpg';
-import michaelImg from '@/public/about1.jpg';
-import aishaImg from '@/public/about1.jpg';
-
+// === Types ===
 type ChessType = 'pawn' | 'knight' | 'queen' | 'rook' | 'bishop' | 'king';
 
+interface ChessElement {
+  size: string;
+  top: string;
+  left: string;
+  delay: number;
+  duration: number;
+  type: ChessType;
+}
+
+// === Constants ===
 const chessTypes: ChessType[] = ['pawn', 'knight', 'queen', 'rook', 'bishop', 'king'];
 
 const symbolMap: Record<ChessType, string> = {
@@ -21,15 +27,6 @@ const symbolMap: Record<ChessType, string> = {
   knight: '♘',
   pawn: '♙',
 };
-
-interface ChessElement {
-  size: string;
-  top: string;
-  left: string;
-  delay: number;
-  duration: number;
-  type: ChessType;
-}
 
 const fadeUp = {
   hidden: { opacity: 0, y: 30 },
@@ -46,52 +43,54 @@ const fadeUp = {
 
 const coaches = [
   {
-    name: 'Anand Verma',
-    title: 'International Master',
-    image: anandImg,
-    bio: 'A former national junior champion, Anand has over 15 years of teaching experience. He’s patient and encouraging, helping young beginners build confidence with every lesson.',
+    name: 'Coach Sarah',
+    rating: 'FIDE 2100',
+    specialty: 'Opening Theory',
+    experience: '8 years',
+    image: '/coach1.jpg',
+    description: 'Specializes in teaching young players the fundamentals of chess openings and strategic thinking.',
   },
   {
-    name: 'Sofia Petrova',
-    title: 'Woman Grandmaster',
-    image: sofiaImg,
-    bio: 'Sofia has played competitively around the world and inspires students with her dynamic style. She believes in creative problem-solving and personal attention, motivating each child to strive for greatness.',
+    name: 'Coach Michael',
+    rating: 'FIDE 2200',
+    specialty: 'Endgame Mastery',
+    experience: '12 years',
+    image: '/coach2.jpg',
+    description: 'Expert in endgame techniques and tournament preparation for competitive players.',
   },
   {
-    name: 'Michael Lee',
-    title: 'FIDE Trainer',
-    image: michaelImg,
-    bio: 'A tactical genius and experienced coach, Michael focuses on players preparing for tournaments. He analyses each game in detail, crafting customised training plans to sharpen every student’s skills.',
+    name: 'Coach Priya',
+    rating: 'FIDE 2000',
+    specialty: 'Tactical Training',
+    experience: '6 years',
+    image: '/coach3.jpg',
+    description: 'Focuses on tactical puzzles and pattern recognition for rapid improvement.',
   },
   {
-    name: 'Dr. Aisha Rahman',
-    title: 'Chess Educator',
-    image: aishaImg,
-    bio: 'A former academic and chess enthusiast, Dr. Rahman blends teaching expertise with chess training. She designs interactive lessons that make learning fun and memorable for all ages.',
+    name: 'Coach David',
+    rating: 'FIDE 2300',
+    specialty: 'Advanced Strategy',
+    experience: '15 years',
+    image: '/coach4.jpg',
+    description: 'Teaches advanced strategic concepts and helps students reach master level.',
   },
 ];
 
 export default function Coaches() {
   const [chessElements, setChessElements] = useState<ChessElement[]>([]);
+  const [isClient, setIsClient] = useState(false);
 
   useEffect(() => {
-    const isMobile = window.innerWidth < 640;
-    const count = isMobile ? 6 : 14;
-
-    const elements: ChessElement[] = Array.from({ length: count }).map((_, i) => ({
-      size: `${Math.floor(Math.random() * 60) + 40}px`,
-      top: `${Math.random() * 100}%`,
-      left: `${Math.random() * 100}%`,
-      delay: Math.random() * 3,
-      duration: Math.random() * 5 + 5,
-      type: chessTypes[i % chessTypes.length],
+    setIsClient(true);
+    const elements = generateChessElements(14).map((el, i) => ({
+      ...el,
+      type: chessTypes[i % chessTypes.length] as ChessType,
     }));
-
     setChessElements(elements);
   }, []);
 
   return (
-    <section className="relative w-full bg-[#080d14] text-yellow-100 px-6 sm:px-10 py-10 overflow-hidden mt-20">
+    <section className="relative py-16 px-6 sm:px-10 bg-[#080d14] text-yellow-100 overflow-hidden min-h-screen">
 
       {/* Glowing Light */}
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 w-[600px] h-[600px] bg-yellow-300/10 blur-3xl rounded-full z-0" />
@@ -102,7 +101,7 @@ export default function Coaches() {
       </div>
 
       {/* Floating Chess Elements */}
-      {chessElements.map((el, index) => (
+      {isClient && chessElements.map((el, index) => (
         <motion.div
           key={index}
           initial={{ y: 0, rotate: 0 }}
