@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
+import Image from 'next/image';
 import { generateChessElements } from './utils/chessElements';
 
 // === Types ===
@@ -47,7 +48,7 @@ const coaches = [
     rating: 'FIDE 2100',
     specialty: 'Opening Theory',
     experience: '8 years',
-    image: '/coach1.jpg',
+    image: '/about1.jpg',
     description: 'Specializes in teaching young players the fundamentals of chess openings and strategic thinking.',
   },
   {
@@ -55,7 +56,7 @@ const coaches = [
     rating: 'FIDE 2200',
     specialty: 'Endgame Mastery',
     experience: '12 years',
-    image: '/coach2.jpg',
+    image: '/about1.jpg',
     description: 'Expert in endgame techniques and tournament preparation for competitive players.',
   },
   {
@@ -63,7 +64,7 @@ const coaches = [
     rating: 'FIDE 2000',
     specialty: 'Tactical Training',
     experience: '6 years',
-    image: '/coach3.jpg',
+    image: '/about1.jpg',
     description: 'Focuses on tactical puzzles and pattern recognition for rapid improvement.',
   },
   {
@@ -71,7 +72,7 @@ const coaches = [
     rating: 'FIDE 2300',
     specialty: 'Advanced Strategy',
     experience: '15 years',
-    image: '/coach4.jpg',
+    image: '/about1.jpg',
     description: 'Teaches advanced strategic concepts and helps students reach master level.',
   },
 ];
@@ -91,7 +92,6 @@ export default function Coaches() {
 
   return (
     <section className="relative py-16 px-6 sm:px-10 bg-[#080d14] text-yellow-100 overflow-hidden min-h-screen">
-
       {/* Glowing Light */}
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 w-[600px] h-[600px] bg-yellow-300/10 blur-3xl rounded-full z-0" />
 
@@ -152,8 +152,7 @@ export default function Coaches() {
         {coaches.map((coach, index) => (
           <motion.div
             key={index}
-           className="bg-[#121820] border border-[#d4af37]/30 rounded-xl p-6 shadow-md hover:shadow-[0_0_20px_rgba(212,175,55,0.4)] transition-all duration-300 hover:scale-105 flex flex-col sm:flex-row gap-5 sm:items-start items-center"
-
+            className="bg-[#121820] border border-[#d4af37]/30 rounded-xl p-6 shadow-md hover:shadow-[0_0_20px_rgba(212,175,55,0.4)] transition-all duration-300 hover:scale-105 flex flex-col sm:flex-row gap-5 sm:items-start items-center"
             variants={fadeUp}
             initial="hidden"
             animate="visible"
@@ -162,10 +161,16 @@ export default function Coaches() {
             <div className="flex-shrink-0 w-20 h-20 rounded-full overflow-hidden border-2 border-yellow-400">
               <Image src={coach.image} alt={coach.name} width={100} height={100} className="object-cover w-full h-full" />
             </div>
-            <div className="">
-              <h4 className="text-2xl font-bold text-[#f2e79b] text-center sm:text-left ">{coach.name}</h4>
-              <p className="text-md italic text-yellow-300 mb-2 text-center sm:text-left">{coach.title}</p>
-              <p className="text-[#ebcc88] text-md leading-relaxed">{coach.bio}</p>
+            <div>
+              <h4 className="text-2xl font-bold text-[#f2e79b] text-center sm:text-left">{coach.name}</h4>
+
+              <div className="flex flex-wrap gap-2 my-2 justify-center sm:justify-start">
+                <span className="bg-yellow-900 text-yellow-200 px-2 py-1 rounded text-xs font-semibold">{coach.rating}</span>
+                <span className="bg-yellow-800 text-yellow-100 px-2 py-1 rounded text-xs font-semibold">{coach.specialty}</span>
+                <span className="bg-yellow-700 text-yellow-50 px-2 py-1 rounded text-xs font-semibold">{coach.experience}</span>
+              </div>
+
+              <p className="text-[#ebcc88] text-md leading-relaxed text-center sm:text-left">{coach.description}</p>
             </div>
           </motion.div>
         ))}
