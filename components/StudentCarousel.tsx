@@ -17,12 +17,12 @@ const symbolMap: Record<string, string> = {
 
 // === Student Cards ===
 const students = [
-  { name: 'Sophia Lee', img: '/students/sophia.jpg' },
-  { name: 'Liam Carter', img: '/students/liam.jpg' },
-  { name: 'Olivia Smith', img: '/students/olivia.jpg' },
-  { name: 'Noah Johnson', img: '/students/noah.jpg' },
-  { name: 'Ava Thompson', img: '/students/ava.jpg' },
-  { name: 'Ethan Davis', img: '/students/ethan.jpg' },
+  { name: 'Sophia Lee', img: '/students/about1.jpg' },
+  { name: 'Liam Carter', img: '/students/about1.jpg' },
+  { name: 'Olivia Smith', img: '/students/about1.jpg' },
+  { name: 'Noah Johnson', img: '/students/about1.jpg' },
+  { name: 'Ava Thompson', img: '/students/about1.jpg' },
+  { name: 'Ethan Davis', img: '/students/about1.jpg' },
 ];
 const duplicateList = [...students, ...students];
 

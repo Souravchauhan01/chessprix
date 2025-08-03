@@ -1,6 +1,8 @@
 'use client';
 
 import { useEffect, useState } from 'react';
+import Image from 'next/image';
+
 import { motion } from 'framer-motion';
 import { generateChessElements } from './utils/chessElements';
 
@@ -48,7 +50,7 @@ const students = [
     age: 12,
     rating: '1200',
     achievement: 'School Champion',
-    image: '/student1.jpg',
+    image: '/about1.jpg',
     story: 'Started with us at age 8, now leads his school chess club.',
   },
   {
@@ -56,7 +58,7 @@ const students = [
     age: 10,
     rating: '1100',
     achievement: 'District Runner-up',
-    image: '/student2.jpg',
+    image: '/about1.jpg',
     story: 'Her tactical skills have improved dramatically in just 2 years.',
   },
   {
@@ -64,7 +66,7 @@ const students = [
     age: 14,
     rating: '1400',
     achievement: 'State Champion',
-    image: '/student3.jpg',
+    image: '/about1.jpg',
     story: 'From beginner to state champion in 3 years of dedicated training.',
   },
   {
@@ -72,7 +74,7 @@ const students = [
     age: 11,
     rating: '1250',
     achievement: 'Online Tournament Winner',
-    image: '/student4.jpg',
+    image: '/about1.jpg',
     story: 'Excels in online competitions and loves teaching younger students.',
   },
   {
@@ -80,7 +82,7 @@ const students = [
     age: 13,
     rating: '1350',
     achievement: 'National Qualifier',
-    image: '/student5.jpg',
+    image: '/about1.jpg',
     story: 'Qualified for national championships after just 2 years of training.',
   },
   {
@@ -88,7 +90,7 @@ const students = [
     age: 9,
     rating: '1000',
     achievement: 'Rapid Improvement Award',
-    image: '/student6.jpg',
+    image: '/about1.jpg',
     story: 'Gained 300 rating points in his first year with ChessPrix.',
   },
 ];
@@ -168,7 +170,7 @@ export default function HallOfFame() {
           >
             <div className="relative w-full h-64 sm:h-72">
               <Image
-                src={student.img}
+                src={student.image}
                 alt={student.name}
                 fill
                 className="object-cover object-top"
