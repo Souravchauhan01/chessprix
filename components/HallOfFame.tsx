@@ -110,7 +110,7 @@ export default function HallOfFame() {
   }, []);
 
   return (
-    <section className="relative py-16 mt-15 px-6 sm:px-10 bg-gradient-to-br from-[#0a0f1a] via-[#0e131f] to-[#0a0f1a] text-yellow-100 overflow-hidden min-h-screen">
+    <section className="relative py-16 mt-15 px-6 sm:px-10 bg-gradient-to-br from-[#0a0f1a] via-[#0e131f] to-[#0a0f1a] text-yellow-100 overflow-hidden min-h-auto">
 
       {/* Glowing Center Light */}
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-yellow-300/10 blur-[200px] rounded-full z-0" />
