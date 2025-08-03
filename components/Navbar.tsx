@@ -19,7 +19,7 @@ export default function Navbar() {
     { name: 'Services', href: '/coaches' },
     { name: 'Programs', href: '/courses' },
     
-    { name: 'Hall Of Fame', href: '/coaches' },
+    { name: 'Hall Of Fame', href: '/halloffame' },
     { name: 'Blogs', href: '/blogs' },
     // { name: 'Coaches', href: '/coaches' },
   ];
