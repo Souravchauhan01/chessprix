@@ -3,7 +3,7 @@
 import { useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
 import Image from 'next/image';
-import ownerImg from '@/public/about1.jpg'; // Replace with your actual image path
+import ownerImg from '@/public/about1.jpg';
 import { generateChessElements } from './utils/chessElements';
 
 // === Types ===
@@ -43,6 +43,39 @@ const fadeUp = {
   }),
 };
 
+const benefits = [
+  {
+    icon: '🧠',
+    title: 'Systematic Thinking',
+    description: 'We don\'t just teach moves—we teach you how to think like a master with proven methodologies.',
+  },
+  {
+    icon: '👨‍🏫',
+    title: 'Expert Coaching',
+    description: 'Learn from experienced coaches who have studied the game and implemented systematic approaches to achieve their own success.',
+  },
+  {
+    icon: '🎯',
+    title: 'Personalized Feedback',
+    description: 'We analyze your individual games to identify specific weaknesses and create targeted improvement plans.',
+  },
+  {
+    icon: '🏆',
+    title: 'Tournament-Ready Skills',
+    description: 'Our programs prepare you for real-world competition with practical skills and confidence needed to perform at your best.',
+  },
+  {
+    icon: '⚡',
+    title: 'Psychological Edge',
+    description: 'We prepare you for the mental game, teaching time management, pressure handling, and blunder prevention.',
+  },
+  {
+    icon: '🌟',
+    title: 'Clear Path to Mastery',
+    description: 'Structured programs from beginner to FIDE title level with measurable improvement at every stage.',
+  },
+];
+
 export default function About() {
   const [chessElements, setChessElements] = useState<ChessElement[]>([]);
   const [isClient, setIsClient] = useState(false);
@@ -57,14 +90,10 @@ export default function About() {
   }, []);
 
   return (
-    <section className="relative w-full bg-[#080d14] text-yellow-100 px-6 sm:px-10 py-20 overflow-hidden mt-15">
+    <section className="relative py-20 px-6 sm:px-10 bg-[#080d14] text-yellow-100 overflow-hidden min-h-screen">
+      
       {/* Glowing Light */}
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 w-[600px] h-[600px] bg-yellow-300/10 blur-3xl rounded-full z-0" />
-
-      {/* Grid Lines */}
-      <div className="absolute inset-0 opacity-10 pointer-events-none z-0">
-        <div className="absolute inset-0 bg-[length:80px_80px] bg-[linear-gradient(to_right,#1f1f35_1px,transparent_1px),linear-gradient(to_bottom,#1f1f35_1px,transparent_1px)]" />
-      </div>
 
       {/* Floating Chess Elements */}
       {isClient && chessElements.map((el, index) => (
@@ -92,102 +121,161 @@ export default function About() {
         </motion.div>
       ))}
 
+      {/* Grid Lines */}
+      <div className="absolute inset-0 opacity-10 pointer-events-none z-0">
+        <div className="absolute inset-0 bg-[length:80px_80px] bg-[linear-gradient(to_right,#1f1f35_1px,transparent_1px),linear-gradient(to_bottom,#1f1f35_1px,transparent_1px)]" />
+      </div>
+
       <div className="relative z-10 max-w-7xl mx-auto">
-        {/* Heading */}
-        <motion.h2
-          className="text-4xl sm:text-5xl font-extrabold text-center mb-8 text-transparent bg-clip-text bg-gradient-to-r from-[#bd853c] to-[#e0b86d] drop-shadow-[0_5px_3px_rgba(0,0,0,0.4)]"
-          variants={fadeUp}
+        
+        {/* Main Heading */}
+        <motion.div
+          className="text-center mb-16"
           initial="hidden"
           animate="visible"
+          variants={fadeUp}
           custom={0}
         >
-          About ChessPrix
-        </motion.h2>
+          <h2 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-[#bd853c] to-[#e0b86d] drop-shadow-[0_5px_3px_rgba(0,0,0,0.4)] mb-6">
+            About ChessPrix
+          </h2>
+          <p className="text-xl sm:text-2xl text-[#f3c47a] max-w-4xl mx-auto leading-relaxed">
+            It's not just about learning chess. It's about learning how to think.
+          </p>
+        </motion.div>
 
-        {/* Intro */}
-        <motion.p
-          className="text-[#ebcc88] text-md sm:text-base leading-relaxed mb-10 text-center max-w-3xl mx-auto"
-          variants={fadeUp}
+        {/* Philosophy Section */}
+        <motion.div
+          className="mb-20"
           initial="hidden"
           animate="visible"
+          variants={fadeUp}
           custom={1}
         >
-          ChessPrix is more than a chess school – it's a community where passion meets excellence. Founded by educators and chess masters, our academy is dedicated to nurturing young minds from their very first move. We blend the thrill of competition with educational fun, ensuring every lesson is engaging and purposeful.
-        </motion.p>
-
-        {/* Mission & Vision */}
-        <div className="grid md:grid-cols-2 gap-8 mb-16">
-          <motion.div
-            className="bg-[#121820] border border-[#d4af37]/30 rounded-xl p-6 shadow-md"
-            variants={fadeUp}
-            initial="hidden"
-            animate="visible"
-            custom={2}
-          >
-            <h3 className="text-xl font-bold text-[#f2e79b] mb-3">Our Mission</h3>
-            <p className="text-[#ebcc88] text-md leading-relaxed">
-              Our mission is to channel each child’s passion into the pursuit of excellence. We believe every student can achieve mastery with the right guidance—whether they dream of winning tournaments or simply honing their problem-solving skills. At ChessPrix, learning is empowering: we celebrate progress, encourage curiosity, and create champions one move at a time.
-            </p>
-          </motion.div>
-
-          <motion.div
-            className="bg-[#121820] border border-[#d4af37]/30 rounded-xl p-6 shadow-md"
-            variants={fadeUp}
-            initial="hidden"
-            animate="visible"
-            custom={3}
-          >
-            <h3 className="text-xl font-bold text-[#f2e79b] mb-3">Our Vision</h3>
-            <p className="text-[#ebcc88] text-md leading-relaxed">
-              Our vision is to create a generation of thinkers and leaders who carry critical thinking, focus, and confidence beyond the board. Through chess, we empower young minds for lifelong success and global citizenship.
-            </p>
-          </motion.div>
-        </div>
-
-        {/* Approach */}
-        <motion.div
-          className="bg-[#121820] border border-[#d4af37]/30 rounded-xl p-6 mb-16 shadow-md"
-          variants={fadeUp}
-          initial="hidden"
-          animate="visible"
-          custom={4}
-        >
-          <h3 className="text-xl font-bold text-[#f2e79b] mb-3">Our Approach</h3>
-          <ul className="list-disc list-inside text-[#ebcc88] text-md leading-relaxed space-y-2">
-            <li><strong>Structured Progression:</strong> Each course builds on the last, so students steadily advance from basic rules to advanced strategies.</li>
-            <li><strong>Global Community:</strong> Students from around the world connect and learn together, making each class a diverse and enriching experience.</li>
-            <li><strong>Engaging Curriculum:</strong> Lessons use puzzles, games, and live board analysis, turning complex ideas into fun challenges.</li>
-            <li><strong>Parental Involvement:</strong> We keep families informed with progress updates, so parents see the impact of every class and tournament.</li>
-          </ul>
-        </motion.div>
-
-        {/* Owner Section */}
-        <motion.div
-          className="flex flex-col lg:flex-row items-center gap-8 bg-[#121820] p-6 rounded-xl border border-[#d4af37]/30"
-          variants={fadeUp}
-          initial="hidden"
-          animate="visible"
-          custom={5}
-        >
-          {/* Owner Image */}
-          <div className="w-56 h-56 rounded-full overflow-hidden border-4 border-[#d4af37]/40 shadow-[0_0_20px_rgba(212,175,55,0.3)]">
-            <Image
-              src={ownerImg}
-              alt="Founder of ChessPrix"
-              width={224}
-              height={224}
-              className="object-cover w-full h-full"
-            />
-          </div>
-
-          {/* Owner Info */}
-          <div>
-            <h3 className="text-3xl font-bold text-[#f3c47a] mb-2">Sourav Singh Chauhan</h3>
-            <p className="text-[#ebcc88] text-md leading-relaxed max-w-2xl">
-              As the founder of ChessPrix, I envisioned a space where chess becomes a tool to inspire strategic minds, self-discipline, and global camaraderie. Every student has the potential to become a leader—and we build that, one move at a time.
+          <div className="bg-[#121820]/50 border border-[#d4af37]/30 rounded-2xl p-8 sm:p-12 backdrop-blur-sm">
+            <h3 className="text-3xl sm:text-4xl font-bold text-[#f2e79b] mb-6 text-center">
+              Our Philosophy — The ChessPrix Difference
+            </h3>
+            <p className="text-lg sm:text-xl text-[#ebcc88] leading-relaxed text-center max-w-4xl mx-auto">
+              <strong>We Don't Just Teach Chess, We Teach a System.</strong> Many chess academies focus on teaching you what to do. 
+              At ChessPrix, we focus on teaching you how to think. Our curriculum is built around a proven, systematic methodology 
+              that gives you a clear and repeatable process for every stage of the game—from the opening to the endgame. 
+              This is the difference between a good player and a great player, and it's the foundation of every one of our programs.
             </p>
           </div>
         </motion.div>
+
+        {/* Journey Section */}
+        <motion.div
+          className="mb-20"
+          initial="hidden"
+          animate="visible"
+          variants={fadeUp}
+          custom={2}
+        >
+          <div className="bg-[#121820]/50 border border-[#d4af37]/30 rounded-2xl p-8 sm:p-12 backdrop-blur-sm">
+            <h3 className="text-3xl sm:text-4xl font-bold text-[#f2e79b] mb-6 text-center">
+              Your Journey, Our Roadmap
+            </h3>
+            <p className="text-lg sm:text-xl text-[#ebcc88] leading-relaxed text-center max-w-4xl mx-auto">
+              <strong>A Clear Path to Mastery:</strong> Whether you're taking your very first steps on the board or you're a seasoned 
+              player aiming for a FIDE title, ChessPrix has a program for you. Our tiered approach is a comprehensive roadmap 
+              for your chess journey. We ensure you build a strong foundation, develop a robust tournament-ready skill set, 
+              and eventually master the elite-level thinking required to break through any rating plateau.
+            </p>
+          </div>
+        </motion.div>
+
+        {/* Benefits Grid */}
+        <motion.div
+          initial="hidden"
+          animate="visible"
+          variants={fadeUp}
+          custom={3}
+        >
+          <h3 className="text-3xl sm:text-4xl font-bold text-[#f2e79b] mb-12 text-center">
+            What Makes Us Stand Out
+          </h3>
+          
+          <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
+            {benefits.map((benefit, index) => (
+              <motion.div
+                key={index}
+                className="bg-[#121820] border border-[#d4af37]/30 rounded-xl p-6 hover:shadow-[0_0_20px_rgba(212,175,55,0.4)] transition-all duration-300 hover:scale-105"
+                variants={fadeUp}
+                initial="hidden"
+                animate="visible"
+                custom={index + 4}
+              >
+                <div className="text-4xl mb-4 text-center">{benefit.icon}</div>
+                <h4 className="text-xl font-bold text-[#f2e79b] mb-3 text-center">
+                  {benefit.title}
+                </h4>
+                <p className="text-[#ebcc88] text-md leading-relaxed text-center">
+                  {benefit.description}
+                </p>
+              </motion.div>
+            ))}
+          </div>
+        </motion.div>
+
+        {/* Founder Section */}
+        <motion.div
+          className="mt-20"
+          initial="hidden"
+          animate="visible"
+          variants={fadeUp}
+          custom={10}
+        >
+          <div className="bg-[#121820]/50 border border-[#d4af37]/30 rounded-2xl p-8 sm:p-12 backdrop-blur-sm">
+            <div className="flex flex-col lg:flex-row items-center gap-8">
+              {/* Founder Image */}
+              <div className="w-56 h-56 rounded-full overflow-hidden border-4 border-[#d4af37]/40 shadow-[0_0_20px_rgba(212,175,55,0.3)] flex-shrink-0">
+                <Image
+                  src={ownerImg}
+                  alt="Founder of ChessPrix"
+                  width={224}
+                  height={224}
+                  className="object-cover w-full h-full"
+                />
+              </div>
+
+              {/* Founder Info */}
+              <div className="text-center lg:text-left">
+                <h3 className="text-3xl font-bold text-[#f3c47a] mb-4">Sourav Singh Chauhan</h3>
+                <p className="text-lg text-[#ebcc88] leading-relaxed max-w-2xl">
+                  As the founder of ChessPrix, I envisioned a space where chess becomes a tool to inspire strategic minds, 
+                  self-discipline, and global camaraderie. Every student has the potential to become a leader—and we build that, 
+                  one move at a time. Our systematic approach to chess education transforms not just how students play the game, 
+                  but how they think about challenges in life.
+                </p>
+              </div>
+            </div>
+          </div>
+        </motion.div>
+
+        {/* Call to Action */}
+        <motion.div
+          className="mt-16 text-center"
+          initial="hidden"
+          animate="visible"
+          variants={fadeUp}
+          custom={11}
+        >
+          <div className="bg-gradient-to-r from-[#472b12] to-[#8B4513] border-2 border-[#D4AF37] rounded-xl p-8 shadow-[0_4px_12px_rgba(212,175,55,0.4)]">
+            <h3 className="text-2xl sm:text-3xl font-bold text-white mb-4">
+              Ready to Master the Game and Master the Mind?
+            </h3>
+            <p className="text-[#f3c47a] text-lg mb-6 max-w-2xl mx-auto">
+              Join hundreds of students who have already discovered the ChessPrix difference. 
+              Start your systematic journey to chess mastery today.
+            </p>
+            <button className="bg-[#D4AF37] text-[#472b12] font-bold px-8 py-3 rounded-lg hover:bg-[#f0d998] transition-all duration-300 hover:scale-105 shadow-lg">
+              Start Your Journey
+            </button>
+          </div>
+        </motion.div>
+
       </div>
     </section>
   );
