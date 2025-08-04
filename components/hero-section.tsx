@@ -191,27 +191,29 @@ export default function Hero() {
           >
             <Link 
               href="/foundational" 
-              className="w-full sm:w-auto bg-[#1a1a1a]/80 text-white font-bold px-5 py-2 md:px-6 md:py-3 lg:px-8 lg:py-4 rounded-lg border-2 border-[#D4AF37] shadow-[0_4px_12px_rgba(212,175,55,0.4)] hover:scale-105 transition-all duration-300 ease-in-out hover:shadow-[0_6px_16px_rgba(212,175,55,0.5)] focus:outline-none focus:ring-4 focus:ring-[#D4AF37]/50 group relative overflow-hidden"
+              className="w-full sm:w-auto bg-[#1a1a1a]/80 text-white font-bold px-4 py-2 md:px-6 md:py-3 lg:px-8 lg:py-4 rounded-lg border-2 border-[#D4AF37] shadow-[0_4px_12px_rgba(212,175,55,0.4)] hover:scale-105 transition-all duration-300 ease-in-out hover:shadow-[0_6px_16px_rgba(212,175,55,0.5)] focus:outline-none focus:ring-4 focus:ring-[#D4AF37]/50 group relative overflow-hidden"
             >
               <span className="absolute inset-0 bg-gradient-to-r from-[#D4AF37] to-[#1a1a1a] opacity-0 group-hover:opacity-100 transition-opacity duration-300"></span>
-              <span className="relative flex items-center justify-center gap-2 text-sm md:text-base">
-                <svg className="w-4 h-4 md:w-5 md:h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <span className="relative flex items-center justify-center gap-2 text-xs sm:text-sm md:text-base">
+                <svg className="w-3 h-3 sm:w-4 sm:h-4 md:w-5 md:h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.746 0 3.332.477 4.5 1.253v13C19.832 18.477 18.246 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
                 </svg>
-                Foundational & Strategic Development
+                <span className="hidden sm:inline">Foundational & Strategic Development</span>
+                <span className="sm:hidden">Foundational Development</span>
               </span>
             </Link>
 
             <Link 
               href="/competitive" 
-              className="w-full sm:w-auto relative px-5 py-2 md:px-6 md:py-3 lg:px-8 lg:py-4 rounded-lg text-sm md:text-base font-bold text-[#D4AF37] border-2 border-[#D4AF37] overflow-hidden z-10 group hover:text-white transition-all duration-300 ease-in-out"
+              className="w-full sm:w-auto relative px-4 py-2 md:px-6 md:py-3 lg:px-8 lg:py-4 rounded-lg text-xs sm:text-sm md:text-base font-bold text-[#D4AF37] border-2 border-[#D4AF37] overflow-hidden z-10 group hover:text-white transition-all duration-300 ease-in-out"
             >
               <span className="absolute inset-0 bg-[#D4AF37] opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-0"></span>
               <span className="relative z-10 flex items-center justify-center gap-2">
-                <svg className="w-4 h-4 md:w-5 md:h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <svg className="w-3 h-3 sm:w-4 sm:h-4 md:w-5 md:h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z" />
                 </svg>
-                High-Performance & Competitive Mastery
+                <span className="hidden sm:inline">High-Performance & Competitive Mastery</span>
+                <span className="sm:hidden">Competitive Mastery</span>
               </span>
             </Link>
           </motion.div>

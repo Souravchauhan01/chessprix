@@ -39,18 +39,63 @@ const chessTypes = ['pawn', 'knight', 'queen', 'rook', 'bishop', 'king'];
 const testimonials = [
   {
     quote:
-      'ChessPrix’s program turned my daughter’s hobby into real skill. In just a few months she won her first trophy at school!',
+      'ChessPrix\'s program turned my daughter\'s hobby into real skill. In just a few months she won her first trophy at school!',
     author: '– Parent of Ananya (Age 10)',
   },
   {
     quote:
-      'My son’s confidence has soared. The coaches made lessons exciting and supportive, and now he’s playing chess every day.',
+      'My son\'s confidence has soared. The coaches made lessons exciting and supportive, and now he\'s playing chess every day.',
     author: '– Parent of Dev (Age 9)',
   },
   {
     quote:
-      'I was nervous at first, but ChessPrix’s online tournaments gave me confidence. Now I compete regularly and love improving my rating!',
+      'I was nervous at first, but ChessPrix\'s online tournaments gave me confidence. Now I compete regularly and love improving my rating!',
     author: '– Dev (Age 10), ChessPrix Student',
+  },
+  {
+    quote:
+      'The systematic approach at ChessPrix is incredible. My child went from beginner to intermediate in just 6 months!',
+    author: '– Parent of Priya (Age 12)',
+  },
+  {
+    quote:
+      'ChessPrix\'s coaches are amazing! They don\'t just teach moves, they teach strategic thinking that helps in all subjects.',
+    author: '– Parent of Arjun (Age 11)',
+  },
+  {
+    quote:
+      'I love the interactive lessons and the community. ChessPrix has made chess fun and challenging at the same time.',
+    author: '– Riya (Age 13), ChessPrix Student',
+  },
+  {
+    quote:
+      'My daughter\'s problem-solving skills have improved dramatically since joining ChessPrix. It\'s more than just chess!',
+    author: '– Parent of Zara (Age 9)',
+  },
+  {
+    quote:
+      'The tournament preparation program is excellent. My son won his first regional tournament after just 8 months!',
+    author: '– Parent of Karan (Age 14)',
+  },
+  {
+    quote:
+      'ChessPrix\'s personalized feedback helped me understand my weaknesses and improve my game systematically.',
+    author: '– Aisha (Age 15), ChessPrix Student',
+  },
+  {
+    quote:
+      'The psychological training at ChessPrix is unique. My child handles pressure much better now, both in chess and life.',
+    author: '– Parent of Leo (Age 10)',
+  },
+  {
+    quote:
+      'From 800 to 1500 rating in one year! ChessPrix\'s systematic approach really works wonders.',
+    author: '– Vikram (Age 16), ChessPrix Student',
+  },
+  {
+    quote:
+      'The global community at ChessPrix is fantastic. My child has friends from around the world who share the same passion.',
+    author: '– Parent of Maya (Age 11)',
   },
 ];
 
@@ -148,21 +193,47 @@ export default function TestimonialsSection() {
         Testimonials & Success Quotes
       </motion.h2>
 
-      {/* Testimonials in 1 Row on Desktop */}
-      <div className="max-w-7xl mx-auto grid gap-8 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 z-10 relative">
-        {testimonials.map((t, i) => (
-          <motion.div
-            key={i}
-            className="bg-[#121820] border border-[#d4af37]/30 rounded-xl p-6 sm:p-8 shadow-lg hover:shadow-[0_0_20px_rgba(212,175,55,0.4)] transition-all duration-300 hover:scale-[1.03]"
-            initial="hidden"
-            animate="visible"
-            variants={fadeUp}
-            custom={i + 1}
-          >
-            <p className="text-lg text-[#f2e79b] font-medium italic leading-relaxed mb-4">“{t.quote}”</p>
-            <p className="text-sm text-[#ebcc88] text-right">{t.author}</p>
-          </motion.div>
-        ))}
+      {/* Infinite Testimonials Carousel */}
+      <div className="max-w-7xl mx-auto z-10 relative overflow-hidden">
+        <motion.div
+          className="flex gap-8"
+          animate={{ x: [0, -50 * testimonials.length] }}
+          transition={{
+            duration: 60,
+            repeat: Infinity,
+            ease: "linear",
+          }}
+        >
+          {/* First set of testimonials */}
+          {testimonials.map((t, i) => (
+            <motion.div
+              key={`first-${i}`}
+              className="bg-[#121820] border border-[#d4af37]/30 rounded-xl p-6 sm:p-8 shadow-lg hover:shadow-[0_0_20px_rgba(212,175,55,0.4)] transition-all duration-300 hover:scale-[1.03] min-w-[300px] sm:min-w-[350px] md:min-w-[400px]"
+              initial="hidden"
+              animate="visible"
+              variants={fadeUp}
+              custom={i + 1}
+            >
+              <p className="text-lg text-[#f2e79b] font-medium italic leading-relaxed mb-4">"{t.quote}"</p>
+              <p className="text-sm text-[#ebcc88] text-right">{t.author}</p>
+            </motion.div>
+          ))}
+          
+          {/* Duplicate set for seamless loop */}
+          {testimonials.map((t, i) => (
+            <motion.div
+              key={`second-${i}`}
+              className="bg-[#121820] border border-[#d4af37]/30 rounded-xl p-6 sm:p-8 shadow-lg hover:shadow-[0_0_20px_rgba(212,175,55,0.4)] transition-all duration-300 hover:scale-[1.03] min-w-[300px] sm:min-w-[350px] md:min-w-[400px]"
+              initial="hidden"
+              animate="visible"
+              variants={fadeUp}
+              custom={i + 1}
+            >
+              <p className="text-lg text-[#f2e79b] font-medium italic leading-relaxed mb-4">"{t.quote}"</p>
+              <p className="text-sm text-[#ebcc88] text-right">{t.author}</p>
+            </motion.div>
+          ))}
+        </motion.div>
       </div>
 
       {/* CTA Section */}

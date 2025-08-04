@@ -13,7 +13,7 @@ export default function Navbar() {
   const toggleMenu = () => setIsOpen(!isOpen);
   const closeMenu = () => setIsOpen(false);
   const pathname = usePathname();
-
+// hello
   const navLinks = [
     { name: 'Home', href: '/' },
     { name: 'About', href: '/about' },
@@ -38,9 +38,9 @@ export default function Navbar() {
       transition={{ duration: 0.6, ease: 'easeOut' }}
       className="fixed top-0 left-0 right-0 z-50 backdrop-blur-xl bg-[#080d14]/95 border-b border-[#D4AF37]/20 shadow-lg"
     >
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 md:px-10 py-2 flex items-center justify-between">
+      <div className="max-w-7xl mx-auto px-2 sm:px-4 md:px-6 lg:px-10 py-2 flex items-center justify-between min-w-0">
         {/* Logo */}
-        <Link href="/" onClick={closeMenu} className="flex items-center group">
+        <Link href="/" onClick={closeMenu} className="flex items-center group flex-shrink-0 min-w-0">
           <motion.div
             initial={{ y: -10, opacity: 1 }}
             animate={{ y: [0, -4, 0], opacity: 1 }}
@@ -51,39 +51,69 @@ export default function Navbar() {
               repeatType: 'loop',
             }}
             whileHover={{ scale: 1.08, rotate: 2 }}
-            className="rounded-lg p-1.5 transition-all"
+            className="rounded-lg p-1 transition-all"
           >
             <Image
               src="/logo1.png"
               alt="ChessPrix Logo"
               width={80}
               height={80}
-              className="h-16 sm:h-20 w-auto"
+              className="h-12 w-12 sm:h-16 sm:w-16 md:h-20 md:w-20 object-contain"
               priority
             />
           </motion.div>
+          {/* Text logo */}
+          <span className="text-[#D4AF37] font-bold text-sm sm:text-lg md:text-xl ml-1 sm:ml-2 md:ml-3 truncate">
+            ChessPrix
+          </span>
         </Link>
 
         {/* Desktop Navigation */}
         <div className="hidden md:flex space-x-6 items-center">
-          {navLinks.map((link) => {
-            const isActive = pathname === link.href;
-            return (
-              <motion.div key={link.name} whileHover={{ scale: 1.05 }}>
-                <Link
-                  href={link.href}
-                  onClick={closeMenu}
-                  className={`relative transition-colors duration-200 
-                    font-bold text-lg
-                    ${isActive ? 'text-[#D4AF37]' : 'text-[#e8dcc0] hover:text-[#D4AF37]'} 
-                    after:content-[''] after:absolute after:bottom-0 after:left-0 after:w-0 after:h-[2px] 
-                    after:bg-[#D4AF37] after:transition-all after:duration-300 hover:after:w-full`}
-                >
-                  {link.name}
-                </Link>
-              </motion.div>
-            );
-          })}
+          {/* Home */}
+          <motion.div whileHover={{ scale: 1.05 }}>
+            <Link
+              href="/"
+              onClick={closeMenu}
+              className={`relative transition-colors duration-200 
+                font-bold text-lg
+                ${pathname === '/' ? 'text-[#D4AF37]' : 'text-[#e8dcc0] hover:text-[#D4AF37]'} 
+                after:content-[''] after:absolute after:bottom-0 after:left-0 after:w-0 after:h-[2px] 
+                after:bg-[#D4AF37] after:transition-all after:duration-300 hover:after:w-full`}
+            >
+              Home
+            </Link>
+          </motion.div>
+
+          {/* About */}
+          <motion.div whileHover={{ scale: 1.05 }}>
+            <Link
+              href="/about"
+              onClick={closeMenu}
+              className={`relative transition-colors duration-200 
+                font-bold text-lg
+                ${pathname === '/about' ? 'text-[#D4AF37]' : 'text-[#e8dcc0] hover:text-[#D4AF37]'} 
+                after:content-[''] after:absolute after:bottom-0 after:left-0 after:w-0 after:h-[2px] 
+                after:bg-[#D4AF37] after:transition-all after:duration-300 hover:after:w-full`}
+            >
+              About
+            </Link>
+          </motion.div>
+
+          {/* Services */}
+          <motion.div whileHover={{ scale: 1.05 }}>
+            <Link
+              href="/coaches"
+              onClick={closeMenu}
+              className={`relative transition-colors duration-200 
+                font-bold text-lg
+                ${pathname === '/coaches' ? 'text-[#D4AF37]' : 'text-[#e8dcc0] hover:text-[#D4AF37]'} 
+                after:content-[''] after:absolute after:bottom-0 after:left-0 after:w-0 after:h-[2px] 
+                after:bg-[#D4AF37] after:transition-all after:duration-300 hover:after:w-full`}
+            >
+              Services
+            </Link>
+          </motion.div>
 
           {/* Programs Dropdown */}
           <div className="relative">
@@ -155,6 +185,36 @@ export default function Navbar() {
             )}
           </div>
 
+          {/* Hall Of Fame */}
+          <motion.div whileHover={{ scale: 1.05 }}>
+            <Link
+              href="/halloffame"
+              onClick={closeMenu}
+              className={`relative transition-colors duration-200 
+                font-bold text-lg
+                ${pathname === '/halloffame' ? 'text-[#D4AF37]' : 'text-[#e8dcc0] hover:text-[#D4AF37]'} 
+                after:content-[''] after:absolute after:bottom-0 after:left-0 after:w-0 after:h-[2px] 
+                after:bg-[#D4AF37] after:transition-all after:duration-300 hover:after:w-full`}
+            >
+              Hall Of Fame
+            </Link>
+          </motion.div>
+
+          {/* Blogs */}
+          <motion.div whileHover={{ scale: 1.05 }}>
+            <Link
+              href="/blogs"
+              onClick={closeMenu}
+              className={`relative transition-colors duration-200 
+                font-bold text-lg
+                ${pathname === '/blogs' ? 'text-[#D4AF37]' : 'text-[#e8dcc0] hover:text-[#D4AF37]'} 
+                after:content-[''] after:absolute after:bottom-0 after:left-0 after:w-0 after:h-[2px] 
+                after:bg-[#D4AF37] after:transition-all after:duration-300 hover:after:w-full`}
+            >
+              Blogs
+            </Link>
+          </motion.div>
+
           {/* Contact Button */}
           <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
             <Link
@@ -174,9 +234,9 @@ export default function Navbar() {
         <motion.button
           onClick={toggleMenu}
           whileTap={{ scale: 0.9 }}
-          className="md:hidden text-[#f3d27e] focus:outline-none bg-white/5 p-1.5 rounded-lg border border-white/10 hover:border-[#D4AF37]/40 transition-all"
+          className="md:hidden text-[#f3d27e] focus:outline-none bg-white/5 p-1.5 rounded-lg border border-white/10 hover:border-[#D4AF37]/40 transition-all flex-shrink-0"
         >
-          {isOpen ? <X className="w-7 h-7" /> : <Menu className="w-7 h-7" />}
+          {isOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
         </motion.button>
       </div>
 
@@ -189,25 +249,50 @@ export default function Navbar() {
           className="md:hidden bg-[#080d14]/95 border-t border-[#D4AF37]/20
                      px-4 pb-6 space-y-4 shadow-inner"
         >
-          {navLinks.map((link) => {
-            const isActive = pathname === link.href;
-            return (
-              <motion.div
-                key={link.name}
-                whileHover={{ scale: 1.02 }}
-                whileTap={{ scale: 0.98 }}
-              >
-                <Link
-                  href={link.href}
-                  onClick={closeMenu}
-                  className={`block text-lg font-medium py-2 px-2 rounded-lg transition-colors duration-200
-                    ${isActive ? 'text-[#D4AF37] bg-white/5' : 'text-[#f3e5b2] hover:text-[#D4AF37] hover:bg-white/5'}`}
-                >
-                  {link.name}
-                </Link>
-              </motion.div>
-            );
-          })}
+          {/* Home */}
+          <motion.div
+            whileHover={{ scale: 1.02 }}
+            whileTap={{ scale: 0.98 }}
+          >
+            <Link
+              href="/"
+              onClick={closeMenu}
+              className={`block text-lg font-medium py-2 px-2 rounded-lg transition-colors duration-200
+                ${pathname === '/' ? 'text-[#D4AF37] bg-white/5' : 'text-[#f3e5b2] hover:text-[#D4AF37] hover:bg-white/5'}`}
+            >
+              Home
+            </Link>
+          </motion.div>
+
+          {/* About */}
+          <motion.div
+            whileHover={{ scale: 1.02 }}
+            whileTap={{ scale: 0.98 }}
+          >
+            <Link
+              href="/about"
+              onClick={closeMenu}
+              className={`block text-lg font-medium py-2 px-2 rounded-lg transition-colors duration-200
+                ${pathname === '/about' ? 'text-[#D4AF37] bg-white/5' : 'text-[#f3e5b2] hover:text-[#D4AF37] hover:bg-white/5'}`}
+            >
+              About
+            </Link>
+          </motion.div>
+
+          {/* Services */}
+          <motion.div
+            whileHover={{ scale: 1.02 }}
+            whileTap={{ scale: 0.98 }}
+          >
+            <Link
+              href="/coaches"
+              onClick={closeMenu}
+              className={`block text-lg font-medium py-2 px-2 rounded-lg transition-colors duration-200
+                ${pathname === '/coaches' ? 'text-[#D4AF37] bg-white/5' : 'text-[#f3e5b2] hover:text-[#D4AF37] hover:bg-white/5'}`}
+            >
+              Services
+            </Link>
+          </motion.div>
 
           {/* Programs Dropdown (Mobile) */}
           <div className="space-y-2">
@@ -272,6 +357,36 @@ export default function Navbar() {
               </motion.div>
             )}
           </div>
+
+          {/* Hall Of Fame */}
+          <motion.div
+            whileHover={{ scale: 1.02 }}
+            whileTap={{ scale: 0.98 }}
+          >
+            <Link
+              href="/halloffame"
+              onClick={closeMenu}
+              className={`block text-lg font-medium py-2 px-2 rounded-lg transition-colors duration-200
+                ${pathname === '/halloffame' ? 'text-[#D4AF37] bg-white/5' : 'text-[#f3e5b2] hover:text-[#D4AF37] hover:bg-white/5'}`}
+            >
+              Hall Of Fame
+            </Link>
+          </motion.div>
+
+          {/* Blogs */}
+          <motion.div
+            whileHover={{ scale: 1.02 }}
+            whileTap={{ scale: 0.98 }}
+          >
+            <Link
+              href="/blogs"
+              onClick={closeMenu}
+              className={`block text-lg font-medium py-2 px-2 rounded-lg transition-colors duration-200
+                ${pathname === '/blogs' ? 'text-[#D4AF37] bg-white/5' : 'text-[#f3e5b2] hover:text-[#D4AF37] hover:bg-white/5'}`}
+            >
+              Blogs
+            </Link>
+          </motion.div>
 
           {/* Contact Button (Mobile) */}
           <motion.div whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }}>
