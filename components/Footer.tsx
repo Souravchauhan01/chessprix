@@ -76,8 +76,8 @@ export default function Footer() {
         <div className="flex flex-col sm:flex-row justify-between items-center gap-4 text-sm sm:text-base text-[#e8dcc0]/70">
           <p>© {new Date().getFullYear()} <span className="text-[#D4AF37] font-semibold">ChessPrix</span>. All rights reserved.</p>
           <div className='flex flex-col sm:flex-row gap-2 sm:gap-8 justify-center items-center'>
-            <p>Privacy Policy</p>
-            <p>Terms Of Service</p>
+            <Link href="/privacy-policy" target="_blank" className="hover:text-[#D4AF37] transition">Privacy Policy</Link>
+            <Link href="/term-service" target="_blank" className="hover:text-[#D4AF37] transition">Terms Of Service</Link>
           </div>
           <div className="flex gap-5 text-lg">
             <Link href="https://facebook.com" target="_blank" className="hover:text-[#D4AF37] transition"><FaFacebookF /></Link>
