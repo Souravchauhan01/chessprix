@@ -3,6 +3,8 @@
 import { useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
 import { generateChessElements } from '@/components/utils/chessElements';
+import Navbar from '@/components/Navbar';
+import Footer from '@/components/Footer';
 
 // === Types ===
 type ChessType = 'pawn' | 'knight' | 'queen' | 'rook' | 'bishop' | 'king';
@@ -55,7 +57,9 @@ export default function PrivacyPolicy() {
   }, []);
 
   return (
-    <section className="relative py-20 px-6 sm:px-10 bg-[#080d14] text-yellow-100 overflow-hidden">
+    <>
+    <Navbar />
+    <section className="relative py-20 px-6 sm:px-10 bg-[#080d14] text-yellow-100 overflow-hidden mt-10 min-h-auto">
 
       {/* Glowing Circle */}
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 w-[600px] h-[600px] bg-yellow-300/10 blur-3xl rounded-full z-0" />
@@ -148,5 +152,7 @@ export default function PrivacyPolicy() {
         </div>
       </motion.div>
     </section>
+    <Footer/>
+    </>
   );
 }
