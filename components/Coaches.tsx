@@ -91,7 +91,7 @@ export default function Coaches() {
   }, []);
 
   return (
-    <section className="relative py-16 px-6 sm:px-10 bg-[#080d14] text-yellow-100 overflow-hidden min-h-auto mt-10">
+    <section className="relative py-16 px-6 sm:px-10 bg-[#080d14] text-yellow-100 overflow-hidden min-h-auto mt-13">
       {/* Glowing Light */}
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 w-[600px] h-[600px] bg-yellow-300/10 blur-3xl rounded-full z-0" />
 
@@ -128,7 +128,7 @@ export default function Coaches() {
 
       {/* Section Heading */}
       <motion.h2
-        className="text-4xl sm:text-5xl font-extrabold text-center mb-8 text-transparent bg-clip-text bg-gradient-to-r from-[#bd853c] to-[#e0b86d] drop-shadow-[0_5px_3px_rgba(0,0,0,0.4)] z-10 relative"
+        className="text-4xl sm:text-5xl p-2 font-extrabold text-center mb-8 text-transparent bg-clip-text bg-gradient-to-r from-[#bd853c] to-[#e0b86d] drop-shadow-[0_5px_3px_rgba(0,0,0,0.4)] z-10 relative"
         variants={fadeUp}
         initial="hidden"
         animate="visible"

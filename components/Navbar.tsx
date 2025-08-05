@@ -38,7 +38,8 @@ export default function Navbar() {
       transition={{ duration: 0.6, ease: 'easeOut' }}
       className="fixed top-0 left-0 right-0 z-50 backdrop-blur-xl bg-[#080d14]/95 border-b border-[#D4AF37]/20 shadow-lg"
     >
-      <div className="max-w-7xl mx-auto px-2 sm:px-4 md:px-6 lg:px-10 py-2 flex items-center justify-between min-w-0">
+      <div className="max-w-6xl mx-auto px-2 sm:px-4 md:px-6 lg:px-10 py-2 flex flex-wrap items-center justify-between gap-y-2 min-w-0">
+
         {/* Logo */}
         <Link href="/" onClick={closeMenu} className="flex items-center group flex-shrink-0 min-w-0">
           <motion.div
@@ -51,21 +52,19 @@ export default function Navbar() {
               repeatType: 'loop',
             }}
             whileHover={{ scale: 1.08, rotate: 2 }}
-            className="rounded-lg p-1 transition-all"
+            className="rounded-lg  transition-all"
           >
             <Image
               src="/logo1.png"
               alt="ChessPrix Logo"
-              width={80}
-              height={80}
-              className="h-12 w-12 sm:h-16 sm:w-16 md:h-20 md:w-20 object-contain"
+              width={120}
+              height={120}
+            className="h-16 w-20 sm:h-20 sm:w-24 md:h-24 md:w-34 object-contain"
               priority
             />
           </motion.div>
           {/* Text logo */}
-          <span className="text-[#D4AF37] font-bold text-sm sm:text-lg md:text-xl ml-1 sm:ml-2 md:ml-3 truncate">
-            ChessPrix
-          </span>
+        
         </Link>
 
         {/* Desktop Navigation */}

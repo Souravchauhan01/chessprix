@@ -90,7 +90,7 @@ export default function About() {
   }, []);
 
   return (
-    <section className="relative py-20 px-6 sm:px-10 bg-[#080d14] text-yellow-100 overflow-hidden min-h-screen">
+    <section className="relative py-20 px-6 mt-8 sm:px-10 bg-[#080d14] text-yellow-100 overflow-hidden min-h-auto">
       
       {/* Glowing Light */}
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 w-[600px] h-[600px] bg-yellow-300/10 blur-3xl rounded-full z-0" />
@@ -136,7 +136,7 @@ export default function About() {
           variants={fadeUp}
           custom={0}
         >
-          <h2 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-[#bd853c] to-[#e0b86d] drop-shadow-[0_5px_3px_rgba(0,0,0,0.4)] mb-6">
+          <h2 className="text-4xl sm:text-5xl lg:text-6xl  font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-[#bd853c] to-[#e0b86d] drop-shadow-[0_5px_3px_rgba(0,0,0,0.4)] mb-6">
             About ChessPrix
           </h2>
           <p className="text-xl sm:text-2xl text-[#f3c47a] max-w-4xl mx-auto leading-relaxed">
