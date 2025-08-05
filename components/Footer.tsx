@@ -3,8 +3,11 @@
 import { FaFacebookF, FaInstagram, FaYoutube, FaLinkedinIn, FaPhoneAlt, FaEnvelope, FaMapMarkerAlt, FaWhatsapp } from 'react-icons/fa';
 import Link from 'next/link';
 import Image from 'next/image';
+import { useRouter } from 'next/navigation';
 
 export default function Footer() {
+const router = useRouter();
+
   return (
     <footer className="bg-[#080d14] text-[#e8dcc0] pt-10 pb-6 px-6 sm:px-10 border-t border-[#D4AF37]/30 shadow-inner">
       <div className="max-w-7xl mx-auto grid grid-cols-1 sm:grid-cols-2 md:grid-cols-5 gap-10">
@@ -76,8 +79,8 @@ export default function Footer() {
         <div className="flex flex-col sm:flex-row justify-between items-center gap-4 text-sm sm:text-base text-[#e8dcc0]/70">
           <p>© {new Date().getFullYear()} <span className="text-[#D4AF37] font-semibold">ChessPrix</span>. All rights reserved.</p>
           <div className='flex flex-col sm:flex-row gap-2 sm:gap-8 justify-center items-center'>
-            <Link href="/privacy-policy" target="_blank" className="hover:text-[#D4AF37] transition">Privacy Policy</Link>
-            <Link href="/term-service" target="_blank" className="hover:text-[#D4AF37] transition">Terms Of Service</Link>
+            <p className="hover:text-[#D4AF37] transition" onClick={() => router.push("/privacy-policy")}>Privacy Policy</p>
+            <p  className="hover:text-[#D4AF37] transition" onClick={() => router.push("/term-service")}>Terms Of Service</p>
           </div>
           <div className="flex gap-5 text-lg">
             <Link href="https://facebook.com" target="_blank" className="hover:text-[#D4AF37] transition"><FaFacebookF /></Link>
