@@ -59,7 +59,7 @@ export default function Navbar() {
               alt="ChessPrix Logo"
               width={120}
               height={120}
-            className="h-16 w-20 sm:h-20 sm:w-24 md:h-24 md:w-34 object-contain"
+            className="h-16 w-26 sm:h-18 sm:w-26 md:h-28 md:w-42 object-contain"
               priority
             />
           </motion.div>

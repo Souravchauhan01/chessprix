@@ -58,7 +58,7 @@ export default function TermsPage() {
 
   return (
     <>
-    <Navbar/>
+    
     <section className="relative py-20 px-6 sm:px-10 bg-[#080d14] text-yellow-100 overflow-hidden mt-10 min-h-auto">
       
       {/* Glowing Circle */}
@@ -156,7 +156,7 @@ export default function TermsPage() {
         </div>
       </motion.div>
     </section>
-    <Footer/>
+    
     </>
   );
 }

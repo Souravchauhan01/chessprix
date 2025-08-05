@@ -87,7 +87,7 @@ export default function Hero() {
 
   return (
     // MODIFIED LINE: Replaced complex min-h and py classes with a simpler responsive padding system
-    <section className="relative w-full overflow-hidden bg-[#080d14] flex items-center justify-center px-4 sm:px-6 md:px-8 lg:px-10 py-20 md:py-24 lg:py-28 mt-10">
+    <section className="relative w-full overflow-hidden pt-15 bg-[#080d14] flex items-center justify-center px-4 sm:px-6 md:px-8 lg:px-10 py-20 md:py-24 lg:pt-28 lg:pb-5 mt-10">
       {/* Glowing Light - Adjusted for tablet */}
       <div className="absolute top-1/4 left-1/2 -translate-x-1/2 w-[300px] md:w-[400px] lg:w-[500px] h-[300px] md:h-[400px] lg:h-[500px] bg-yellow-300/10 blur-3xl rounded-full z-0" />
 
@@ -170,7 +170,7 @@ export default function Hero() {
                 <svg className="w-4 h-4 md:w-5 md:h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
                 </svg>
-                Join Now
+                Book Free Demo
               </span>
             </button>
 
@@ -205,12 +205,12 @@ export default function Hero() {
 
             <Link 
               href="/competitive" 
-              className="w-full sm:w-auto relative px-4 py-2 md:px-6 md:py-3 lg:px-8 lg:py-4 rounded-lg text-xs sm:text-sm md:text-base font-bold text-[#D4AF37] border-2 border-[#D4AF37] overflow-hidden z-10 group hover:text-white transition-all duration-300 ease-in-out"
+              className="w-full sm:w-auto bg-[#1a1a1a]/80 text-white font-bold px-4 py-2 md:px-6 md:py-3 lg:px-8 lg:py-4 rounded-lg border-2 border-[#D4AF37] shadow-[0_4px_12px_rgba(212,175,55,0.4)] hover:scale-105 transition-all duration-300 ease-in-out hover:shadow-[0_6px_16px_rgba(212,175,55,0.5)] focus:outline-none focus:ring-4 focus:ring-[#D4AF37]/50 group relative overflow-hidden"
             >
-              <span className="absolute inset-0 bg-[#D4AF37] opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-0"></span>
-              <span className="relative z-10 flex items-center justify-center gap-2">
+              <span className="absolute inset-0 bg-gradient-to-r from-[#D4AF37] to-[#1a1a1a] opacity-0 group-hover:opacity-100 transition-opacity duration-300"></span>
+              <span className="relative flex items-center justify-center gap-2 text-xs sm:text-sm md:text-base">
                 <svg className="w-3 h-3 sm:w-4 sm:h-4 md:w-5 md:h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z" />
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.746 0 3.332.477 4.5 1.253v13C19.832 18.477 18.246 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
                 </svg>
                 <span className="hidden sm:inline">High-Performance & Competitive Mastery</span>
                 <span className="sm:hidden">Competitive Mastery</span>

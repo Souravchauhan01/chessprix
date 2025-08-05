@@ -97,7 +97,7 @@ export default function CourseHighlights() {
   }, []);
 
   return (
-    <section className="relative py-14 px-6 sm:px-10 bg-[#080d14] text-yellow-100 overflow-hidden min-h-auto">
+    <section className="relative py-10 px-6 sm:px-10 bg-[#080d14] text-yellow-100 overflow-hidden min-h-auto">
 
       {/* Glowing Light */}
       <div className="absolute top-1/3 left-1/2 -translate-x-1/2 w-[500px] h-[500px] bg-yellow-300/10 blur-3xl rounded-full z-0" />
