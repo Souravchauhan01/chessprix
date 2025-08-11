@@ -1,11 +1,14 @@
 "use client";
 
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { motion } from "framer-motion";
 import { IoClose } from "react-icons/io5";
 
-export function UserDetailsModal() {
-  const [isOpen, setIsOpen] = useState(false);
+type UserDetailsModalProps = {
+  onClose: () => void;
+};
+
+export function UserDetailsModal({ onClose }: UserDetailsModalProps) {
   const [formData, setFormData] = useState({
     parentName: "",
     childName: "",
@@ -14,14 +17,9 @@ export function UserDetailsModal() {
     phone: "",
     country: "",
   });
-  const [submissionStatus, setSubmissionStatus] = useState<
-    "idle" | "loading" | "success" | "error"
-  >("idle");
+  const [submissionStatus, setSubmissionStatus] =
+    useState<"idle" | "loading" | "success" | "error">("idle");
   const [responseMessage, setResponseMessage] = useState("");
-
-  useEffect(() => {
-    setIsOpen(true);
-  }, []);
 
   const handleInputChange = (field: string, value: string) => {
     setFormData((prev) => ({ ...prev, [field]: value }));
@@ -53,7 +51,7 @@ export function UserDetailsModal() {
           phone: "",
           country: "",
         });
-        setTimeout(() => setIsOpen(false), 3000);
+        setTimeout(onClose, 3000); // Close after success
       } else {
         const errorData = await response.json();
         setSubmissionStatus("error");
@@ -63,14 +61,11 @@ export function UserDetailsModal() {
             : "Error submitting form."
         );
       }
-    } catch (error) {
-      console.error("Form submission error:", error);
+    } catch {
       setSubmissionStatus("error");
       setResponseMessage("Network error. Please try again.");
     }
   };
-
-  if (!isOpen) return null;
 
   return (
     <div
@@ -104,7 +99,7 @@ export function UserDetailsModal() {
       >
         {/* Close Button */}
         <button
-          onClick={() => setIsOpen(false)}
+          onClick={onClose}
           style={{
             position: "absolute",
             top: "10px",
@@ -145,7 +140,7 @@ export function UserDetailsModal() {
 
         {/* Form */}
         <form onSubmit={handleSubmit} style={{ marginTop: "15px" }}>
-          {[
+          {[ 
             { label: "Parent's Name *", name: "parentName", type: "text" },
             { label: "Child's Name *", name: "childName", type: "text" },
             { label: "Email *", name: "email", type: "email" },
@@ -219,36 +214,12 @@ export function UserDetailsModal() {
             >
               <option value="">Select country</option>
               {[
-                "Afghanistan",
-                "Australia",
-                "Bangladesh",
-                "Brazil",
-                "Canada",
-                "China",
-                "Egypt",
-                "France",
-                "Germany",
-                "India",
-                "Indonesia",
-                "Italy",
-                "Japan",
-                "Malaysia",
-                "Mexico",
-                "Nepal",
-                "New Zealand",
-                "Pakistan",
-                "Philippines",
-                "Russia",
-                "Saudi Arabia",
-                "Singapore",
-                "South Africa",
-                "Sri Lanka",
-                "Thailand",
-                "United Arab Emirates",
-                "United Kingdom",
-                "United States",
-                "Vietnam",
-                "Other",
+                "Afghanistan", "Australia", "Bangladesh", "Brazil", "Canada", "China",
+                "Egypt", "France", "Germany", "India", "Indonesia", "Italy", "Japan",
+                "Malaysia", "Mexico", "Nepal", "New Zealand", "Pakistan", "Philippines",
+                "Russia", "Saudi Arabia", "Singapore", "South Africa", "Sri Lanka",
+                "Thailand", "United Arab Emirates", "United Kingdom", "United States",
+                "Vietnam", "Other",
               ].map((country) => (
                 <option key={country} value={country}>
                   {country}
@@ -257,7 +228,7 @@ export function UserDetailsModal() {
             </select>
           </div>
 
-          {/* Status Messages */}
+          {/* Status */}
           {submissionStatus === "loading" && (
             <p style={{ color: "#ebcc88" }}>Submitting...</p>
           )}
