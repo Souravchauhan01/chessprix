@@ -20,7 +20,7 @@ export default function Home() {
   useEffect(() => {
     const timer = setTimeout(() => {
       setShowModal(true)
-    }, 10000) // 10 seconds
+    }, 8000) // 10 seconds
 
     return () => clearTimeout(timer)
   }, [])
