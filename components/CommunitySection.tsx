@@ -73,11 +73,15 @@ const communityFeatures = [
     features: ['Progress reports', 'Parent workshops', 'Family tournaments']
   },
   {
-    icon: '🌟',
-    title: 'Mentorship Program',
-    description: 'Advanced students mentor beginners, creating a supportive learning environment.',
-    features: ['Peer mentoring', 'Role model programs', 'Leadership development']
-  }
+  "icon": "🏆",
+  "title": "Monthly Chess Tournament",
+  "description": "Put your skills to the test! Compete against fellow players in our exciting monthly tournament to climb the leaderboard and claim victory.",
+  "features": [
+    "Structured tournament format (e.g., Swiss System)",
+    "Competitive matches against various skill levels",
+    "Prizes and recognition for top performers"
+  ]
+}
 ];
 
 export default function CommunitySection() {

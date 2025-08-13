@@ -115,74 +115,81 @@ export default function Navbar() {
           </motion.div>
 
           {/* Programs Dropdown */}
-          <div className="relative">
-            <motion.button
-              onClick={() => setIsProgramsDropdownOpen(!isProgramsDropdownOpen)}
-              onMouseEnter={() => setIsProgramsDropdownOpen(true)}
-              onMouseLeave={() => setIsProgramsDropdownOpen(false)}
-              className="flex items-center space-x-1 font-bold text-lg text-[#e8dcc0] hover:text-[#D4AF37] transition-colors duration-200"
-              whileHover={{ scale: 1.05 }}
-            >
-              <span>Programs</span>
-              <ChevronDown 
-                className={`w-4 h-4 transition-transform duration-200 ${isProgramsDropdownOpen ? 'rotate-180' : ''}`} 
-              />
-            </motion.button>
+       {/* Programs Dropdown */}
+<div 
+  className="relative"
+  onMouseEnter={() => setIsProgramsDropdownOpen(true)}
+  onMouseLeave={() => setIsProgramsDropdownOpen(false)}
+>
+  <motion.button
+    // The onClick is kept for accessibility and toggling on click
+    onClick={() => setIsProgramsDropdownOpen(!isProgramsDropdownOpen)}
+    className="flex items-center space-x-1 font-bold text-lg text-[#e8dcc0] hover:text-[#D4AF37] transition-colors duration-200"
+    whileHover={{ scale: 1.05 }}
+  >
+    <span>Programs</span>
+    <ChevronDown 
+      className={`w-4 h-4 transition-transform duration-200 ${isProgramsDropdownOpen ? 'rotate-180' : ''}`} 
+    />
+  </motion.button>
 
-            {/* Dropdown Menu */}
-            {isProgramsDropdownOpen && (
-              <motion.div
-                initial={{ opacity: 0, y: -10 }}
-                animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0, y: -10 }}
-                transition={{ duration: 0.2 }}
-                onMouseEnter={() => setIsProgramsDropdownOpen(true)}
-                onMouseLeave={() => setIsProgramsDropdownOpen(false)}
-                className="absolute top-full left-0 mt-2 w-80 bg-[#080d14]/95 border border-[#D4AF37]/20 rounded-lg shadow-lg backdrop-blur-xl z-50"
+  {/* Dropdown Menu */}
+  {isProgramsDropdownOpen && (
+    <motion.div
+      initial={{ opacity: 0, y: -10 }}
+      animate={{ opacity: 1, y: 0 }}
+      exit={{ opacity: 0, y: -10 }}
+      transition={{ duration: 0.2 }}
+      // No event handlers needed here anymore
+      className="absolute top-full left-0 mt-2 w-80 bg-[#080d14]/95 border border-[#D4AF37]/20 rounded-lg shadow-lg backdrop-blur-xl z-50"
+    >
+      {/* ... dropdown content is unchanged ... */}
+      <div className="py-2">
+        {programs.map((program, index) => {
+          const isBasicLevel = index < 3;
+          const isSpecializedLevel = index >= 3;
+          
+          return (
+            <motion.div
+              key={program.name}
+              initial={{ opacity: 0, x: -10 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ delay: index * 0.05 }}
+              whileHover={{ scale: 1.02 }}
+            >
+              <Link
+                href={program.href}
+                onClick={() => {
+                  setIsProgramsDropdownOpen(false);
+                  closeMenu(); // Also close mobile menu if open
+                }}
+                className={`block px-4 py-3 text-[#e8dcc0] hover:text-[#D4AF37] hover:bg-white/5 transition-all duration-200 text-sm ${
+                  isBasicLevel 
+                    ? 'border-l-2 border-transparent hover:border-[#D4AF37]' 
+                    : 'border-l-4 border-[#D4AF37]/30 hover:border-[#D4AF37]'
+                }`}
               >
-                <div className="py-2">
-                  {programs.map((program, index) => {
-                    const isBasicLevel = index < 3; // First 3 items (Beginner, Intermediate, Advanced)
-                    const isSpecializedLevel = index >= 3; // Last 2 items (FIDE Rating, Master's Path)
-                    
-                    return (
-                      <motion.div
-                        key={program.name}
-                        initial={{ opacity: 0, x: -10 }}
-                        animate={{ opacity: 1, x: 0 }}
-                        transition={{ delay: index * 0.05 }}
-                        whileHover={{ scale: 1.02 }}
-                      >
-                        <Link
-                          href={program.href}
-                          onClick={() => setIsProgramsDropdownOpen(false)}
-                          className={`block px-4 py-3 text-[#e8dcc0] hover:text-[#D4AF37] hover:bg-white/5 transition-all duration-200 text-sm ${
-                            isBasicLevel 
-                              ? 'border-l-2 border-transparent hover:border-[#D4AF37]' 
-                              : 'border-l-4 border-[#D4AF37]/30 hover:border-[#D4AF37]'
-                          }`}
-                        >
-                          <div className="flex items-center justify-between">
-                            <span className="font-semibold">
-                              {program.name}
-                            </span>
-                          </div>
-                          {isSpecializedLevel && (
-                            <div className="text-xs text-[#D4AF37]/60 mt-1">
-                              Specialized Program
-                            </div>
-                          )}
-                        </Link>
-                        {index === 2 && (
-                          <div className="border-t border-[#D4AF37]/20 mx-4 my-2"></div>
-                        )}
-                      </motion.div>
-                    );
-                  })}
+                <div className="flex items-center justify-between">
+                  <span className="font-semibold">
+                    {program.name}
+                  </span>
                 </div>
-              </motion.div>
-            )}
-          </div>
+                {isSpecializedLevel && (
+                  <div className="text-xs text-[#D4AF37]/60 mt-1">
+                    Specialized Program
+                  </div>
+                )}
+              </Link>
+              {index === 2 && (
+                <div className="border-t border-[#D4AF37]/20 mx-4 my-2"></div>
+              )}
+            </motion.div>
+          );
+        })}
+      </div>
+    </motion.div>
+  )}
+</div>
 
           {/* Hall Of Fame */}
           <motion.div whileHover={{ scale: 1.05 }}>

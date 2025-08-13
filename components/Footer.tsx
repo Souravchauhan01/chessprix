@@ -64,11 +64,11 @@ const router = useRouter();
             </li>
             <li className="flex items-start gap-3">
               <FaEnvelope className="mt-1 text-[#D4AF37]" />
-              <span>chessprixacademy@gmail.com</span>
+              <span>info@chessprix.com</span>
             </li>
             <li className="flex items-start gap-3">
               <FaMapMarkerAlt className="mt-1 text-[#D4AF37]" />
-              <span>123 Kings Road, Jaipur, India</span>
+              <span>Teach Globally</span>
             </li>
           </ul>
         </div>

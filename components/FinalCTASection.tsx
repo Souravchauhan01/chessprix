@@ -244,15 +244,15 @@ export default function FinalCTASection() {
               Don't wait to unlock your child's potential. Join ChessPrix today and watch them transform into confident, strategic thinkers.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <button className="bg-[#D4AF37] text-[#472b12] font-bold px-8 py-4 rounded-lg hover:bg-[#f0d998] transition-all duration-300 hover:scale-105 shadow-lg text-lg">
+              {/* <button className="bg-[#D4AF37] text-[#472b12] font-bold px-8 py-4 rounded-lg hover:bg-[#f0d998] transition-all duration-300 hover:scale-105 shadow-lg text-lg">
                 Start Free Trial Now
-              </button>
+              </button> */}
               <button className="border-2 border-[#D4AF37] text-[#D4AF37] font-bold px-8 py-4 rounded-lg hover:bg-[#D4AF37] hover:text-[#472b12] transition-all duration-300 hover:scale-105 text-lg">
                 Contact Us
               </button>
             </div>
             <p className="text-[#ebcc88] text-sm mt-4">
-              📧 chessprixacademy@gmail.com | 📞 (123) 456-7890
+              📧 info@chessprix.com | 📞 +91 9631218251
             </p>
           </div>
         </motion.div>

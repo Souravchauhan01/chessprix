@@ -218,7 +218,7 @@ export default function WhyChessPrixSection() {
         </motion.div>
 
         {/* Call to Action */}
-        <motion.div
+        {/* <motion.div
           className="mt-16 text-center"
           initial="hidden"
           animate="visible"
@@ -237,7 +237,7 @@ export default function WhyChessPrixSection() {
               Start Your Journey
             </button>
           </div>
-        </motion.div>
+        </motion.div> */}
 
       </div>
     </section>

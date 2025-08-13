@@ -43,7 +43,7 @@ const fadeUp = {
 
 const statistics = [
   {
-    number: '500+',
+    number: '500-1000',
     label: 'Students Taught',
     icon: '👥',
     description: 'Young minds transformed through chess excellence'
@@ -61,7 +61,7 @@ const statistics = [
     description: 'Global reach with international chess community'
   },
   {
-    number: '10,000+',
+    number: '20,000+',
     label: 'Hours of Coaching',
     icon: '🎯',
     description: 'Dedicated coaching hours delivered to students'

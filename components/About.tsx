@@ -241,15 +241,15 @@ export default function About() {
               </div>
 
               {/* Founder Info */}
-              <div className="text-center lg:text-left">
-                <h3 className="text-3xl font-bold text-[#f3c47a] mb-4">Sourav Singh Chauhan</h3>
+              {/* <div className="text-center lg:text-left">
+                <h3 className="text-3xl font-bold text-[#f3c47a] mb-4">Subham Kumar Singh</h3>
                 <p className="text-lg text-[#ebcc88] leading-relaxed max-w-2xl">
                   As the founder of ChessPrix, I envisioned a space where chess becomes a tool to inspire strategic minds, 
                   self-discipline, and global camaraderie. Every student has the potential to become a leader—and we build that, 
                   one move at a time. Our systematic approach to chess education transforms not just how students play the game, 
                   but how they think about challenges in life.
                 </p>
-              </div>
+              </div> */}
             </div>
           </div>
         </motion.div>

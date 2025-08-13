@@ -166,8 +166,8 @@ export default function ContactPage() {
           <div className="text-lg text-[#f5d084] mt-5 space-y-2 sm:space-y-0 sm:flex sm:space-x-5 sm:items-center">
             <p className="flex items-center">
               📧 Email:{' '}
-              <a href="mailto:chessprixacademy@gmail.com" className="text-white ml-2 break-all">
-                chessprixacademy@gmail.com
+              <a href="mailto:info@chessprix.com" className="text-white ml-2 break-all">
+                info@chessprix.com
               </a>
             </p>
             <p className="flex items-center">

@@ -214,7 +214,7 @@ export function UserDetailsModal({ onClose }: UserDetailsModalProps) {
             >
               <option value="">Select country</option>
               {[
-                "Afghanistan", "Australia", "Bangladesh", "Brazil", "Canada", "China",
+                "Afghanistan", "Australia","Nigeria", "Bangladesh", "Brazil", "Canada", "China",
                 "Egypt", "France", "Germany", "India", "Indonesia", "Italy", "Japan",
                 "Malaysia", "Mexico", "Nepal", "New Zealand", "Pakistan", "Philippines",
                 "Russia", "Saudi Arabia", "Singapore", "South Africa", "Sri Lanka",

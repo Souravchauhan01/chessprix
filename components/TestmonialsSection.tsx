@@ -256,7 +256,7 @@ export default function TestimonialsSection() {
         </p>
         <p className="text-[#ebcc88] mb-8">
           Contact us at{' '}
-          <a href="mailto:chessprixacademy@gmail.com" className="underline text-[#f3c47a]">chessprixacademy@gmail.com</a> or call{' '}
+          <a href="mailto:info@chessprix.com" className="underline text-[#f3c47a]">info@chessprix.com</a> or call{' '}
           <span className="text-[#f3c47a]">(123) 456-7890</span>
         </p>
         <button className="bg-[#472b12] text-white font-bold px-8 py-4 rounded-lg border-2 border-[#D4AF37] shadow-[0_4px_12px_rgba(212,175,55,0.4)] hover:scale-105 transition-all duration-300 ease-in-out hover:shadow-[0_6px_16px_rgba(212,175,55,0.5)]">
