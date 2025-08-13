@@ -34,7 +34,7 @@ export function UserDetailsModal({ onClose }: UserDetailsModalProps) {
       const form = e.currentTarget as HTMLFormElement;
       const data = new FormData(form);
 
-      const response = await fetch("https://formspree.io/f/mpwlwgrj", {
+      const response = await fetch("https://formspree.io/f/mzzvonyp", {
         method: "POST",
         body: data,
         headers: { Accept: "application/json" },
