@@ -2,8 +2,10 @@
 
 import { useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
-import { FaTrophy } from 'react-icons/fa';
+
 import { FiTrendingUp } from 'react-icons/fi';
+import { FaTrophy, FaStar } from 'react-icons/fa';
+
 
 // --- Type Definitions and Constants ---
 // Use `as const` to let TypeScript know these are specific, readonly strings
@@ -61,23 +63,43 @@ function generateChessElements(): Array<ChessElement> {
 }
 
 // --- Component Data ---
+
+
+// --- Component Data ---
 const stories = [
   {
-    title: 'Anita Mathur',
+    parentName: 'Anita Mathur',
+    childName: 'Lakshay',
+    age: 8,
+    rating: 5,
+    achievement: '+350 Rating Points',
+    achievementIcon: <FiTrendingUp className="text-green-500" />,
     icon: <FiTrendingUp className="text-[#f3c47a] text-3xl drop-shadow-[0_0_4px_rgba(243,196,122,0.8)]" />,
-    desc: `“The structured learning approach is incredible! My son Lakshay's (Age 8) skills improved dramatically, gaining over 350 rating points.”`,
+    desc: `“The structured learning approach is incredible! My son Lakshay's skills improved dramatically, gaining over 350 rating points.”`,
   },
   {
-    title: 'Pradeep Kumar',
+    parentName: 'Pradeep Kumar',
+    childName: 'Muskan',
+    age: 14,
+    rating: 5,
+    achievement: 'State Champion',
+    achievementIcon: <FaTrophy className="text-green-500" />,
     icon: <FaTrophy className="text-[#f3c47a] text-3xl drop-shadow-[0_0_4px_rgba(243,196,122,0.8)]" />,
-    desc: `“Excellent coaching! My daughter Muskan (Age 14) won her first tournament and became State Champion after just 6 months of training.”`,
+    desc: `“Excellent coaching! My daughter Muskan won her first tournament and became State Champion after just 6 months of training.”`,
   },
   {
-    title: 'Seema Patel',
+    parentName: 'Seema Patel',
+    childName: 'Ram',
+    age: 11,
+    rating: 5,
+    achievement: '+280 Rating Points',
+    achievementIcon: <FiTrendingUp className="text-green-500" />,
     icon: <FiTrendingUp className="text-[#f3c47a] text-3xl drop-shadow-[0_0_4px_rgba(243,196,122,0.8)]" />,
-    desc: `“The online classes are so engaging. My child Ram (Age 11) looks forward to every session and has gained 280 rating points.”`,
+    desc: `“The online classes are so engaging. My child Ram looks forward to every session and has gained 280 rating points.”`,
   },
 ];
+
+
 
 const fadeUp = {
   hidden: { opacity: 0, y: 30 },
@@ -166,11 +188,31 @@ export default function SuccessStories() {
             animate="visible"
             custom={index + 1}
           >
-            <div className="flex items-center gap-4 mb-4">
-              <div className="p-3 bg-[#d4af37]/10 rounded-full">{story.icon}</div>
-              <h3 className="text-xl font-bold text-[#f2e79b]">{story.title}</h3>
-            </div>
-            <p className="text-[#ebcc88] text-md leading-relaxed italic">{story.desc}</p>
+            <div className="flex items-center gap-4 mb-2">
+  <div className="p-3 bg-[#d4af37]/10 rounded-full">{story.icon}</div>
+  <div>
+    <h3 className="text-xl font-bold text-[#f2e79b]">{story.parentName}</h3>
+    <p className="text-sm text-[#ebcc88]">
+      Parent of {story.childName} (Age {story.age})
+    </p>
+  </div>
+</div>
+
+{/* Star Rating */}
+<div className="flex mb-3">
+  {[...Array(story.rating)].map((_, i) => (
+    <FaStar key={i} className="text-yellow-400 text-lg" />
+  ))}
+</div>
+
+<p className="text-[#ebcc88] text-md leading-relaxed italic mb-4">{story.desc}</p>
+
+{/* Achievement Badge */}
+<div className="flex items-center gap-2 bg-green-100 text-green-700 px-3 py-1 rounded-full w-fit text-sm font-medium">
+  {story.achievementIcon}
+  {story.achievement}
+</div>
+
           </motion.div>
         ))}
       </div>
