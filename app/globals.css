@@ -72,3 +72,32 @@ body {
 .glow-animation {
   animation: glowPulse 1.5s ease-in-out infinite;
 }
+/* Add this to your main CSS file, e.g., globals.css */
+
+.slick-slider {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+.slick-list, .slick-track {
+  height: 100%;
+}
+
+.slick-dots {
+  position: absolute !important;
+  bottom: 15px !important; /* Moves the dots up from the bottom edge */
+  width: 100%;
+}
+
+/* Optional: Improve dot visibility against images */
+.slick-dots li button:before {
+  color: white !important;
+  opacity: 0.6;
+  text-shadow: 0 0 4px black;
+}
+
+.slick-dots li.slick-active button:before {
+  color: #D4AF37 !important; /* Gold color for the active dot */
+  opacity: 1;
+}

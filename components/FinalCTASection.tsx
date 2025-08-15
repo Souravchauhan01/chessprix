@@ -3,6 +3,7 @@
 import { useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
 import { generateChessElements } from './utils/chessElements';
+import { useRouter } from 'next/navigation';
 
 // === Types ===
 type ChessType = 'pawn' | 'knight' | 'queen' | 'rook' | 'bishop' | 'king';
@@ -72,9 +73,12 @@ const ctaOptions = [
   }
 ];
 
+
+
 export default function FinalCTASection() {
   const [chessElements, setChessElements] = useState<ChessElement[]>([]);
   const [isClient, setIsClient] = useState(false);
+  const router = useRouter();
 
   useEffect(() => {
     setIsClient(true);
@@ -247,7 +251,7 @@ export default function FinalCTASection() {
               {/* <button className="bg-[#D4AF37] text-[#472b12] font-bold px-8 py-4 rounded-lg hover:bg-[#f0d998] transition-all duration-300 hover:scale-105 shadow-lg text-lg">
                 Start Free Trial Now
               </button> */}
-              <button className="border-2 border-[#D4AF37] text-[#D4AF37] font-bold px-8 py-4 rounded-lg hover:bg-[#D4AF37] hover:text-[#472b12] transition-all duration-300 hover:scale-105 text-lg">
+              <button className="border-2 border-[#D4AF37] text-[#D4AF37] font-bold px-8 py-4 rounded-lg hover:bg-[#D4AF37] hover:text-[#472b12] transition-all duration-300 hover:scale-105 text-lg" onClick={() => router.push('/contact')}>
                 Contact Us
               </button>
             </div>

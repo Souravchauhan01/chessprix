@@ -12,6 +12,7 @@ import WhyChessPrixSection from '@/components/WhyChessPrixSection';
 import StatisticsSection from '@/components/StatisticsSection';
 import CommunitySection from '@/components/CommunitySection';
 import FinalCTASection from '@/components/FinalCTASection';
+import SucessStories from '@/components/SucessStories';
 import { UserDetailsModal } from '@/components/user-details-modal';
 
 export default function Home() {
@@ -35,6 +36,7 @@ export default function Home() {
       <CourseHighlights />
       <StatisticsSection />
       <CommunitySection />
+      <SucessStories />
       <FinalCTASection />
       <Footer />
     </>

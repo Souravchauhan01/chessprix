@@ -43,6 +43,18 @@ const fadeUp = {
   }),
 };
 
+// Gradient palette for cards
+// Gradient palette for cards with blue, green, red, pink
+const gradientClasses = [
+  'bg-gradient-to-br from-blue-500 to-blue-700',
+  'bg-gradient-to-br from-green-500 to-green-700',
+  'bg-gradient-to-br from-red-500 to-red-700',
+  'bg-gradient-to-br from-pink-500 to-pink-700',
+  'bg-gradient-to-br from-purple-500 to-purple-700',
+  'bg-gradient-to-br from-teal-500 to-teal-700'
+];
+
+
 const benefits = [
   {
     icon: '🧠',
@@ -136,7 +148,7 @@ export default function About() {
           variants={fadeUp}
           custom={0}
         >
-          <h2 className="text-4xl sm:text-5xl lg:text-6xl  font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-[#bd853c] to-[#e0b86d] drop-shadow-[0_5px_3px_rgba(0,0,0,0.4)] mb-6">
+          <h2 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-[#bd853c] to-[#e0b86d] drop-shadow-[0_5px_3px_rgba(0,0,0,0.4)] mb-6">
             About ChessPrix
           </h2>
           <p className="text-xl sm:text-2xl text-[#f3c47a] max-w-4xl mx-auto leading-relaxed">
@@ -186,7 +198,7 @@ export default function About() {
           </div>
         </motion.div>
 
-        {/* Benefits Grid */}
+        {/* Benefits Grid with gradient backgrounds */}
         <motion.div
           initial="hidden"
           animate="visible"
@@ -201,7 +213,7 @@ export default function About() {
             {benefits.map((benefit, index) => (
               <motion.div
                 key={index}
-                className="bg-[#121820] border border-[#d4af37]/30 rounded-xl p-6 hover:shadow-[0_0_20px_rgba(212,175,55,0.4)] transition-all duration-300 hover:scale-105"
+                className={`${gradientClasses[index % gradientClasses.length]} border border-[#d4af37]/30 rounded-xl p-6 hover:shadow-[0_0_20px_rgba(212,175,55,0.4)] transition-all duration-300 hover:scale-105`}
                 variants={fadeUp}
                 initial="hidden"
                 animate="visible"
@@ -241,7 +253,7 @@ export default function About() {
               </div>
 
               {/* Founder Info */}
-              {/* <div className="text-center lg:text-left">
+              <div className="text-center lg:text-left">
                 <h3 className="text-3xl font-bold text-[#f3c47a] mb-4">Subham Kumar Singh</h3>
                 <p className="text-lg text-[#ebcc88] leading-relaxed max-w-2xl">
                   As the founder of ChessPrix, I envisioned a space where chess becomes a tool to inspire strategic minds, 
@@ -249,7 +261,7 @@ export default function About() {
                   one move at a time. Our systematic approach to chess education transforms not just how students play the game, 
                   but how they think about challenges in life.
                 </p>
-              </div> */}
+              </div>
             </div>
           </div>
         </motion.div>

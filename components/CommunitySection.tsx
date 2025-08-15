@@ -209,9 +209,9 @@ export default function CommunitySection() {
               <button className="bg-[#D4AF37] text-[#472b12] font-bold px-8 py-3 rounded-lg hover:bg-[#f0d998] transition-all duration-300 hover:scale-105 shadow-lg">
                 Join Community
               </button>
-              <button className="border-2 border-[#D4AF37] text-[#D4AF37] font-bold px-8 py-3 rounded-lg hover:bg-[#D4AF37] hover:text-[#472b12] transition-all duration-300 hover:scale-105">
+              {/* <button className="border-2 border-[#D4AF37] text-[#D4AF37] font-bold px-8 py-3 rounded-lg hover:bg-[#D4AF37] hover:text-[#472b12] transition-all duration-300 hover:scale-105">
                 Learn More
-              </button>
+              </button> */}
             </div>
           </div>
         </motion.div>

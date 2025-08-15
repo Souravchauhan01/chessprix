@@ -186,7 +186,7 @@ export function UserDetailsModal({ onClose }: UserDetailsModalProps) {
               }}
             >
               <option value="">Select age</option>
-              {Array.from({ length: 15 }, (_, i) => i + 4).map((age) => (
+              {Array.from({ length: 13 }, (_, i) => i + 4).map((age) => (
                 <option key={age} value={age}>
                   {age} years
                 </option>

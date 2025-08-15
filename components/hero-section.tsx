@@ -5,8 +5,14 @@ import { motion } from 'framer-motion';
 import Image from 'next/image';
 import Link from 'next/link';
 import { Typewriter } from 'react-simple-typewriter';
+import Slider from 'react-slick';
 
-import img from "@/public/about1.jpg";
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
+
+import img1 from "@/public/hero1.jpeg";
+import img2 from "@/public/hero2.jpeg";
+import img3 from "@/public/hero3.jpeg";
 
 // === Types ===
 type ChessType = 'pawn' | 'knight' | 'queen' | 'rook' | 'bishop' | 'king';
@@ -40,7 +46,7 @@ function seededRandom(seed: number): number {
 
 function generateChessElements(count: number): ChessElement[] {
   return Array.from({ length: count }).map((_, i) => {
-    const seed = i * 12345; // Deterministic seed based on index
+    const seed = i * 12345;
     const size = Math.floor(seededRandom(seed) * 60) + 40;
     const top = seededRandom(seed + 1) * 100;
     const left = seededRandom(seed + 2) * 100;
@@ -80,18 +86,27 @@ export default function Hero() {
     const isMobile = typeof window !== 'undefined' && window.innerWidth < 768;
     const isTablet = typeof window !== 'undefined' && window.innerWidth >= 768 && window.innerWidth < 1024;
     const count = isMobile ? 6 : isTablet ? 12 : 16;
-
     const elements = generateChessElements(count);
     setChessElements(elements);
   }, []);
 
+  const sliderSettings = {
+    dots: true,
+    infinite: true,
+    autoplay: true,
+    fade: true,
+    speed: 1000,
+    autoplaySpeed: 3000,
+    slidesToShow: 1,
+    slidesToScroll: 1,
+    arrows: false
+  };
+
   return (
-    // MODIFIED LINE: Replaced complex min-h and py classes with a simpler responsive padding system
-    <section className="relative w-full overflow-hidden pt-15 bg-[#080d14] flex items-center justify-center px-4 sm:px-6 md:px-8 lg:px-10 py-20 md:py-24 lg:pt-28 lg:pb-5 mt-10">
-      {/* Glowing Light - Adjusted for tablet */}
+    // === CHANGE 1: Restored vertical centering for large screens, default to top for mobile ===
+    <section className="relative w-full overflow-hidden pt-15 bg-[#080d14] flex justify-center lg:items-center px-4 sm:px-6 md:px-8 lg:px-10 py-20 md:py-24 lg:pt-28 lg:pb-5 mt-10">
       <div className="absolute top-1/4 left-1/2 -translate-x-1/2 w-[300px] md:w-[400px] lg:w-[500px] h-[300px] md:h-[400px] lg:h-[500px] bg-yellow-300/10 blur-3xl rounded-full z-0" />
 
-      {/* Floating Chess Elements */}
       {isClient && chessElements.map((element, index) => (
         <motion.div
           key={index}
@@ -119,9 +134,8 @@ export default function Hero() {
         </motion.div>
       ))}
 
-      {/* Main Content */}
-      <div className="relative z-10 flex flex-col lg:flex-row items-center justify-center lg:justify-between w-full max-w-7xl gap-4 md:gap-6 lg:gap-8 xl:gap-12">
-        {/* Left Content */}
+      <div className="relative z-10 flex flex-col lg:flex-row items-center lg:items-start justify-center lg:justify-between w-full max-w-7xl gap-4 md:gap-6 lg:gap-8 xl:gap-12">
+
         <motion.div className="text-center lg:text-left w-full lg:w-auto max-w-2xl" initial="hidden" animate="visible">
           <motion.h1
             className="text-4xl md:text-5xl lg:text-6xl xl:text-7xl 2xl:text-8xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-[#bd853c] to-[#e0b86d] drop-shadow-[0_5px_3px_rgba(0,0,0,0.4)]"
@@ -164,23 +178,13 @@ export default function Hero() {
             className="mt-4 md:mt-6 lg:mt-8 flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-3 md:gap-4"
             variants={fadeUp}
           >
-            <button className="w-full sm:w-auto bg-[#472b12] text-white font-bold px-5 py-2 md:px-6 md:py-3 lg:px-8 lg:py-4 rounded-lg border-2 border-[#D4AF37] shadow-[0_4px_12px_rgba(212,175,55,0.4)] hover:scale-105 transition-all duration-300 ease-in-out hover:shadow-[0_6px_16px_rgba(212,175,55,0.5)] focus:outline-none focus:ring-4 focus:ring-[#D4AF37]/50 group relative overflow-hidden">
+            <button className="w-full sm:w-auto bg-[#472b12] text-white font-bold px-5 py-2 md:px-6 md:py-3 lg:px-8 lg:py-4 rounded-lg border-2 border-[#D4AF37] shadow-[0_4px_12px_rgba(212,175,55,0.4)] hover:scale-105 transition-all duration-300 ease-in-out hover:shadow-[0_6px_16px_rgba(212,175,55,0.5)] relative overflow-hidden group">
               <span className="absolute inset-0 bg-gradient-to-r from-[#D4AF37] to-[#472b12] opacity-0 group-hover:opacity-100 transition-opacity duration-300"></span>
               <span className="relative flex items-center justify-center gap-2 text-sm md:text-base">
                 <svg className="w-4 h-4 md:w-5 md:h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
                 </svg>
                 Book Free Demo
-              </span>
-            </button>
-
-            <button className="w-full sm:w-auto relative px-5 py-2 md:px-6 md:py-3 lg:px-8 lg:py-4 rounded-lg text-sm md:text-base font-bold text-[#D4AF37] border-2 border-[#D4AF37] overflow-hidden z-10 group hover:text-white transition-all duration-300 ease-in-out">
-              <span className="absolute inset-0 bg-[#D4AF37] opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-0"></span>
-              <span className="relative z-10 flex items-center justify-center gap-2">
-                <svg className="w-4 h-4 md:w-5 md:h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
-                </svg>
-                Learn More
               </span>
             </button>
           </motion.div>
@@ -191,7 +195,7 @@ export default function Hero() {
           >
             <Link 
               href="/foundational" 
-              className="w-full sm:w-auto bg-[#1a1a1a]/80 text-white font-bold px-4 py-2 md:px-6 md:py-3 lg:px-8 lg:py-4 rounded-lg border-2 border-[#D4AF37] shadow-[0_4px_12px_rgba(212,175,55,0.4)] hover:scale-105 transition-all duration-300 ease-in-out hover:shadow-[0_6px_16px_rgba(212,175,55,0.5)] focus:outline-none focus:ring-4 focus:ring-[#D4AF37]/50 group relative overflow-hidden"
+              className="w-full sm:w-auto bg-[#1a1a1a]/80 text-white font-bold px-4 py-2 md:px-6 md:py-3 lg:px-8 lg:py-4 rounded-lg border-2 border-[#D4AF37] shadow-[0_4px_12px_rgba(212,175,55,0.4)] hover:scale-105 transition-all duration-300 ease-in-out relative overflow-hidden group"
             >
               <span className="absolute inset-0 bg-gradient-to-r from-[#D4AF37] to-[#1a1a1a] opacity-0 group-hover:opacity-100 transition-opacity duration-300"></span>
               <span className="relative flex items-center justify-center gap-2 text-xs sm:text-sm md:text-base">
@@ -205,7 +209,7 @@ export default function Hero() {
 
             <Link 
               href="/competitive" 
-              className="w-full sm:w-auto bg-[#1a1a1a]/80 text-white font-bold px-4 py-2 md:px-6 md:py-3 lg:px-8 lg:py-4 rounded-lg border-2 border-[#D4AF37] shadow-[0_4px_12px_rgba(212,175,55,0.4)] hover:scale-105 transition-all duration-300 ease-in-out hover:shadow-[0_6px_16px_rgba(212,175,55,0.5)] focus:outline-none focus:ring-4 focus:ring-[#D4AF37]/50 group relative overflow-hidden"
+              className="w-full sm:w-auto bg-[#1a1a1a]/80 text-white font-bold px-4 py-2 md:px-6 md:py-3 lg:px-8 lg:py-4 rounded-lg border-2 border-[#D4AF37] shadow-[0_4px_12px_rgba(212,175,55,0.4)] hover:scale-105 transition-all duration-300 ease-in-out relative overflow-hidden group"
             >
               <span className="absolute inset-0 bg-gradient-to-r from-[#D4AF37] to-[#1a1a1a] opacity-0 group-hover:opacity-100 transition-opacity duration-300"></span>
               <span className="relative flex items-center justify-center gap-2 text-xs sm:text-sm md:text-base">
@@ -219,7 +223,6 @@ export default function Hero() {
           </motion.div>
         </motion.div>
 
-        {/* Right Image */}
         <motion.div
           className="w-full lg:w-auto max-w-xs sm:max-w-sm md:max-w-md lg:max-w-lg xl:max-w-xl relative mt-4 md:mt-6 lg:mt-0"
           initial={{ opacity: 0, x: 50 }}
@@ -227,15 +230,23 @@ export default function Hero() {
           transition={{ delay: 1, duration: 0.8 }}
         >
           <div className="absolute -inset-2 sm:-inset-3 md:-inset-4 bg-gradient-to-r from-[#c49b61] to-[#f0d998] rounded-2xl opacity-20 blur-xl"></div>
-          <div className="relative overflow-hidden rounded-xl shadow-2xl border-2 border-[#c49b61]/20">
-            <Image
-              src={img}
-              alt="Chess student"
-              width={600}
-              height={600}
-              className="w-full h-auto object-cover"
-              priority
-            />
+          <div className="relative w-full aspect-square overflow-hidden rounded-xl shadow-2xl border-2 border-[#c49b61]/20">
+            <Slider {...sliderSettings}>
+              {[img1, img2, img3].map((imgSrc, i) => (
+                // === CHANGE 2: Added 'h-full' to the slide wrapper div ===
+                // This is the most critical change. It forces each slide to fill the container.
+                <div key={i} className="h-full">
+                  <Image
+                    src={imgSrc}
+                    alt={`Chess image ${i + 1}`}
+                    width={600}
+                    height={600}
+                    className="w-full h-full object-cover"
+                    priority={i === 0}
+                  />
+                </div>
+              ))}
+            </Slider>
           </div>
         </motion.div>
       </div>

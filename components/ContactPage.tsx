@@ -224,7 +224,7 @@ export default function ContactPage() {
                   <option>4 - 8 Years</option>
                   <option>8 - 12 Years</option>
                   <option>12 - 16 Years</option>
-                  <option>16 or above</option>
+                  {/* <option>16 or above</option> */}
                 </select>
               </div>
               <div className="flex-1">
@@ -237,6 +237,7 @@ export default function ContactPage() {
                     Select your country
                   </option>
                   <option>India</option>
+                  <option>Nigeria</option>
                   <option>United States</option>
                   <option>United Kingdom</option>
                   <option>Australia</option>
@@ -271,6 +272,7 @@ export default function ContactPage() {
                     Select code
                   </option>
                   <option value="+91">India (+91)</option>
+                  <option value="+91">Nigeria (+234)</option>
                   <option value="+1">USA (+1)</option>
                   <option value="+44">UK (+44)</option>
                   <option value="+61">Australia (+61)</option>

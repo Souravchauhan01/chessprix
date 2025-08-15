@@ -83,10 +83,10 @@ const router = useRouter();
             <p  className="hover:text-[#D4AF37] transition" onClick={() => router.push("/term-service")}>Terms Of Service</p>
           </div>
           <div className="flex gap-5 text-lg">
-            <Link href="https://facebook.com" target="_blank" className="hover:text-[#D4AF37] transition"><FaFacebookF /></Link>
-            <Link href="https://instagram.com" target="_blank" className="hover:text-[#D4AF37] transition"><FaInstagram /></Link>
+            <Link href="https://www.facebook.com/profile.php?id=61579066523394" target="_blank" className="hover:text-[#D4AF37] transition"><FaFacebookF /></Link>
+            <Link href="https://www.instagram.com/chess.prix?igsh=MXBudmg0dDJtNW91dQ==" target="_blank" className="hover:text-[#D4AF37] transition"><FaInstagram /></Link>
             <Link href="https://whatsapp.com" target="_blank" className="hover:text-[#D4AF37] transition"><FaWhatsapp /></Link>
-            <Link href="https://linkedin.com" target="_blank" className="hover:text-[#D4AF37] transition"><FaLinkedinIn /></Link>
+            <Link href="https://www.linkedin.com/in/chess-prix-a10a82377/" target="_blank" className="hover:text-[#D4AF37] transition"><FaLinkedinIn /></Link>
           </div>
         </div>
       </div>
