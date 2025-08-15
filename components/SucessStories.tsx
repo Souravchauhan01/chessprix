@@ -5,23 +5,41 @@ import { motion } from 'framer-motion';
 import { FaTrophy } from 'react-icons/fa';
 import { FiTrendingUp } from 'react-icons/fi';
 
-// --- Chess Elements Generation (Identical to Features) ---
-const chessTypes = ['pawn', 'knight', 'queen', 'rook', 'bishop', 'king'];
+// --- Type Definitions and Constants ---
+// Use `as const` to let TypeScript know these are specific, readonly strings
+const chessTypes = ['pawn', 'knight', 'queen', 'rook', 'bishop', 'king'] as const;
 
-function seededRandom(seed: number): number {
-  const x = Math.sin(seed) * 10000;
-  return x - Math.floor(x);
-}
+// Create a union type of all possible chess piece names
+type ChessPieceType = typeof chessTypes[number];
 
-function generateChessElements(): Array<{
+// Create a typed map for chess piece characters for type safety and performance
+const chessPieceMap: Record<ChessPieceType, string> = {
+  king: '♔',
+  queen: '♕',
+  rook: '♖',
+  bishop: '♗',
+  knight: '♘',
+  pawn: '♙',
+};
+
+// Define a reusable type for the generated chess element objects
+interface ChessElement {
   size: string;
   top: string;
   left: string;
   delay: number;
   duration: number;
-  type: string;
+  type: ChessPieceType;
   color: string;
-}> {
+}
+
+// --- Helper Functions ---
+function seededRandom(seed: number): number {
+  const x = Math.sin(seed) * 10000;
+  return x - Math.floor(x);
+}
+
+function generateChessElements(): Array<ChessElement> {
   return Array.from({ length: 14 }).map((_, i) => {
     const seed = i * 12345;
     const size = Math.floor(seededRandom(seed) * 60) + 40;
@@ -42,7 +60,7 @@ function generateChessElements(): Array<{
   });
 }
 
-// --- Success Stories Data (Adapted for the new layout) ---
+// --- Component Data ---
 const stories = [
   {
     title: 'Anita Mathur',
@@ -61,7 +79,6 @@ const stories = [
   },
 ];
 
-// --- Animation Variants (Identical to Features) ---
 const fadeUp = {
   hidden: { opacity: 0, y: 30 },
   visible: (i: number) => ({
@@ -75,16 +92,9 @@ const fadeUp = {
   }),
 };
 
+// --- Main Component ---
 export default function SuccessStories() {
-  const [chessElements, setChessElements] = useState<Array<{
-    size: string;
-    top: string;
-    left: string;
-    delay: number;
-    duration: number;
-    type: string;
-    color: string;
-  }>>([]);
+  const [chessElements, setChessElements] = useState<Array<ChessElement>>([]);
   const [isClient, setIsClient] = useState(false);
 
   useEffect(() => {
@@ -94,13 +104,12 @@ export default function SuccessStories() {
   }, []);
 
   return (
-    // Section styling is now identical to Features
     <section className="relative py-14 px-6 sm:px-10 bg-[#080d14] text-yellow-100 overflow-hidden min-h-auto">
 
-      {/* Glowing Light (Identical to Features) */}
+      {/* Glowing Light */}
       <div className="absolute top-1/3 left-1/2 -translate-x-1/2 w-[500px] h-[500px] bg-yellow-300/10 blur-3xl rounded-full z-0" />
 
-      {/* Floating Chess Elements (Identical to Features, with corrected capitalization) */}
+      {/* Floating Chess Elements */}
       {isClient && chessElements.map((element, index) => (
         <motion.div
           key={index}
@@ -121,26 +130,21 @@ export default function SuccessStories() {
           }}
           className={`absolute flex flex-col items-center justify-center z-0 opacity-50 ${element.color}`}
         >
+          {/* --- FIX APPLIED HERE --- */}
+          {/* Using the typed map to get the correct chess piece character */}
           <div className="text-4xl">
-            {{
-              king: '♔',
-              queen: '♕',
-              rook: '♖',
-              bishop: '♗',
-              knight: '♘',
-              pawn: '♙',
-            }[element.type]}
+            {chessPieceMap[element.type]}
           </div>
           <div className="text-xs font-semibold text-yellow-200">{element.type.charAt(0).toUpperCase() + element.type.slice(1)}</div>
         </motion.div>
       ))}
 
-      {/* Grid Lines (Identical to Features) */}
+      {/* Grid Lines */}
       <div className="absolute inset-0 opacity-10 pointer-events-none z-0">
         <div className="absolute inset-0 bg-[length:80px_80px] bg-[linear-gradient(to_right,#1f1f35_1px,transparent_1px),linear-gradient(to_bottom,#1f1f35_1px,transparent_1px)]" />
       </div>
 
-      {/* Title (Identical to Features) */}
+      {/* Title */}
       <motion.h2
         className="text-center text-4xl sm:text-5xl font-extrabold mb-16 p-2 text-transparent bg-clip-text bg-gradient-to-r from-[#bd853c] to-[#e0b86d] drop-shadow-[0_5px_3px_rgba(0,0,0,0.4)] z-10 relative"
         initial="hidden"
@@ -151,10 +155,9 @@ export default function SuccessStories() {
         Success Stories
       </motion.h2>
 
-      {/* Story Cards Grid (Identical to Features) */}
+      {/* Story Cards Grid */}
       <div className="grid gap-10 sm:grid-cols-2 lg:grid-cols-3 max-w-7xl mx-auto z-10 relative">
         {stories.map((story, index) => (
-          // Card styling and animation are now identical to Features
           <motion.div
             key={index}
             className="bg-[#121820] border border-[#d4af37]/30 rounded-xl p-6 hover:shadow-[0_0_20px_rgba(212,175,55,0.4)] transition-all duration-300 hover:scale-105"
@@ -163,7 +166,6 @@ export default function SuccessStories() {
             animate="visible"
             custom={index + 1}
           >
-            {/* Card content structure is now identical to Features */}
             <div className="flex items-center gap-4 mb-4">
               <div className="p-3 bg-[#d4af37]/10 rounded-full">{story.icon}</div>
               <h3 className="text-xl font-bold text-[#f2e79b]">{story.title}</h3>
