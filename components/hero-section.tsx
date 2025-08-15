@@ -222,33 +222,31 @@ export default function Hero() {
             </Link>
           </motion.div>
         </motion.div>
-
-        <motion.div
-          className="w-full lg:w-auto max-w-xs sm:max-w-sm md:max-w-md lg:max-w-lg xl:max-w-xl relative mt-4 md:mt-6 lg:mt-0"
-          initial={{ opacity: 0, x: 50 }}
-          animate={{ opacity: 1, x: 0 }}
-          transition={{ delay: 1, duration: 0.8 }}
-        >
-          <div className="absolute -inset-2 sm:-inset-3 md:-inset-4 bg-gradient-to-r from-[#c49b61] to-[#f0d998] rounded-2xl opacity-20 blur-xl"></div>
-          <div className="relative w-full aspect-square overflow-hidden rounded-xl shadow-2xl border-2 border-[#c49b61]/20">
-            <Slider {...sliderSettings}>
-              {[img1, img2, img3].map((imgSrc, i) => (
-                // === CHANGE 2: Added 'h-full' to the slide wrapper div ===
-                // This is the most critical change. It forces each slide to fill the container.
-                <div key={i} className="h-full">
-                  <Image
-                    src={imgSrc}
-                    alt={`Chess image ${i + 1}`}
-                    width={600}
-                    height={600}
-                    className="w-full h-full object-cover"
-                    priority={i === 0}
-                  />
-                </div>
-              ))}
-            </Slider>
-          </div>
-        </motion.div>
+<motion.div
+  className="w-full lg:w-auto max-w-xs sm:max-w-sm md:max-w-md lg:max-w-lg xl:max-w-xl relative mt-4 md:mt-6 lg:mt-0"
+  initial={{ opacity: 0, x: 50 }}
+  animate={{ opacity: 1, x: 0 }}
+  transition={{ delay: 1, duration: 0.8 }}
+>
+  <div className="absolute -inset-2 sm:-inset-3 md:-inset-4 bg-gradient-to-r from-[#c49b61] to-[#f0d998] rounded-2xl opacity-20 blur-xl"></div>
+  <div className="relative w-full aspect-square overflow-hidden rounded-xl shadow-2xl border-2 border-[#c49b61]/20">
+    <Slider {...sliderSettings}>
+      {[img1, img2, img3].map((imgSrc, i) => (
+        <div key={i} className="h-full">
+          <Image
+            src={imgSrc}
+            alt={`Chess image ${i + 1}`}
+            width={600}  // Providing a base aspect ratio is good practice
+            height={600}
+            // THIS IS THE FIX:
+            className="w-full h-full object-contain" // Changed from 'object-cover'
+            priority={i === 0}
+          />
+        </div>
+      ))}
+    </Slider>
+  </div>
+</motion.div>
       </div>
     </section>
   );

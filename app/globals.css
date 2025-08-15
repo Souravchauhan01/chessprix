@@ -74,23 +74,29 @@ body {
 }
 /* Add this to your main CSS file, e.g., globals.css */
 
-.slick-slider {
+/* In your global stylesheet */
+
+.slick-slider,
+.slick-list,
+.slick-track {
+  /* These are critical for the slider to fill its container */
   position: relative;
   width: 100%;
   height: 100%;
 }
 
-.slick-list, .slick-track {
+.slick-slide > div {
+  /* This ensures the slide's direct child also has full height */
   height: 100%;
 }
 
+/* Your custom dot styling */
 .slick-dots {
   position: absolute !important;
-  bottom: 15px !important; /* Moves the dots up from the bottom edge */
+  bottom: 15px !important;
   width: 100%;
 }
 
-/* Optional: Improve dot visibility against images */
 .slick-dots li button:before {
   color: white !important;
   opacity: 0.6;
@@ -98,6 +104,6 @@ body {
 }
 
 .slick-dots li.slick-active button:before {
-  color: #D4AF37 !important; /* Gold color for the active dot */
+  color: #D4AF37 !important;
   opacity: 1;
 }
