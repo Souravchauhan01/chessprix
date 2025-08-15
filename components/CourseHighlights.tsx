@@ -4,15 +4,29 @@ import { useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
 import { FaChessPawn, FaChessKnight, FaChessQueen, FaChess, FaChessBishop } from 'react-icons/fa';
 
-// === Floating chess pieces with labels ===
-const chessTypes = ['pawn', 'knight', 'queen', 'rook', 'bishop', 'king'];
+// 1️⃣ Define a union type for allowed chess piece names
+type ChessPiece = 'pawn' | 'knight' | 'queen' | 'rook' | 'bishop' | 'king';
+
+// 2️⃣ Strongly type chessTypes
+const chessTypes: ChessPiece[] = ['pawn', 'knight', 'queen', 'rook', 'bishop', 'king'];
+
+// 3️⃣ Type for generated floating elements
+interface ChessElement {
+  size: string;
+  top: string;
+  left: string;
+  delay: number;
+  duration: number;
+  type: ChessPiece;
+  color: string;
+}
 
 function seededRandom(seed: number): number {
   const x = Math.sin(seed) * 10000;
   return x - Math.floor(x);
 }
 
-function generateChessElements() {
+function generateChessElements(): ChessElement[] {
   return Array.from({ length: 14 }).map((_, i) => {
     const seed = i * 12345;
     const size = Math.floor(seededRandom(seed) * 60) + 40;
@@ -55,7 +69,7 @@ const courses = [
     desc: 'Intensive training for ambitious competitors. Simulated tournaments, grandmaster game studies, and focused mentorship prepare students to earn official FIDE ratings and excel in championships.',
   },
   {
-    title: 'The Masters Path: Elite Training ', // ✅ 5th Course
+    title: 'The Masters Path: Elite Training',
     icon: <FaChessBishop className="text-[#f3c47a] text-3xl drop-shadow-[0_0_4px_rgba(243,196,122,0.8)]" />,
     desc: 'Deep dive into positional play, pawn structures, and master-level strategic thinking for seasoned players.',
   },
@@ -75,7 +89,7 @@ const fadeUp = {
 };
 
 export default function CourseHighlights() {
-  const [chessElements, setChessElements] = useState<any[]>([]);
+  const [chessElements, setChessElements] = useState<ChessElement[]>([]);
   const [isClient, setIsClient] = useState(false);
 
   useEffect(() => {
@@ -141,7 +155,7 @@ export default function CourseHighlights() {
       <div className="relative max-w-7xl mx-auto z-10">
         {/* Left Arrow */}
         <button
-          onClick={() => document.getElementById("courseRow")!.scrollBy({ left: -300, behavior: "smooth" })}
+          onClick={() => document.getElementById("courseRow")?.scrollBy({ left: -300, behavior: "smooth" })}
           className="absolute -left-6 top-1/2 -translate-y-1/2 bg-[#d4af37]/20 p-2 rounded-full hover:bg-[#d4af37]/40 transition z-20"
         >
           ◀
@@ -172,7 +186,7 @@ export default function CourseHighlights() {
 
         {/* Right Arrow */}
         <button
-          onClick={() => document.getElementById("courseRow")!.scrollBy({ left: 300, behavior: "smooth" })}
+          onClick={() => document.getElementById("courseRow")?.scrollBy({ left: 300, behavior: "smooth" })}
           className="absolute -right-6 top-1/2 -translate-y-1/2 bg-[#d4af37]/20 p-2 rounded-full hover:bg-[#d4af37]/40 transition z-20"
         >
           ▶
