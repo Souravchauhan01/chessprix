@@ -168,6 +168,34 @@ export default function StatisticsSection() {
           </div>
         </motion.div>
 
+          <motion.div
+          className="mt-16 text-center"
+          initial="hidden"
+          animate="visible"
+          variants={fadeUp}
+          custom={7}
+        >
+          <div className="bg-[#121820]/50 border border-[#d4af37]/30 rounded-2xl p-8 backdrop-blur-sm">
+            <h3 className="text-2xl sm:text-3xl font-bold text-[#f2e79b] mb-6">
+              Trusted by 500+ Families Worldwide
+            </h3>
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 text-sm">
+              <div className="text-[#ebcc88]">
+                <div className="text-2xl font-bold text-[#D4AF37]">98%</div>
+                <div>Parent Satisfaction Rate</div>
+              </div>
+              <div className="text-[#ebcc88]">
+                <div className="text-2xl font-bold text-[#D4AF37]">4.9/5</div>
+                <div>Average Student Rating</div>
+              </div>
+              <div className="text-[#ebcc88]">
+                <div className="text-2xl font-bold text-[#D4AF37]">85%</div>
+                <div>Students Continue After Trial</div>
+              </div>
+            </div>
+          </div>
+        </motion.div>
+
         {/* Trust Statement */}
         <motion.div
           className="mt-16 text-center"
@@ -186,6 +214,8 @@ export default function StatisticsSection() {
             </p>
           </div>
         </motion.div>
+
+        
 
       </div>
     </section>

@@ -85,7 +85,7 @@ const router = useRouter();
           <div className="flex gap-5 text-lg">
             <Link href="https://www.facebook.com/profile.php?id=61579066523394" target="_blank" className="hover:text-[#D4AF37] transition"><FaFacebookF /></Link>
             <Link href="https://www.instagram.com/chess.prix?igsh=MXBudmg0dDJtNW91dQ==" target="_blank" className="hover:text-[#D4AF37] transition"><FaInstagram /></Link>
-            <Link href="https://whatsapp.com" target="_blank" className="hover:text-[#D4AF37] transition"><FaWhatsapp /></Link>
+            <Link href="https://wa.me/919631218251" target="_blank" className="hover:text-[#D4AF37] transition"><FaWhatsapp /></Link>
             <Link href="https://www.linkedin.com/in/chess-prix-a10a82377/" target="_blank" className="hover:text-[#D4AF37] transition"><FaLinkedinIn /></Link>
           </div>
         </div>

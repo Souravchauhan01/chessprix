@@ -204,7 +204,7 @@ export default function FinalCTASection() {
         </motion.div>
 
         {/* Social Proof */}
-        <motion.div
+        {/* <motion.div
           className="mt-16 text-center"
           initial="hidden"
           animate="visible"
@@ -230,7 +230,7 @@ export default function FinalCTASection() {
               </div>
             </div>
           </div>
-        </motion.div>
+        </motion.div> */}
 
         {/* Final CTA */}
         <motion.div
