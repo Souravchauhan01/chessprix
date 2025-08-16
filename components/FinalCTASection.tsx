@@ -4,6 +4,7 @@ import { useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
 import { generateChessElements } from './utils/chessElements';
 import { useRouter } from 'next/navigation';
+import { link } from 'fs';
 
 // === Types ===
 type ChessType = 'pawn' | 'knight' | 'queen' | 'rook' | 'bishop' | 'king';
@@ -48,28 +49,32 @@ const ctaOptions = [
     description: 'Begin your chess mastery with a free trial lesson',
     buttonText: 'Book Free Trial',
     buttonStyle: 'primary',
-    icon: '🎯'
+    icon: '🎯',
+    link: '/contact',
   },
   {
     title: 'Explore Programs',
     description: 'Discover our comprehensive chess curriculum',
     buttonText: 'View Programs',
     buttonStyle: 'secondary',
-    icon: '📚'
+    icon: '📚',
+    link: '/beginner',
   },
   {
     title: 'Talk to an Expert',
     description: 'Get personalized guidance from our chess masters',
     buttonText: 'Schedule Consultation',
     buttonStyle: 'primary',
-    icon: '👨‍🏫'
+    icon: '👨‍🏫',
+    link: '/contact'
   },
   {
     title: 'Join Community',
     description: 'Connect with fellow chess enthusiasts worldwide',
     buttonText: 'Join Now',
     buttonStyle: 'secondary',
-    icon: '🤝'
+    icon: '🤝',
+    link: 'https://wa.me/919631218251',
   }
 ];
 
@@ -189,7 +194,7 @@ export default function FinalCTASection() {
                 <p className="text-[#ebcc88] text-sm leading-relaxed mb-6">
                   {option.description}
                 </p>
-                <button 
+                <button onClick={() => router.push(option.link)}
                   className={`w-full font-bold px-6 py-3 rounded-lg transition-all duration-300 hover:scale-105 ${
                     option.buttonStyle === 'primary' 
                       ? 'bg-[#D4AF37] text-[#472b12] hover:bg-[#f0d998] shadow-lg' 

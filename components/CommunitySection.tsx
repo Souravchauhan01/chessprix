@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
+import Link from 'next/link';
 import { generateChessElements } from './utils/chessElements';
 
 // === Types ===
@@ -206,9 +207,11 @@ export default function CommunitySection() {
               that celebrates every victory and supports every challenge.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
+              <Link href='https://wa.me/919631218251' target='_blank' >
               <button className="bg-[#D4AF37] text-[#472b12] font-bold px-8 py-3 rounded-lg hover:bg-[#f0d998] transition-all duration-300 hover:scale-105 shadow-lg">
                 Join Community
               </button>
+              </Link>
               {/* <button className="border-2 border-[#D4AF37] text-[#D4AF37] font-bold px-8 py-3 rounded-lg hover:bg-[#D4AF37] hover:text-[#472b12] transition-all duration-300 hover:scale-105">
                 Learn More
               </button> */}

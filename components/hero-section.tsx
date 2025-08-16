@@ -6,7 +6,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { Typewriter } from 'react-simple-typewriter';
 import Slider from 'react-slick';
-
+import { useRouter } from 'next/navigation';
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 
@@ -80,6 +80,8 @@ const fadeUp = {
 export default function Hero() {
   const [chessElements, setChessElements] = useState<ChessElement[]>([]);
   const [isClient, setIsClient] = useState(false);
+
+  const router = useRouter();
 
   useEffect(() => {
     setIsClient(true);
@@ -178,7 +180,7 @@ export default function Hero() {
             className="mt-4 md:mt-6 lg:mt-8 flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-3 md:gap-4"
             variants={fadeUp}
           >
-            <button className="w-full sm:w-auto bg-[#472b12] text-white font-bold px-5 py-2 md:px-6 md:py-3 lg:px-8 lg:py-4 rounded-lg border-2 border-[#D4AF37] shadow-[0_4px_12px_rgba(212,175,55,0.4)] hover:scale-105 transition-all duration-300 ease-in-out hover:shadow-[0_6px_16px_rgba(212,175,55,0.5)] relative overflow-hidden group">
+            <button className="w-full sm:w-auto bg-[#472b12] text-white font-bold px-5 py-2 md:px-6 md:py-3 lg:px-8 lg:py-4 rounded-lg border-2 border-[#D4AF37] shadow-[0_4px_12px_rgba(212,175,55,0.4)] hover:scale-105 transition-all duration-300 ease-in-out hover:shadow-[0_6px_16px_rgba(212,175,55,0.5)] relative overflow-hidden group" onClick={() => router.push('/contact')}>
               <span className="absolute inset-0 bg-gradient-to-r from-[#D4AF37] to-[#472b12] opacity-0 group-hover:opacity-100 transition-opacity duration-300"></span>
               <span className="relative flex items-center justify-center gap-2 text-sm md:text-base">
                 <svg className="w-4 h-4 md:w-5 md:h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">

@@ -5,6 +5,7 @@ import { motion } from 'framer-motion';
 import Image from 'next/image';
 import ownerImg from '@/public/about1.jpg';
 import { generateChessElements } from './utils/chessElements';
+import { useRouter } from 'next/navigation';
 
 // === Types ===
 type ChessType = 'pawn' | 'knight' | 'queen' | 'rook' | 'bishop' | 'king';
@@ -91,6 +92,8 @@ const benefits = [
 export default function About() {
   const [chessElements, setChessElements] = useState<ChessElement[]>([]);
   const [isClient, setIsClient] = useState(false);
+
+  const router = useRouter();
 
   useEffect(() => {
     setIsClient(true);
@@ -282,7 +285,7 @@ export default function About() {
               Join hundreds of students who have already discovered the ChessPrix difference. 
               Start your systematic journey to chess mastery today.
             </p>
-            <button className="bg-[#D4AF37] text-[#472b12] font-bold px-8 py-3 rounded-lg hover:bg-[#f0d998] transition-all duration-300 hover:scale-105 shadow-lg">
+            <button className="bg-[#D4AF37] text-[#472b12] font-bold px-8 py-3 rounded-lg hover:bg-[#f0d998] transition-all duration-300 hover:scale-105 shadow-lg" onClick={() => router.push('/contact')}>
               Start Your Journey
             </button>
           </div>
